@@ -20,6 +20,7 @@ library(here)
 library(maps)
 library(ggmap)
 library(maptools)
+library(hrbrthemes)
 ```
 
 ### Importing dataset:
@@ -60,22 +61,89 @@ GBD2019 <- GBD2019 %>%
 ```{r}
 p1 <- GBD2019 %>%
       filter(year == "2019", measure == "DALYs",
-             sex =="Both", metric =="Rate", cause == "All causes")
-ggplot(p1) +
-  aes(x = location, y = val) +
-  geom_col(width = 0.6, fill = "#b19cd9") +
-  geom_errorbar(aes(ymin = lower, ymax = upper),
-                colour = "black", width = .1)+
-  labs(x = "Country", y = "DALYs(rate)") +
-  theme_bw() +
-  theme(axis.text.x = element_text(hjust = 1,
-                                   angle = 45,
-                                   size = 10))
+             sex =="Both", metric =="Rate", cause == "All causes") %>% 
+      ggplot(
+        mapping = aes(x = location, y = val)) +
+        geom_col(width = 0.5, fill = "#b19cd9") +
+        geom_errorbar(aes(ymin = lower, ymax = upper),
+                      colour = "black", width = .1)+
+        labs(title = "Rate of DALYS in South America countries for HFPG in 2019",
+             y = "DALYs(rate)", x = "Country") +
+        theme_bw() +
+        theme(axis.text.x = element_text(hjust = 1,
+                                         angle = 45,
+                                         size = 10))
+
+
+
+
+
+
+
+
+p1
+```
+
+#### YLDs and YLLs for males and females in 2019 for HFPG each country
+
+```{r}
+p2 <- GBD2019 %>%
+      filter (cause == "All causes", metric == "Rate", year == "2019",
+              sex != "Both", measure != "DALYs", measure != "Deaths") %>% 
+      mutate(sex = factor(x = sex),
+            sex = relevel(sex, ref = "Male"),
+            measure = factor(x = measure),
+            measure = relevel(measure, ref = "YLLs"),
+            sex_measure = interaction(sex, measure, sep = ", ")) %>% 
+      ggplot(mapping = aes(x = location, y = val, fill = sex_measure)) +
+            geom_bar(stat = "identity", width = 0.6) +
+            labs(x = "Age group", y = "DALYs", fill = "") +
+            theme_bw() +
+            theme(
+              axis.text.x = element_text(hjust = 1,
+                                         angle = 45,
+                                         size = 8))
+
+
+
+
+
+
+
+
+
+p2
+```
+
+#### Heatmaps...
+
+```{r}
+p3 <- GBD2019 %>% 
+      filter (metric =="Rate", year == "2019", sex == "Both",
+              measure == "DALYs") %>%
+      ggplot(mapping = aes(x = location, y = cause, fill = val))+
+      geom_tile(color = "white", lwd = 1, linetype = 1)+
+      geom_text(aes(label = round(val, digits = 0)), color = "white", size = 1.8) +
+      scale_fill_gradient(low="red", high="blue") +
+      theme_bw() +
+            theme(
+              axis.text.x = element_text(hjust = 1,
+                                         angle = 45,
+                                         size = 8))
+
+
+
+
+
+
+
+
+p3
 ```
 
 Let's start with a map of South America
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 SA <- ggplot2::borders("world",
                 regions = c("Brazil", "Uruguay", "Argentina",
                             "French Guiana", "Suriname", "Colombia",
@@ -83,5 +151,4 @@ SA <- ggplot2::borders("world",
                             "Paraguay", "Peru", "Guyana"),
                 fill = "grey70", colour = "black")
 
-ggplot() + SA
 ```
