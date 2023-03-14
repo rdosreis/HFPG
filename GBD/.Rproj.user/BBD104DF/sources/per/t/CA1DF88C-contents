@@ -1,0 +1,87 @@
+# High Fasting Plasma Glucose - GDB
+
+The sole purpose of this document is to present simply, yet powerful plots regarding data of high fasting plasma glucose (HFPG) in the Global Burden of Disease study (GBD). Shall we start?
+
+## Setting things:
+
+For our project, we will hugely rely on [Pintando e bordando no R](https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/#1), by Rodrigo Citton P. dos Reis.
+
+### Packages needed:
+
+We will use ggplot2 as the main package to generate plots using GBD data. Plotly for interactivity. We will also use googlesheets4 to import our dataset.
+
+```{r message=FALSE}
+library(ggplot2)
+library(ggthemes)
+library(plotly)
+library(tidyverse)
+library(readr)
+library(here)
+library(maps)
+library(ggmap)
+library(maptools)
+```
+
+### Importing dataset:
+
+```{r message=FALSE, results='hide'}
+GBD2019 <- readr::read_csv(file = here::here("IHME-GBD_2019_DATA-4a978572-1.csv"))
+head(GBD2019)
+```
+
+### Organizing:
+
+```{r results='hide'}
+GBD2019 <- GBD2019 %>% 
+  mutate(measure = case_when(
+    measure == "YLDs (Years Lived with Disability)" ~ "YLDs",
+    measure == "YLLs (Years of Life Lost)" ~ "YLLs",
+    measure =="DALYs (Disability-Adjusted Life Years)" ~ "DALYs",
+    measure == "Deaths" ~"Deaths")) %>% 
+  mutate(location = case_when(
+    location == "Bolivia (Plurinational State of)" ~ "Bolivia",
+    location == "Venezuela (Bolivarian Republic of)" ~ "Venezuela",
+    location == "Brazil" ~ "Brazil",
+    location == "Uruguay" ~ "Uruguay",
+    location == "Argentina" ~ "Argentina",
+    location == "Suriname" ~ "Suriname",
+    location == "Colombia" ~ "Colombia",
+    location == "Ecuador" ~ "Ecuador",
+    location == "Chile" ~ "Chile",
+    location == "Paraguay" ~"Paraguay",
+    location == "Peru" ~ "Peru",
+    location == "Guyana" ~ "Guyana"))
+```
+
+### Making graphs:
+
+#### DALYS for each south america country in 2019 for HFPG (age-standardized)
+
+```{r}
+p1 <- GBD2019 %>%
+      filter(year == "2019", measure == "DALYs",
+             sex =="Both", metric =="Rate", cause == "All causes")
+ggplot(p1) +
+  aes(x = location, y = val) +
+  geom_col(width = 0.6, fill = "#b19cd9") +
+  geom_errorbar(aes(ymin = lower, ymax = upper),
+                colour = "black", width = .1)+
+  labs(x = "Country", y = "DALYs(rate)") +
+  theme_bw() +
+  theme(axis.text.x = element_text(hjust = 1,
+                                   angle = 45,
+                                   size = 10))
+```
+
+Let's start with a map of South America
+
+```{r}
+SA <- ggplot2::borders("world",
+                regions = c("Brazil", "Uruguay", "Argentina",
+                            "French Guiana", "Suriname", "Colombia",
+                            "Venezuela", "Bolivia", "Ecuador", "Chile",
+                            "Paraguay", "Peru", "Guyana"),
+                fill = "grey70", colour = "black")
+
+ggplot() + SA
+```

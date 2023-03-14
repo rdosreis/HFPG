@@ -1,0 +1,8 @@
+"0","SA <- ggplot2::borders(""world"","
+"0","                regions = c(""Brazil"", ""Uruguay"", ""Argentina"","
+"0","                            ""French Guiana"", ""Suriname"", ""Colombia"","
+"0","                            ""Venezuela"", ""Bolivia"", ""Ecuador"", ""Chile"","
+"0","                            ""Paraguay"", ""Peru"", ""Guyana""),"
+"0","                fill = ""grey70"", colour = ""black"")"
+"0",""
+"0","ggplot() + SA"
