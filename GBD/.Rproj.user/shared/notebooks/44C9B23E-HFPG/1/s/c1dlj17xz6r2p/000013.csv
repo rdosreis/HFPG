@@ -1,2 +1,0 @@
-"0","GBD2019 <- readr::read_csv(file = here::here(""IHME-GBD_2019_DATA-4a978572-1.csv""))"
-"0","head(GBD2019)"
