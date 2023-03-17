@@ -137,7 +137,7 @@ pp2.2 <-  ggplot(p2) +
           geom_bar(width = 1) +
           labs(x = "", y = "DALYs per 100.000", fill = "",
                title = "Rate of DALYs by location, sex and year") +
-          theme_minimal() +
+          ggthemes::theme_base() +
           facet_grid(vars(sex), vars(location))+
           theme(
               axis.text.x = element_text(hjust = 1,
@@ -158,7 +158,26 @@ pp2.2 <-  ggplot(p2) +
           coord_cartesian(ylim = c(0,7000))
 
 pp2.2
+
       
+```
+
+```{r}
+
+
+p2.3 <- GBD %>%
+      filter (cause == "All causes", metric == "Rate")
+
+pp2.3 <-  ggplot(p2.3, aes(x = year, y = val))+
+          geom_point()
+        
+
+
+
+
+
+
+pp2.3
 ```
 
 #### Heatmaps...

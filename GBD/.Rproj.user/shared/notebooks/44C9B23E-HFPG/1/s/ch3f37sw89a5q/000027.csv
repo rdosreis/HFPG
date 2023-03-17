@@ -5,7 +5,7 @@
 "0","          geom_bar(width = 1) +"
 "0","          labs(x = """", y = ""DALYs per 100.000"", fill = """","
 "0","               title = ""Rate of DALYs by location, sex and year"") +"
-"0","          theme_minimal() +"
+"0","          ggthemes::theme_base() +"
 "0","          facet_grid(vars(sex), vars(location))+"
 "0","          theme("
 "0","              axis.text.x = element_text(hjust = 1,"

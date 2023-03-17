@@ -3,7 +3,7 @@
     "path": "~/GitHub/HFPG/GBD/HFPG.Rmd",
     "project_path": "HFPG.Rmd",
     "type": "r_markdown",
-    "hash": "1250272517",
+    "hash": "1993551831",
     "contents": "",
     "dirty": false,
     "created": 1678808579341.0,
@@ -12,20 +12,20 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "139,23",
-        "scrollLine": "116",
-        "rmdVisualMode": "false",
+        "cursorPosition": "164,0",
+        "scrollLine": "173",
+        "rmdVisualMode": "true",
         "rmdVisualWrapConfigured": "true",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "rmdVisualModeLocation": "1890:901"
+        "rmdVisualModeLocation": "5793:4062"
     },
     "folds": "",
-    "lastKnownWriteTime": 1679081918,
+    "lastKnownWriteTime": 1679087162,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1679081918860,
+    "last_content_update": 1679087162377,
     "read_only": false,
     "read_only_alternatives": []
 }
