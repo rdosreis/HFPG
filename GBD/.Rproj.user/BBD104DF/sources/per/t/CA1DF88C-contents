@@ -63,7 +63,9 @@ GBD <- GBD %>%
                                           "500 - 1000",
                                           "1000 - 2500",
                                           "2500 - 5000",
-                                          ">5000")))
+                                          ">5000"))) %>% 
+          mutate(year = as.factor(year))
+
 ```
 
 ### Making graphs:
@@ -91,23 +93,72 @@ p1 <- GBD %>%
                                          size = 10))
 ```
 
-#### YLDs and YLLs for males and females in 2019 for HFPG each country
+#### YLDs and YLLs for males and females in 2019 - 2019 for HFPG each country
 
 ```{r}
 p2 <- GBD %>%
-      filter (cause == "All causes", metric == "Rate", year == "2019",
+      filter (cause == "All causes", metric == "Rate",
               measure != "DALYs", measure != "Deaths") 
 
 
-      ggplot(p2, mapping = aes(x = location, y = val, fill = measure)) +
-        geom_bar(stat = "identity", width = 0.8) +
+pp2 <-  ggplot() +
+        geom_bar(data = p2 %>% filter(year == 2019),
+                 mapping = aes(x = location, y = val, fill = measure, alpha = 0.8),
+                 stat = "identity", width = 0.3) +
         facet_wrap(vars(sex))+
         labs(x = "", y = "DALYs", fill = "") +
-        theme_minimal() +
+        ggthemes::theme_base() +
         theme(
               axis.text.x = element_text(hjust = 1,
                                          angle = 45,
-                                         size = 8))
+                                         size = 8))+
+        coord_cartesian(ylim = c(0,7000))
+pp2
+#ggsave("DALYs2019", device = svg)
+        
+pp2.1 <-ggplot() +
+        geom_bar(data = p2 %>% filter(year == 1990),
+                 mapping = aes(x = location, y = val, fill = measure),
+                 stat = "identity", width = 0.3) +
+
+        facet_wrap(vars(sex))+
+        labs(x = "", y = "DALYs", fill = "") +
+        ggthemes::theme_base() +
+        theme(
+              axis.text.x = element_text(hjust = 1,
+                                         angle = 45,
+                                         size = 8))+
+        coord_cartesian(ylim = c(0,7000))
+pp2.1
+#ggsave("DALYs1990", device = svg)
+
+pp2.2 <-  ggplot(p2) +
+          aes(x = year, fill = measure, weight = val) +
+          geom_bar(width = 1) +
+          labs(x = "", y = "DALYs per 100.000", fill = "",
+               title = "Rate of DALYs by location, sex and year") +
+          theme_minimal() +
+          facet_grid(vars(sex), vars(location))+
+          theme(
+              axis.text.x = element_text(hjust = 1,
+                                         angle = 45,
+                                         size = 8),
+              axis.text.y = element_text(hjust = 0,5,
+                                         angle = 0,
+                                         size = 8),
+              strip.text.x = element_text(
+                                         angle = 45,
+                                         size = 8),
+              strip.text.y = element_text(hjust = 0.8, size = 8),
+                  
+              panel.background = element_blank(),
+              panel.border = element_blank())+
+          
+
+          coord_cartesian(ylim = c(0,7000))
+
+pp2.2
+      
 ```
 
 #### Heatmaps...
@@ -126,12 +177,17 @@ p3 <- GBD %>%
                 size = 2.3) +
       scale_fill_viridis_d(direction = -1)+
       theme_minimal() +
-      labs(title = "DALYs per 100.000 for each cause by country in 2019")+
+      labs(title = "DALYs per 100.000 for each cause by country in 2019", fill = "DALYs per 100.000")+
             theme(
               axis.text.x = element_text(hjust = 1,
                                          angle = 45,
                                          size = 8),
               plot.title = element_text(hjust = 0.9))
+  
+  
+  
+  
+  
 ```
 
 Let's start with a map of South America

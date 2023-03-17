@@ -11,7 +11,7 @@
 "0","                size = 2.3) +"
 "0","      scale_fill_viridis_d(direction = -1)+"
 "0","      theme_minimal() +"
-"0","      labs(title = ""DALYs per 100.000 for each cause by country in 2019"")+"
+"0","      labs(title = ""DALYs per 100.000 for each cause by country in 2019"", fill = ""DALYs per 100.000"")+"
 "0","            theme("
 "0","              axis.text.x = element_text(hjust = 1,"
 "0","                                         angle = 45,"
