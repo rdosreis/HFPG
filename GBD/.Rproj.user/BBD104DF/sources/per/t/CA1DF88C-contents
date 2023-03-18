@@ -35,24 +35,13 @@ head(GBD)
 
 ```{r results='hide'}
 GBD <- GBD %>% 
-          mutate(measure = case_when(
-            measure == "YLDs (Years Lived with Disability)" ~ "YLDs",
-            measure == "YLLs (Years of Life Lost)" ~ "YLLs",
-            measure =="DALYs (Disability-Adjusted Life Years)" ~ "DALYs",
-            measure == "Deaths" ~"Deaths")) %>% 
-          mutate(location = case_when(
-            location == "Bolivia (Plurinational State of)" ~ "Bolivia",
-            location == "Venezuela (Bolivarian Republic of)" ~ "Venezuela",
-            location == "Brazil" ~ "Brazil",
-            location == "Uruguay" ~ "Uruguay",
-            location == "Argentina" ~ "Argentina",
-            location == "Suriname" ~ "Suriname",
-            location == "Colombia" ~ "Colombia",
-            location == "Ecuador" ~ "Ecuador",
-            location == "Chile" ~ "Chile",
-            location == "Paraguay" ~"Paraguay",
-            location == "Peru" ~ "Peru",
-            location == "Guyana" ~ "Guyana")) %>% 
+          mutate(measure = recode(measure,
+            "YLDs (Years Lived with Disability)" = "YLDs",
+            "YLLs (Years of Life Lost)" = "YLLs",
+            "DALYs (Disability-Adjusted Life Years)" = "DALYs")) %>% 
+          mutate(location = recode(location,
+           "Bolivia (Plurinational State of)" = "Bolivia",
+           "Venezuela (Bolivarian Republic of)" = "Venezuela"))%>% 
           mutate(val_cat = cut(x = GBD$val,
                                breaks = c(-Inf, 1, 10, 100, 500, 
                                                  1000, 2500, 5000, Inf),
@@ -166,17 +155,55 @@ pp2.2
 
 
 teste <- GBD %>%
- filter(measure %in% "DALYs") %>%
- filter(sex %in% "Both") %>%
- filter(cause %in% "All causes") %>%
- filter(metric %in% "Rate")
+     filter(cause == "All causes") %>%
+     filter(metric == "Rate")
+    
+    
+pteste<-ggplot()+
+        geom_line(data = teste %>% filter (measure == "DALYs"),
+                  aes(x = year, y = val,
+                      color = measure, group = measure))+
+        geom_line(data = teste %>% filter (measure == "YLDs"),
+                  aes(x = year, y = val,
+                      color = measure, group = measure))+
+        geom_line(data = teste %>% filter (measure == "YLLs"),
+                  aes(x = year, y = val,
+                      color = measure, group = measure))+
+        geom_point(data = teste %>% filter (measure == "DALYs"),
+                  aes(x = year, y = val,
+                      color = measure, group = measure))+
+        geom_point(data = teste %>% filter (measure == "YLDs"),
+                  aes(x = year, y = val,
+                      color = measure, group = measure))+
+        geom_point(data = teste %>% filter (measure == "YLLs"),
+                  aes(x = year, y = val,
+                      color = measure, group = measure))+
+        facet_grid(vars(sex), vars(location))+
+       theme_minimal() +
+        facet_grid(vars(sex), vars(location))+
+        theme(
+            axis.text.x = element_text(hjust = 1,
+                                       angle = 45,
+                                       size = 8),
+            axis.text.y = element_text(hjust = 0,5,
+                                       angle = 0,
+                                       size = 8),
+            strip.text.x = element_text(
+                                       angle = 45,
+                                       size = 8),
+            strip.text.y = element_text(hjust = 0.8, size = 8),
+                
+            panel.background = element_blank(),
+            panel.border = element_blank())+
+        
+
+        coord_cartesian(ylim = c(0,7000))+
+        labs(x = "", y = "Measure per 100.000", fill = "Measure",
+               title = "Rate of DALYs, YLDs and YLLs by location, sex and year")
 
 
- ggplot() +
-   geom_point(data = teste %>% filter(year == "1990"),
-              aes(x = location, y = val))+
-   geom_point(data = teste %>% filter(year == "2019"),
-              aes(x = location, y = val))
+
+pteste
 ```
 
 #### Heatmaps...
@@ -195,6 +222,7 @@ p3 <- GBD %>%
                 size = 2.3) +
       scale_fill_viridis_d(direction = -1)+
       theme_minimal() +
+      
       labs(title = "DALYs per 100.000 for each cause by country in 2019", fill = "DALYs per 100.000")+
             theme(
               axis.text.x = element_text(hjust = 1,
@@ -206,6 +234,39 @@ p3 <- GBD %>%
   
   
   
+```
+
+```{r}
+p4 <- GBD %>% 
+      filter (metric =="Rate", sex == "Both")
+    
+  
+pp4 <-ggplot()+
+      geom_tile(data = p4, 
+                mapping = aes(x = location, 
+                              y = cause, 
+                              fill = val_cat),
+                color = "white")+
+      facet_grid(vars(year), vars(measure))+
+      # 
+      # geom_shadowtext(data = p4,
+      #                 aes(label = round(val, digits = 0)), 
+      #                 color = "white",
+      #                 size = 2.3) +
+      scale_fill_viridis_d(direction = -1)+
+      theme_minimal() +
+      coord_fixed(ratio = 1)+
+      labs(title = "DALYs, YLDs, YLLs and deaths related to HFPG per 100.000 by cause for South America countries in 1990 and 2019", 
+           fill = "Measure per 100.000", y = "", x = "")+
+            theme(
+              axis.text.x = element_text(hjust = 1,
+                                         angle = 45,
+                                         size = 6),
+              plot.title = element_text(hjust = 0.9),
+              title = element_text(size = 7))
+
+
+pp4
 ```
 
 Let's start with a map of South America
