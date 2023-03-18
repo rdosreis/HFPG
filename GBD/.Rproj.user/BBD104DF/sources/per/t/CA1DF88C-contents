@@ -165,19 +165,18 @@ pp2.2
 ```{r}
 
 
-p2.3 <- GBD %>%
-      filter (cause == "All causes", metric == "Rate")
-
-pp2.3 <-  ggplot(p2.3, aes(x = year, y = val))+
-          geom_point()
-        
-
+teste <- GBD %>%
+ filter(measure %in% "DALYs") %>%
+ filter(sex %in% "Both") %>%
+ filter(cause %in% "All causes") %>%
+ filter(metric %in% "Rate")
 
 
-
-
-
-pp2.3
+ ggplot() +
+   geom_point(data = teste %>% filter(year == "1990"),
+              aes(x = location, y = val))+
+   geom_point(data = teste %>% filter(year == "2019"),
+              aes(x = location, y = val))
 ```
 
 #### Heatmaps...
