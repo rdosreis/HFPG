@@ -28,12 +28,32 @@ library(shadowtext)
 
 ```{r message=FALSE, results='hide'}
 GBD <- readr::read_csv(file = here::here("IHME-GBD_2019_DATA-4a978572-1.csv"))
-head(GBD)
+
+SDI <- readr::read_csv(file = here::here("IHME_GBD_2019_SDI_1990_2019_Y2020M10D15.csv"))
 ```
 
 ### Organizing:
 
 ```{r results='hide'}
+
+SDI <- SDI %>%
+          filter(Location %in% c("Argentina",
+                 "Bolivia",
+                 "Brazil",
+                 "Chile",
+                 "Colombia",
+                 "Ecuador",
+                 "Guyana",
+                 "Paraguay",
+                 "Peru",
+                 "Suriname",
+                 "Uruguay",
+                 "Venezuela")) %>% 
+          select("Location", "1990", "2019") %>% 
+          pivot_longer(cols = c("1990", "2019"), 
+                       names_to = "year", 
+                       values_to = "SDI")
+
 GBD <- GBD %>% 
           mutate(measure = recode(measure,
             "YLDs (Years Lived with Disability)" = "YLDs",
@@ -53,7 +73,8 @@ GBD <- GBD %>%
                                           "1000 - 2500",
                                           "2500 - 5000",
                                           ">5000"))) %>% 
-          mutate(year = as.factor(year))
+          mutate(year = as.factor(year)) %>% 
+          full_join(SDI, by = c("location" = "Location", "year" = "year"))
 
 ```
 
@@ -223,7 +244,9 @@ p3 <- GBD %>%
       scale_fill_viridis_d(direction = -1)+
       theme_minimal() +
       
-      labs(title = "DALYs per 100.000 for each cause by country in 2019", fill = "DALYs per 100.000")+
+      labs(title = "DALYs per 100.000 for each cause
+           by country in 2019, both sexes", fill = "DALYs per 100.000",
+           x = "", y= "")+
             theme(
               axis.text.x = element_text(hjust = 1,
                                          angle = 45,
@@ -256,7 +279,8 @@ pp4 <-ggplot()+
       scale_fill_viridis_d(direction = -1)+
       theme_minimal() +
       coord_fixed(ratio = 1)+
-      labs(title = "DALYs, YLDs, YLLs and deaths related to HFPG per 100.000 by cause for South America countries in 1990 and 2019", 
+      labs(title = "DALYs, YLDs, YLLs and deaths related to HFPG per 100.000 
+           by cause for South America countries in 1990 and 2019", 
            fill = "Measure per 100.000", y = "", x = "")+
             theme(
               axis.text.x = element_text(hjust = 1,
