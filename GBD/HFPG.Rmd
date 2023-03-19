@@ -8,7 +8,7 @@ Let's start with some useful links:
 
 Some comments:
 
-1.   Risk factor exposure is available upon REQUEST, and we have not requested;
+1.  Risk factor exposure is available upon REQUEST, and we have not requested;
 
 ## Setting things:
 
@@ -25,9 +25,10 @@ library(plotly)
 library(tidyverse)
 library(readr)
 library(here)
-library(maps)
-library(ggmap)
-library(maptools)
+# library(maps)
+# library(ggmap)
+# library(maptools)
+library(rnaturalearth)
 library(hrbrthemes)
 library(shadowtext)
 ```
@@ -35,11 +36,15 @@ library(shadowtext)
 ### Importing dataset:
 
 ```{r message=FALSE, results='hide'}
-GBD <- readr::read_csv(file = here::here("IHME-GBD_2019_DATA-4a978572-1.csv"))
+GBD <- readr::read_csv(file = here::here("GBD_measures.csv"))
 
-GBDrates <- readr::read_csv(file = here::here("IHME-GBD_2019_DATA-8d671f94-1.csv"))
+GBDrates <- readr::read_csv(file = here::here("GBD_rate_of_changes.csv"))
 
-SDI <- readr::read_csv(file = here::here("IHME_GBD_2019_SDI_1990_2019_Y2020M10D15.csv"))
+SDI <- readr::read_csv(file = here::here("GBD_SDI_1990_2019.csv"))
+
+GBD_POP_1990 <- read_csv(file = here::here("GBD_POP_1990.CSV"))
+
+GBD_POP_2019 <- read_csv(file = here::here("GBD_POP_2019.CSV"))
 ```
 
 ### Organizing:
@@ -104,14 +109,12 @@ GBD <- GBD %>%
                                      "metric" = "metric",
                                      "year" = "year_end"))
 
-rm("GBDrates", "SDI") #don't wanna waste my precious RAM...
+rm("GBDrates", "SDI", "GBD_POP_1990_2020") #don't wanna waste my precious RAM...
 ```
 
 ### Making graphs:
 
-#### DALYS for each south america country in 2019 for HFPG (age-standardized)
-
-```{r}
+```{r eval=FALSE, include=FALSE}
 p1 <- GBD %>%
       filter(year == "2019", measure == "DALYs",
              sex =="Both", metric =="Rate", cause == "All causes")
@@ -334,11 +337,13 @@ ggplot(p6, aes(x = SDI, y = ROC_val)) +
 Let's start with a map of South America
 
 ```{r eval=FALSE, include=FALSE}
-SA <- ggplot2::borders("world",
-                regions = c("Brazil", "Uruguay", "Argentina",
+SA <- ne_countries(country = c("Brazil", "Uruguay", "Argentina",
                             "French Guiana", "Suriname", "Colombia",
                             "Venezuela", "Bolivia", "Ecuador", "Chile",
                             "Paraguay", "Peru", "Guyana"),
-                fill = "grey70", colour = "black")
+                   returnclass = "sf")
+
+ggplot()+
+  geom_sf(data = SA)
 
 ```
