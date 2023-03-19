@@ -29,6 +29,8 @@ library(here)
 # library(ggmap)
 # library(maptools)
 library(rnaturalearth)
+library(rnaturalearthdata)
+library(rnaturalearthhires)
 library(hrbrthemes)
 library(shadowtext)
 ```
@@ -109,7 +111,7 @@ GBD <- GBD %>%
                                      "metric" = "metric",
                                      "year" = "year_end"))
 
-rm("GBDrates", "SDI", "GBD_POP_1990_2020") #don't wanna waste my precious RAM...
+rm("GBDrates", "SDI", "GBD_POP_1990", "GBD_POP_2019") #don't wanna waste my precious RAM...
 ```
 
 ### Making graphs:
@@ -336,14 +338,16 @@ ggplot(p6, aes(x = SDI, y = ROC_val)) +
 
 Let's start with a map of South America
 
-```{r eval=FALSE, include=FALSE}
-SA <- ne_countries(country = c("Brazil", "Uruguay", "Argentina",
-                            "French Guiana", "Suriname", "Colombia",
-                            "Venezuela", "Bolivia", "Ecuador", "Chile",
-                            "Paraguay", "Peru", "Guyana"),
+```{r}
+SA <- ne_countries(scale = "medium",
+                   type = "map_units",
                    returnclass = "sf")
+
+SA <- SA 
 
 ggplot()+
   geom_sf(data = SA)
+
+
 
 ```

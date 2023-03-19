@@ -1,0 +1,7 @@
+"0","SA <- ne_states(country = ""Brazil"","
+"0","                   returnclass = ""sf"")"
+"0",""
+"0",""
+"0",""
+"0",""
+"0","plot(SA, max.plot = 121)"

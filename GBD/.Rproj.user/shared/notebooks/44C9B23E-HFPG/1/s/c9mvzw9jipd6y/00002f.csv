@@ -1,0 +1,8 @@
+"0","SA <- ne_countries(scale = ""medium"","
+"0","                   type = ""map_units"","
+"0","                   returnclass = ""sf"")"
+"0",""
+"0",""
+"0",""
+"0","ggplot()+"
+"0","  geom_sf(data = SA)"

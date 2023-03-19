@@ -8,5 +8,7 @@
 "0","# library(ggmap)"
 "0","# library(maptools)"
 "0","library(rnaturalearth)"
+"0","library(rnaturalearthdata)"
+"0","library(rnaturalearthhires)"
 "0","library(hrbrthemes)"
 "0","library(shadowtext)"
