@@ -29,6 +29,8 @@ library(shadowtext)
 ```{r message=FALSE, results='hide'}
 GBD <- readr::read_csv(file = here::here("IHME-GBD_2019_DATA-4a978572-1.csv"))
 
+GBDrates <- readr::read_csv(file = here::here("IHME-GBD_2019_DATA-8d671f94-1.csv"))
+
 SDI <- readr::read_csv(file = here::here("IHME_GBD_2019_SDI_1990_2019_Y2020M10D15.csv"))
 ```
 
@@ -54,6 +56,18 @@ SDI <- SDI %>%
                        names_to = "year", 
                        values_to = "SDI")
 
+GBDrates <- GBDrates %>% 
+            mutate(measure = recode(measure,
+            "YLDs (Years Lived with Disability)" = "YLDs",
+            "YLLs (Years of Life Lost)" = "YLLs",
+            "DALYs (Disability-Adjusted Life Years)" = "DALYs")) %>% 
+            mutate(location = recode(location,
+           "Bolivia (Plurinational State of)" = "Bolivia",
+           "Venezuela (Bolivarian Republic of)" = "Venezuela")) %>% 
+            mutate(year_end = as.factor(year_end)) %>% 
+            select(-c("age", "rei", "year_start")) %>% 
+            rename(ROC_val = val, ROC_upper = upper, ROC_lower = lower)
+
 GBD <- GBD %>% 
           mutate(measure = recode(measure,
             "YLDs (Years Lived with Disability)" = "YLDs",
@@ -74,8 +88,15 @@ GBD <- GBD %>%
                                           "2500 - 5000",
                                           ">5000"))) %>% 
           mutate(year = as.factor(year)) %>% 
-          full_join(SDI, by = c("location" = "Location", "year" = "year"))
+          full_join(SDI, by = c("location" = "Location", "year" = "year")) %>% 
+          full_join(GBDrates, by = c("location" = "location",
+                                     "measure" = "measure",
+                                     "sex" = "sex",
+                                     "cause" = "cause",
+                                     "metric" = "metric",
+                                     "year" = "year_end"))
 
+rm("GBDrates", "SDI") #don't wanna waste my precious RAM...
 ```
 
 ### Making graphs:
@@ -111,63 +132,59 @@ p2 <- GBD %>%
               measure != "DALYs", measure != "Deaths") 
 
 
-pp2 <-  ggplot() +
-        geom_bar(data = p2 %>% filter(year == 2019),
-                 mapping = aes(x = location, y = val, fill = measure, alpha = 0.8),
-                 stat = "identity", width = 0.3) +
-        facet_wrap(vars(sex))+
-        labs(x = "", y = "DALYs", fill = "") +
-        ggthemes::theme_base() +
-        theme(
-              axis.text.x = element_text(hjust = 1,
-                                         angle = 45,
-                                         size = 8))+
-        coord_cartesian(ylim = c(0,7000))
-pp2
-#ggsave("DALYs2019", device = svg)
+ggplot() +
+  geom_bar(data = p2 %>% filter(year == 2019),
+           mapping = aes(x = location, y = val, fill = measure, alpha = 0.8),
+           stat = "identity", width = 0.3) +
+  facet_wrap(vars(sex))+
+  labs(x = "", y = "DALYs", fill = "") +
+  ggthemes::theme_base() +
+  theme(
+        axis.text.x = element_text(hjust = 1,
+                                   angle = 45,
+                                   size = 8))+
+  coord_cartesian(ylim = c(0,7000))
+
         
-pp2.1 <-ggplot() +
-        geom_bar(data = p2 %>% filter(year == 1990),
-                 mapping = aes(x = location, y = val, fill = measure),
-                 stat = "identity", width = 0.3) +
+ggplot() +
+  geom_bar(data = p2 %>% filter(year == 1990),
+           mapping = aes(x = location, y = val, fill = measure),
+           stat = "identity", width = 0.3) +
 
-        facet_wrap(vars(sex))+
-        labs(x = "", y = "DALYs", fill = "") +
-        ggthemes::theme_base() +
-        theme(
-              axis.text.x = element_text(hjust = 1,
-                                         angle = 45,
-                                         size = 8))+
-        coord_cartesian(ylim = c(0,7000))
-pp2.1
-#ggsave("DALYs1990", device = svg)
+  facet_wrap(vars(sex))+
+  labs(x = "", y = "DALYs", fill = "") +
+  ggthemes::theme_base() +
+  theme(
+        axis.text.x = element_text(hjust = 1,
+                                   angle = 45,
+                                   size = 8))+
+  coord_cartesian(ylim = c(0,7000))
 
-pp2.2 <-  ggplot(p2) +
-          aes(x = year, fill = measure, weight = val) +
-          geom_bar(width = 1) +
-          labs(x = "", y = "DALYs per 100.000", fill = "",
-               title = "Rate of DALYs by location, sex and year") +
-          ggthemes::theme_base() +
-          facet_grid(vars(sex), vars(location))+
-          theme(
-              axis.text.x = element_text(hjust = 1,
-                                         angle = 45,
-                                         size = 8),
-              axis.text.y = element_text(hjust = 0,5,
-                                         angle = 0,
-                                         size = 8),
-              strip.text.x = element_text(
-                                         angle = 45,
-                                         size = 8),
-              strip.text.y = element_text(hjust = 0.8, size = 8),
-                  
-              panel.background = element_blank(),
-              panel.border = element_blank())+
+ggplot(p2) +
+  aes(x = year, fill = measure, weight = val) +
+  geom_bar(width = 1) +
+  labs(x = "", y = "DALYs per 100.000", fill = "",
+       title = "Rate of DALYs by location, sex and year") +
+  ggthemes::theme_base() +
+  facet_grid(vars(sex), vars(location))+
+  theme(
+      axis.text.x = element_text(hjust = 1,
+                                 angle = 45,
+                                 size = 8),
+      axis.text.y = element_text(hjust = 0,5,
+                                 angle = 0,
+                                 size = 8),
+      strip.text.x = element_text(
+                                 angle = 45,
+                                 size = 8),
+      strip.text.y = element_text(hjust = 0.8, size = 8),
           
+      panel.background = element_blank(),
+      panel.border = element_blank())+
+  
 
-          coord_cartesian(ylim = c(0,7000))
+  coord_cartesian(ylim = c(0,7000))
 
-pp2.2
 
       
 ```
@@ -175,68 +192,66 @@ pp2.2
 ```{r}
 
 
-teste <- GBD %>%
+p3 <- GBD %>%
      filter(cause == "All causes") %>%
      filter(metric == "Rate")
     
     
-pteste<-ggplot()+
-        geom_line(data = teste %>% filter (measure == "DALYs"),
-                  aes(x = year, y = val,
-                      color = measure, group = measure))+
-        geom_line(data = teste %>% filter (measure == "YLDs"),
-                  aes(x = year, y = val,
-                      color = measure, group = measure))+
-        geom_line(data = teste %>% filter (measure == "YLLs"),
-                  aes(x = year, y = val,
-                      color = measure, group = measure))+
-        geom_point(data = teste %>% filter (measure == "DALYs"),
-                  aes(x = year, y = val,
-                      color = measure, group = measure))+
-        geom_point(data = teste %>% filter (measure == "YLDs"),
-                  aes(x = year, y = val,
-                      color = measure, group = measure))+
-        geom_point(data = teste %>% filter (measure == "YLLs"),
-                  aes(x = year, y = val,
-                      color = measure, group = measure))+
-        facet_grid(vars(sex), vars(location))+
-       theme_minimal() +
-        facet_grid(vars(sex), vars(location))+
-        theme(
-            axis.text.x = element_text(hjust = 1,
-                                       angle = 45,
-                                       size = 8),
-            axis.text.y = element_text(hjust = 0,5,
-                                       angle = 0,
-                                       size = 8),
-            strip.text.x = element_text(
-                                       angle = 45,
-                                       size = 8),
-            strip.text.y = element_text(hjust = 0.8, size = 8),
-                
-            panel.background = element_blank(),
-            panel.border = element_blank())+
-        
+ggplot()+
+    geom_line(data = p3 %>% filter (measure == "DALYs"),
+              aes(x = year, y = val,
+                  color = measure, group = measure))+
+    geom_line(data = p3 %>% filter (measure == "YLDs"),
+              aes(x = year, y = val,
+                  color = measure, group = measure))+
+    geom_line(data = p3 %>% filter (measure == "YLLs"),
+              aes(x = year, y = val,
+                  color = measure, group = measure))+
+    geom_point(data = p3 %>% filter (measure == "DALYs"),
+              aes(x = year, y = val,
+                  color = measure, group = measure))+
+    geom_point(data = p3 %>% filter (measure == "YLDs"),
+              aes(x = year, y = val,
+                  color = measure, group = measure))+
+    geom_point(data = p3 %>% filter (measure == "YLLs"),
+              aes(x = year, y = val,
+                  color = measure, group = measure))+
+    facet_grid(vars(sex), vars(location))+
+   theme_minimal() +
+    facet_grid(vars(sex), vars(location))+
+    theme(
+        axis.text.x = element_text(hjust = 1,
+                                   angle = 45,
+                                   size = 8),
+        axis.text.y = element_text(hjust = 0,5,
+                                   angle = 0,
+                                   size = 8),
+        strip.text.x = element_text(
+                                   angle = 45,
+                                   size = 8),
+        strip.text.y = element_text(hjust = 0.8, size = 8),
+            
+        panel.background = element_blank(),
+        panel.border = element_blank())+
+    
 
-        coord_cartesian(ylim = c(0,7000))+
-        labs(x = "", y = "Measure per 100.000", fill = "Measure",
-               title = "Rate of DALYs, YLDs and YLLs by location, sex and year")
+    coord_cartesian(ylim = c(0,7000))+
+    labs(x = "", y = "Measure per 100.000", fill = "Measure",
+           title = "Rate of DALYs, YLDs and YLLs by location, sex and year")
 
 
-
-pteste
 ```
 
 #### Heatmaps...
 
 ```{r}
-p3 <- GBD %>% 
+p4 <- GBD %>% 
       filter (metric =="Rate", year == "2019", sex == "Both",
               measure == "DALYs")
       
   
   
-  ggplot(p3, mapping = aes(x = location, y = cause, fill = val_cat))+
+  ggplot(p4, mapping = aes(x = location, y = cause, fill = val_cat))+
       geom_tile(color = "white", lwd = 0)+
      
       geom_shadowtext(aes(label = round(val, digits = 0)), color = "white",
@@ -259,38 +274,53 @@ p3 <- GBD %>%
   
 ```
 
-```{r}
-p4 <- GBD %>% 
+```{r, fig.height=20, fig.width=20}
+p5 <- GBD %>% 
       filter (metric =="Rate", sex == "Both")
     
   
-pp4 <-ggplot()+
-      geom_tile(data = p4, 
-                mapping = aes(x = location, 
-                              y = cause, 
-                              fill = val_cat),
-                color = "white")+
-      facet_grid(vars(year), vars(measure))+
-      # 
-      # geom_shadowtext(data = p4,
-      #                 aes(label = round(val, digits = 0)), 
-      #                 color = "white",
-      #                 size = 2.3) +
-      scale_fill_viridis_d(direction = -1)+
-      theme_minimal() +
-      coord_fixed(ratio = 1)+
-      labs(title = "DALYs, YLDs, YLLs and deaths related to HFPG per 100.000 
-           by cause for South America countries in 1990 and 2019", 
-           fill = "Measure per 100.000", y = "", x = "")+
-            theme(
-              axis.text.x = element_text(hjust = 1,
-                                         angle = 45,
-                                         size = 6),
-              plot.title = element_text(hjust = 0.9),
-              title = element_text(size = 7))
+ggplot()+
+geom_tile(data = p5, 
+          mapping = aes(x = location, 
+                        y = cause, 
+                        fill = val_cat),
+          color = "white")+
+geom_shadowtext(data = p5,
+                aes(x = location,
+                    y = cause,
+                    label = round(val, digits = 0)),
+                color = "white",
+                size = 2.3) +
+facet_grid(vars(year), vars(measure))+
+scale_fill_viridis_d(direction = -1)+
+theme_minimal() +
+coord_fixed(ratio = 1)+
+labs(title = "DALYs, YLDs, YLLs and deaths related to HFPG per 100.000 by cause for South America countries in 1990 and 2019", 
+     fill = "Measure per 100.000", y = "", x = "")+
+theme(axis.text.x = element_text(hjust = 1,
+                                 angle = 45,
+                                 size = 6),
+      plot.title = element_text(hjust = 0.5),
+      title = element_text(size = 7))
 
+```
 
-pp4
+```{r}
+p6 <- GBD %>%
+ filter(measure == "DALYs") %>%
+ filter(sex == "Both") %>%
+ filter(cause == "All causes") %>%
+ filter(metric == "Rate") %>%
+ filter(year == "2019")
+ 
+ggplot(p6, aes(x = SDI, y = ROC_val)) +
+  geom_point(aes(fill = location,
+                 colour = location),
+             size = 3) +
+  scale_fill_hue(direction = 1) +
+  scale_color_hue(direction = 1) +
+  theme_classic()+
+  labs(y = "DALYs rate of change in 1990-2019")
 ```
 
 Let's start with a map of South America

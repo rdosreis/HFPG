@@ -1,3 +1,5 @@
 "0","GBD <- readr::read_csv(file = here::here(""IHME-GBD_2019_DATA-4a978572-1.csv""))"
 "0",""
+"0","GBDrates <- readr::read_csv(file = here::here(""IHME-GBD_2019_DATA-8d671f94-1.csv""))"
+"0",""
 "0","SDI <- readr::read_csv(file = here::here(""IHME_GBD_2019_SDI_1990_2019_Y2020M10D15.csv""))"
