@@ -1,6 +1,14 @@
 # High Fasting Plasma Glucose - GDB
 
-The sole purpose of this document is to present simply, yet powerful plots regarding data of high fasting plasma glucose (HFPG) in the Global Burden of Disease study (GBD). Shall we start?
+Let's start with some useful links:
+
+1.  [From DM2 to FPG (IHME)](https://github.com/ihmeuw/ihme-modeling/blob/master/gbd_2019/risk_factors_code/metab_fpg/crosswalk/dm_2_fpg.R)
+
+2.  [Age-sex splitting for FPG (IHME)](https://github.com/ihmeuw/ihme-modeling/blob/master/gbd_2019/risk_factors_code/metab_fpg/age_sex_split/age_sex_split.R)
+
+Some comments:
+
+1.   Risk factor exposure is available upon REQUEST, and we have not requested;
 
 ## Setting things:
 
