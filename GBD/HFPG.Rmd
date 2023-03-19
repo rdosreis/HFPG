@@ -44,9 +44,70 @@ GBDrates <- readr::read_csv(file = here::here("GBD_ROC.csv"))
 
 SDI <- readr::read_csv(file = here::here("GBD_SDI_1990_2019.csv"))
 
-GBD_POP_1990 <- read_csv(file = here::here("GBD_POP_1990.CSV"))
+GBD_POP_1990 <- read_csv(file = here::here("GBD_POP_1990.CSV")) %>% 
+            mutate(sex_name = recode(sex_name,
+            "both" = "Both",
+            "male" = "Male",
+            "female" = "Female")) %>% 
+            mutate(age_group_name = recode(age_group_name,
+            "All Ages" = "All ages")) %>%
+            mutate(location_name = recode(location_name,
+             "Bolivia (Plurinational State of)" = "Bolivia",
+             "Venezuela (Bolivarian Republic of)" = "Venezuela"))%>%
+                      select(c("location_name", 
+                               "sex_name", 
+                               "age_group_name",
+                               "val",
+                               "year_id")) %>% 
+            mutate(year_id = as.factor(year_id))  %>% 
+            filter(location_name %in% c("Argentina",
+                         "Bolivia",
+                         "Brazil",
+                         "Chile",
+                         "Colombia",
+                         "Ecuador",
+                         "Guyana",
+                         "Paraguay",
+                         "Peru",
+                         "Suriname",
+                         "Uruguay",
+                         "Venezuela")) %>% 
+             filter(sex_name %in% c("Both"))%>% 
+             filter(age_group_name %in% c("All ages")) %>%
+             rename(pop = val)
 
-GBD_POP_2019 <- read_csv(file = here::here("GBD_POP_2019.CSV"))
+
+GBD_POP_2019 <- read_csv(file = here::here("GBD_POP_2019.CSV"))%>% 
+            mutate(sex_name = recode(sex_name,
+            "both" = "Both",
+            "male" = "Male",
+            "female" = "Female")) %>% 
+            mutate(age_group_name = recode(age_group_name,
+            "All Ages" = "All ages")) %>%
+            mutate(location_name = recode(location_name,
+             "Bolivia (Plurinational State of)" = "Bolivia",
+             "Venezuela (Bolivarian Republic of)" = "Venezuela"))%>%
+                      select(c("location_name", 
+                               "sex_name", 
+                               "age_group_name",
+                               "val",
+                               "year_id"))%>% 
+            mutate(year_id = as.factor(year_id)) %>% 
+           filter(location_name %in% c("Argentina",
+                         "Bolivia",
+                         "Brazil",
+                         "Chile",
+                         "Colombia",
+                         "Ecuador",
+                         "Guyana",
+                         "Paraguay",
+                         "Peru",
+                         "Suriname",
+                         "Uruguay",
+                         "Venezuela"))%>% 
+             filter(sex_name %in% c("Both"))%>% 
+             filter(age_group_name %in% c("All ages"))%>%
+             rename(pop = val)
 ```
 
 ### Organizing:
@@ -129,6 +190,17 @@ GBD <- GBD %>%
                                      "age" = "age")) %>% 
           full_join(SA %>% select(c("admin", "sov_a3")),
                     by = c("location" = "admin"))
+          #%>% 
+          # full_join(GBD_POP_1990,
+          #           by = c("location" = "location_name",
+          #                  "sex" = "sex_name",
+          #                  "year" = "year_id",
+          #                  "age" = "age_group_name")) %>% 
+          # full_join(GBD_POP_2019,
+          #           by = c("location" = "location_name",
+          #                  "sex" = "sex_name",
+          #                  "year" = "year_id",
+          #                  "age" = "age_group_name"))
 
 
 
@@ -136,6 +208,15 @@ GBD <- GBD %>%
 
 
 rm("GBDrates", "SDI", "GBD_POP_1990", "GBD_POP_2019") #don't wanna waste my precious RAM...
+```
+
+```{r}
+ teste <- GBD %>% filter(cause != "All causes", measure == "DALYs", 
+               location == "Argentina", sex == "Both", 
+               age == "All ages", metric == "Number", 
+               year == "2019")
+ 
+ sum(teste$val)
 ```
 
 ### Making graphs:
