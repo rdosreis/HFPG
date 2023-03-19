@@ -211,12 +211,10 @@ rm("GBDrates", "SDI", "GBD_POP_1990", "GBD_POP_2019") #don't wanna waste my prec
 ```
 
 ```{r}
- teste <- GBD %>% filter(cause != "All causes", measure == "DALYs", 
-               location == "Argentina", sex == "Both", 
-               age == "All ages", metric == "Number", 
-               year == "2019")
- 
- sum(teste$val)
+GBD_SA <- GBD %>%
+          filter(age == "All ages") %>% 
+          group_by(cause, metric, measure) %>% 
+          summarise(val = sum(val))
 ```
 
 ### Making graphs:
