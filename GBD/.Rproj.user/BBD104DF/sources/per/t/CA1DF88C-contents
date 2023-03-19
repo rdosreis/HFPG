@@ -38,9 +38,9 @@ library(shadowtext)
 ### Importing dataset:
 
 ```{r message=FALSE, results='hide'}
-GBD <- readr::read_csv(file = here::here("GBD_measures.csv"))
+GBD <- readr::read_csv(file = here::here("GBD_vals.csv"))
 
-GBDrates <- readr::read_csv(file = here::here("GBD_rate_of_changes.csv"))
+GBDrates <- readr::read_csv(file = here::here("GBD_ROC.csv"))
 
 SDI <- readr::read_csv(file = here::here("GBD_SDI_1990_2019.csv"))
 
@@ -52,6 +52,22 @@ GBD_POP_2019 <- read_csv(file = here::here("GBD_POP_2019.CSV"))
 ### Organizing:
 
 ```{r results='hide'}
+
+SA <- ne_countries(scale = "medium",
+                   type = "map_units",
+                   returnclass = "sf") %>% 
+      filter(name %in% c("Argentina",
+                         "Bolivia",
+                         "Brazil",
+                         "Chile",
+                         "Colombia",
+                         "Ecuador",
+                         "Guyana",
+                         "Paraguay",
+                         "Peru",
+                         "Suriname",
+                         "Uruguay",
+                         "Venezuela"))
 
 SDI <- SDI %>%
           filter(Location %in% c("Argentina",
@@ -80,7 +96,7 @@ GBDrates <- GBDrates %>%
            "Bolivia (Plurinational State of)" = "Bolivia",
            "Venezuela (Bolivarian Republic of)" = "Venezuela")) %>% 
             mutate(year_end = as.factor(year_end)) %>% 
-            select(-c("age", "rei", "year_start")) %>% 
+            select(-c("rei", "year_start")) %>% 
             rename(ROC_val = val, ROC_upper = upper, ROC_lower = lower)
 
 GBD <- GBD %>% 
@@ -109,7 +125,15 @@ GBD <- GBD %>%
                                      "sex" = "sex",
                                      "cause" = "cause",
                                      "metric" = "metric",
-                                     "year" = "year_end"))
+                                     "year" = "year_end",
+                                     "age" = "age")) %>% 
+          full_join(SA %>% select(c("admin", "sov_a3")),
+                    by = c("location" = "admin"))
+
+
+
+
+
 
 rm("GBDrates", "SDI", "GBD_POP_1990", "GBD_POP_2019") #don't wanna waste my precious RAM...
 ```
@@ -142,7 +166,8 @@ p1 <- GBD %>%
 ```{r}
 p2 <- GBD %>%
       filter (cause == "All causes", metric == "Rate",
-              measure != "DALYs", measure != "Deaths") 
+              measure != "DALYs", measure != "Deaths",
+              age == "Age-standardized") 
 
 
 ggplot() +
@@ -207,7 +232,8 @@ ggplot(p2) +
 
 p3 <- GBD %>%
      filter(cause == "All causes") %>%
-     filter(metric == "Rate")
+     filter(metric == "Rate") %>% 
+     filter(age == "Age-standardized")
     
     
 ggplot()+
@@ -260,7 +286,7 @@ ggplot()+
 ```{r}
 p4 <- GBD %>% 
       filter (metric =="Rate", year == "2019", sex == "Both",
-              measure == "DALYs")
+              measure == "DALYs", age == "Age-standardized")
       
   
   
@@ -289,7 +315,7 @@ p4 <- GBD %>%
 
 ```{r, fig.height=20, fig.width=20}
 p5 <- GBD %>% 
-      filter (metric =="Rate", sex == "Both")
+      filter (metric =="Rate", sex == "Both", age == "Age-standardized")
     
   
 ggplot()+
@@ -324,29 +350,40 @@ p6 <- GBD %>%
  filter(sex == "Both") %>%
  filter(cause == "All causes") %>%
  filter(metric == "Rate") %>%
- filter(year == "2019")
+ filter(year == "2019") %>%
+ filter(age == "Age-standardized")
  
 ggplot(p6, aes(x = SDI, y = ROC_val)) +
   geom_point(aes(fill = location,
                  colour = location),
              size = 3) +
+  geom_text(x = p6$SDI, 
+            y = p6$ROC_val+0.03, 
+            label = p6$sov_a3, size = 3)+
   scale_fill_hue(direction = 1) +
   scale_color_hue(direction = 1) +
+  geom_hline(yintercept = 0, colour = "gray")+
   theme_classic()+
-  labs(y = "DALYs rate of change in 1990-2019")
+  labs(y = "DALYs anual rate of change in 1990-2019(%)",
+       x = "SDI in 2019")
 ```
 
 Let's start with a map of South America
 
 ```{r}
-SA <- ne_countries(scale = "medium",
-                   type = "map_units",
-                   returnclass = "sf")
+p7 <- GBD %>% filter(measure == "DALYs", 
+               metric == "Rate",
+               year == "2019",
+               sex == "Both",
+               cause == "All causes",
+               age == "Age-standardized")
 
-SA <- SA 
+
 
 ggplot()+
-  geom_sf(data = SA)
+  geom_sf(data = SA)+
+  coord_sf(xlim = c(-35,-85))+
+  theme_classic()
 
 
 
