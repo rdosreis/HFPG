@@ -38,13 +38,38 @@ library(shadowtext)
 ### Importing dataset:
 
 ```{r message=FALSE, results='hide'}
+
 GBD <- readr::read_csv(file = here::here("GBD_vals.csv"))
 
 GBDrates <- readr::read_csv(file = here::here("GBD_ROC.csv"))
 
 SDI <- readr::read_csv(file = here::here("GBD_SDI_1990_2019.csv"))
 
-GBD_POP_1990 <- read_csv(file = here::here("GBD_POP_1990.CSV")) %>% 
+dalys_all_causes_num_1990 <- read_csv(file = here::here("GBD_AGE_5_5_group.csv"),
+                                      col_types = cols(age = col_factor(levels = c("<5 years",
+                                                                                   "5-9 years",
+                                                                                   "10-14 years",
+                                                                                   "15-19 years",
+                                                                                   "20-24 years",
+                                                                                   "25-29 years",
+                                                                                   "30-34 years",
+                                                                                   "35-39 years",
+                                                                                   "40-44 years",
+                                                                                   "45-49 years",
+                                                                                   "50-54 years",
+                                                                                   "55-59 years",
+                                                                                   "60-64 years",
+                                                                                   "65-69 years",
+                                                                                   "70-74 years",
+                                                                                   "75-79 years",
+                                                                                   "80-84",
+                                                                                   "85-89",
+                                                                                   "90-94",
+                                                                                   "95+ years"))))
+
+GBD_POP_2019 <- read_csv(file = here::here("GBD_POP_2019.CSV"))
+GBD_POP <- read_csv(file = here::here("GBD_POP_1990.CSV")) %>%
+            bind_rows(GBD_POP_2019) %>% 
             mutate(sex_name = recode(sex_name,
             "both" = "Both",
             "male" = "Male",
@@ -74,40 +99,11 @@ GBD_POP_1990 <- read_csv(file = here::here("GBD_POP_1990.CSV")) %>%
                          "Venezuela")) %>% 
              filter(sex_name %in% c("Both"))%>% 
              filter(age_group_name %in% c("All ages")) %>%
-             rename(pop = val)
+             rename(pop = va
 
 
-GBD_POP_2019 <- read_csv(file = here::here("GBD_POP_2019.CSV"))%>% 
-            mutate(sex_name = recode(sex_name,
-            "both" = "Both",
-            "male" = "Male",
-            "female" = "Female")) %>% 
-            mutate(age_group_name = recode(age_group_name,
-            "All Ages" = "All ages")) %>%
-            mutate(location_name = recode(location_name,
-             "Bolivia (Plurinational State of)" = "Bolivia",
-             "Venezuela (Bolivarian Republic of)" = "Venezuela"))%>%
-                      select(c("location_name", 
-                               "sex_name", 
-                               "age_group_name",
-                               "val",
-                               "year_id"))%>% 
-            mutate(year_id = as.factor(year_id)) %>% 
-           filter(location_name %in% c("Argentina",
-                         "Bolivia",
-                         "Brazil",
-                         "Chile",
-                         "Colombia",
-                         "Ecuador",
-                         "Guyana",
-                         "Paraguay",
-                         "Peru",
-                         "Suriname",
-                         "Uruguay",
-                         "Venezuela"))%>% 
-             filter(sex_name %in% c("Both"))%>% 
-             filter(age_group_name %in% c("All ages"))%>%
-             rename(pop = val)
+
+
 ```
 
 ### Organizing:
@@ -204,22 +200,45 @@ GBD <- GBD %>%
 
 
 
-
-
-
-rm("GBDrates", "SDI", "GBD_POP_1990", "GBD_POP_2019") #don't wanna waste my precious RAM...
-```
-
-```{r}
 GBD_SA <- GBD %>%
           filter(age == "All ages") %>% 
           group_by(measure, cause, metric, year) %>% 
           summarise(location = "South America",
                     val = sum(val)) %>% 
-          filter(metric == "Number")
+          filter(metric == "Number") %>% 
+          mutate(age = "All ages") %>%
+          
+
+
+rm("GBDrates", "SDI") #don't wanna waste my precious RAM...
 ```
 
 ### Making graphs:
+
+```{r}
+
+```
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+
 
 ```{r eval=FALSE, include=FALSE}
 p1 <- GBD %>%

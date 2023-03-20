@@ -1,0 +1,88 @@
+"0",""
+"0","GBD <- readr::read_csv(file = here::here(""GBD_vals.csv""))"
+"0",""
+"0","GBDrates <- readr::read_csv(file = here::here(""GBD_ROC.csv""))"
+"0",""
+"0","SDI <- readr::read_csv(file = here::here(""GBD_SDI_1990_2019.csv""))"
+"0",""
+"0","dalys_all_causes_num_1990 <- read_csv(file = here::here(""GBD_AGE_5_5_group.csv""),"
+"0","                                      col_types = cols(age = col_factor(levels = c(""<5 years"","
+"0","                                                                                   ""5-9 years"","
+"0","                                                                                   ""10-14 years"","
+"0","                                                                                   ""15-19 years"","
+"0","                                                                                   ""20-24 years"","
+"0","                                                                                   ""25-29 years"","
+"0","                                                                                   ""30-34 years"","
+"0","                                                                                   ""35-39 years"","
+"0","                                                                                   ""40-44 years"","
+"0","                                                                                   ""45-49 years"","
+"0","                                                                                   ""50-54 years"","
+"0","                                                                                   ""55-59 years"","
+"0","                                                                                   ""60-64 years"","
+"0","                                                                                   ""65-69 years"","
+"0","                                                                                   ""70-74 years"","
+"0","                                                                                   ""75-79 years"","
+"0","                                                                                   ""80-84"","
+"0","                                                                                   ""85-89"","
+"0","                                                                                   ""90-94"","
+"0","                                                                                   ""95+ years""))))"
+"0",""
+"0","GBD_POP_2019 <- read_csv(file = here::here(""GBD_POP_2019.CSV""))"
+"0","GBD_POP <- read_csv(file = here::here(""GBD_POP_1990.CSV"")) %>%"
+"0","            bind_rows(GBD_POP_2019) %>% "
+"0","            mutate(sex_name = recode(sex_name,"
+"0","            ""both"" = ""Both"","
+"0","            ""male"" = ""Male"","
+"0","            ""female"" = ""Female"")) %>% "
+"0","            mutate(age_group_name = recode(age_group_name,"
+"0","            ""All Ages"" = ""All ages"")) %>%"
+"0","            mutate(location_name = recode(location_name,"
+"0","             ""Bolivia (Plurinational State of)"" = ""Bolivia"","
+"0","             ""Venezuela (Bolivarian Republic of)"" = ""Venezuela""))%>%"
+"0","                      select(c(""location_name"", "
+"0","                               ""sex_name"", "
+"0","                               ""age_group_name"","
+"0","                               ""val"","
+"0","                               ""year_id"")) %>% "
+"0","            mutate(year_id = as.factor(year_id))  %>% "
+"0","            filter(location_name %in% c(""Argentina"","
+"0","                         ""Bolivia"","
+"0","                         ""Brazil"","
+"0","                         ""Chile"","
+"0","                         ""Colombia"","
+"0","                         ""Ecuador"","
+"0","                         ""Guyana"","
+"0","                         ""Paraguay"","
+"0","                         ""Peru"","
+"0","                         ""Suriname"","
+"0","                         ""Uruguay"","
+"0","                         ""Venezuela"")) %>% "
+"0","             filter(sex_name %in% c(""Both""))%>% "
+"0","             filter(age_group_name %in% c(""All ages"")) %>%"
+"0","             rename(pop = val) %>%"
+"0",""
+"0",""
+"0",""
+"0",""
+"2","Error: Incomplete expression: GBD_POP <- read_csv(file = here::here(""GBD_POP_1990.CSV"")) %>%
+            bind_rows(GBD_POP_2019) %>% 
+            mutate(sex_name = recode(sex_name,
+            ""both"" = ""Both"",
+            ""male"" = ""Male"",
+            ""female"" = ""Female"")) %>% 
+            mutate(age_group_name = recode(age_group_name,
+            ""All Ages"" = ""All ages"")) %>%
+            mutate(location_name = recode(location_name,
+             ""Bolivia (Plurinational State of)"" = ""Bolivia"",
+             ""Venezuela (Bolivarian Republic of)"" = ""Venezuela""))%>%
+                      select(c(""location_name"", 
+                               ""sex_name"", 
+                               ""age_group_name"",
+                               ""val"",
+                               ""year_id"")) %>% 
+            mutate(year_id = as.factor(year_id))  %>% 
+            filter(location_name %in% c(""Argentina"",
+                         ""Bolivia"",
+                         ""Brazil"",
+                         ""
+"
