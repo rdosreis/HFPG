@@ -1,7 +1,0 @@
-"0","GBD_SA <- GBD %>%"
-"0","          filter(age == ""All ages"") %>% "
-"0","          group_by(measure, cause, metric, year) %>% "
-"0","          summarise(location = ""South America"","
-"0","                    val = sum(val)) %>% "
-"0","          filter(metric == ""Number"")"
-"2","`summarise()` has grouped output by 'measure', 'cause', 'metric'. You can override using the `.groups` argument."

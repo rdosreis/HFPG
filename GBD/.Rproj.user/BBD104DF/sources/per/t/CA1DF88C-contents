@@ -35,10 +35,9 @@ library(hrbrthemes)
 library(shadowtext)
 ```
 
-### Importing dataset:
+### Importing and organizing dataset:
 
-```{r message=FALSE, results='hide'}
-
+```{r message=FALSE, warning=FALSE, results='hide'}
 GBD <- readr::read_csv(file = here::here("GBD_vals.csv"))
 
 GBDrates <- readr::read_csv(file = here::here("GBD_ROC.csv"))
@@ -68,7 +67,7 @@ dalys_all_causes_num_1990 <- read_csv(file = here::here("GBD_AGE_5_5_group.csv")
                                                                                    "95+ years"))))
 
 GBD_POP_2019 <- read_csv(file = here::here("GBD_POP_2019.CSV"))
-GBD_POP <- read_csv(file = here::here("GBD_POP_1990.CSV")) %>%
+GBD_POP_all <- read_csv(file = here::here("GBD_POP_1990.CSV")) %>%
             bind_rows(GBD_POP_2019) %>% 
             mutate(sex_name = recode(sex_name,
             "both" = "Both",
@@ -84,7 +83,7 @@ GBD_POP <- read_csv(file = here::here("GBD_POP_1990.CSV")) %>%
                                "age_group_name",
                                "val",
                                "year_id")) %>% 
-            mutate(year_id = as.factor(year_id))  %>% 
+            mutate(year_id = as.character(year_id))  %>% 
             filter(location_name %in% c("Argentina",
                          "Bolivia",
                          "Brazil",
@@ -99,16 +98,9 @@ GBD_POP <- read_csv(file = here::here("GBD_POP_1990.CSV")) %>%
                          "Venezuela")) %>% 
              filter(sex_name %in% c("Both"))%>% 
              filter(age_group_name %in% c("All ages")) %>%
-             rename(pop = va
-
-
-
-
-```
-
-### Organizing:
-
-```{r results='hide'}
+             rename(pop = val, year = year_id) %>% 
+             group_by(year, sex_name, age_group_name) %>% 
+             summarise(location = "South America", pop = sum(pop))
 
 SA <- ne_countries(scale = "medium",
                    type = "map_units",
@@ -186,19 +178,6 @@ GBD <- GBD %>%
                                      "age" = "age")) %>% 
           full_join(SA %>% select(c("admin", "sov_a3")),
                     by = c("location" = "admin"))
-          #%>% 
-          # full_join(GBD_POP_1990,
-          #           by = c("location" = "location_name",
-          #                  "sex" = "sex_name",
-          #                  "year" = "year_id",
-          #                  "age" = "age_group_name")) %>% 
-          # full_join(GBD_POP_2019,
-          #           by = c("location" = "location_name",
-          #                  "sex" = "sex_name",
-          #                  "year" = "year_id",
-          #                  "age" = "age_group_name"))
-
-
 
 GBD_SA <- GBD %>%
           filter(age == "All ages") %>% 
@@ -206,21 +185,56 @@ GBD_SA <- GBD %>%
           summarise(location = "South America",
                     val = sum(val)) %>% 
           filter(metric == "Number") %>% 
-          mutate(age = "All ages") %>%
-          
-
+          mutate(age = "All ages")%>% 
+          inner_join(GBD_POP_all %>% select(year, pop), by = "year") %>% 
+          mutate(val_rate = (val/pop)*100000)
 
 rm("GBDrates", "SDI") #don't wanna waste my precious RAM...
 ```
 
 ### Making graphs:
 
+#### South America(SA)
+
+DALYs, YLDs, YLLs and deaths (number and rates) in SA in 2019 - ALL AGES, ALL CAUSES
+
+```{r echo=FALSE, fig.width=15}
+GBD_SA %>%
+ filter(cause %in% "All causes") %>%
+ ggplot() +
+ aes(x = measure, y = val_rate, fill = measure) +
+ geom_col() +
+ scale_fill_hue(direction = 1) +
+ labs(y = "rate (per 100.000)", title = "DALYs, YLDs, YLLs and Deaths rate (per 100.000) in South America in 1990 and 2019 (all ages, all causes)", 
+ fill = " ") +
+ coord_flip() +
+ ggthemes::theme_base() +
+ theme(legend.position = "top") +
+ facet_wrap(vars(year)) +
+ ylim(0, 2500)
+
+
+```
+
+```{r echo=FALSE, fig.width=15}
+GBD_SA %>%
+ filter(cause %in% "All causes") %>%
+ ggplot() +
+ aes(x = measure, y = val, fill = measure) +
+ geom_col() +
+ scale_fill_hue(direction = 1) +
+ labs(y = "number", title = "DALYs, YLDs, YLLs and Deaths (number) in South America in 1990 and 2019 (all ages, all causes)", 
+ fill = " ") +
+ coord_flip() +
+ ggthemes::theme_base() +
+ theme(legend.position = "top") +
+ facet_wrap(vars(year), 
+ scales = "free_y")
+```
+
 ```{r}
 
 ```
-```{r}
-
-```
 
 ```{r}
 
@@ -233,12 +247,6 @@ rm("GBDrates", "SDI") #don't wanna waste my precious RAM...
 ```{r}
 
 ```
-
-```{r}
-
-```
-
-
 
 ```{r eval=FALSE, include=FALSE}
 p1 <- GBD %>%
