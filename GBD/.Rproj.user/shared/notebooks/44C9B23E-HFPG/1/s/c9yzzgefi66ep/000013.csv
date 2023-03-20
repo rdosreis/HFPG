@@ -1,5 +1,0 @@
-"0","GBD_SA <- GBD %>%"
-"0","          filter(age == ""All ages"") %>% "
-"0","          group_by(cause, metric, measure) %>% "
-"0","          summarise(val = sum(val))"
-"2","`summarise()` has grouped output by 'cause', 'metric'. You can override using the `.groups` argument."
