@@ -16,7 +16,7 @@ For our project, we will hugely rely on [Pintando e bordando no R](https://datat
 
 ### Packages needed:
 
-We will use ggplot2 as the main package to generate plots using GBD data. Plotly for interactivity.
+We will use **ggplot2** as the main package to generate plots using GBD data and **rnaturalearth** to generate maps.
 
 ```{r message=FALSE}
 library(ggplot2)
@@ -37,86 +37,139 @@ library(shadowtext)
 
 ### Importing and organizing dataset:
 
-```{r message=FALSE, warning=FALSE, results='hide'}
+```{r message=FALSE, warning=FALSE}
 GBD <- readr::read_csv(file = here::here("GBD_vals.csv"))
-
+GBD_2 <- readr::read_csv(file= here::here("GBD_2.csv"))
 GBDrates <- readr::read_csv(file = here::here("GBD_ROC.csv"))
-
 SDI <- readr::read_csv(file = here::here("GBD_SDI_1990_2019.csv"))
-
-dalys_all_causes_num_1990 <- read_csv(file = here::here("GBD_AGE_5_5_group.csv"),
-                                      col_types = cols(age = col_factor(levels = c("<5 years",
-                                                                                   "5-9 years",
-                                                                                   "10-14 years",
-                                                                                   "15-19 years",
-                                                                                   "20-24 years",
-                                                                                   "25-29 years",
-                                                                                   "30-34 years",
-                                                                                   "35-39 years",
-                                                                                   "40-44 years",
-                                                                                   "45-49 years",
-                                                                                   "50-54 years",
-                                                                                   "55-59 years",
-                                                                                   "60-64 years",
-                                                                                   "65-69 years",
-                                                                                   "70-74 years",
-                                                                                   "75-79 years",
-                                                                                   "80-84",
-                                                                                   "85-89",
-                                                                                   "90-94",
-                                                                                   "95+ years"))))
-
 GBD_POP_2019 <- read_csv(file = here::here("GBD_POP_2019.CSV"))
-GBD_POP_all <- read_csv(file = here::here("GBD_POP_1990.CSV")) %>%
-            bind_rows(GBD_POP_2019) %>% 
-            mutate(sex_name = recode(sex_name,
-            "both" = "Both",
-            "male" = "Male",
-            "female" = "Female")) %>% 
-            mutate(age_group_name = recode(age_group_name,
-            "All Ages" = "All ages")) %>%
-            mutate(location_name = recode(location_name,
-             "Bolivia (Plurinational State of)" = "Bolivia",
-             "Venezuela (Bolivarian Republic of)" = "Venezuela"))%>%
-                      select(c("location_name", 
-                               "sex_name", 
-                               "age_group_name",
-                               "val",
-                               "year_id")) %>% 
-            mutate(year_id = as.character(year_id))  %>% 
-            filter(location_name %in% c("Argentina",
-                         "Bolivia",
-                         "Brazil",
-                         "Chile",
-                         "Colombia",
-                         "Ecuador",
-                         "Guyana",
-                         "Paraguay",
-                         "Peru",
-                         "Suriname",
-                         "Uruguay",
-                         "Venezuela")) %>% 
-             filter(sex_name %in% c("Both"))%>% 
-             filter(age_group_name %in% c("All ages")) %>%
-             rename(pop = val, year = year_id) %>% 
-             group_by(year, sex_name, age_group_name) %>% 
-             summarise(location = "South America", pop = sum(pop))
+GBD_POP_1990 <- read_csv(file = here::here("GBD_POP_1990.CSV"))
+```
 
-SA <- ne_countries(scale = "medium",
-                   type = "map_units",
-                   returnclass = "sf") %>% 
-      filter(name %in% c("Argentina",
-                         "Bolivia",
-                         "Brazil",
-                         "Chile",
-                         "Colombia",
-                         "Ecuador",
-                         "Guyana",
-                         "Paraguay",
-                         "Peru",
-                         "Suriname",
-                         "Uruguay",
-                         "Venezuela"))
+```{r message=FALSE, warning=FALSE, results='hide'}
+
+GBD <- GBD %>% 
+       bind_rows(GBD_2)
+rm(GBD_2) #Dont waste my precious RAM
+
+GBD <- GBD %>% 
+       mutate(age = recode(age, "80-84" = "80-84 years",
+                                "85-89" = "85-89 years",
+                                "90-94" = "90-94 years"),
+              year = as.factor(year))%>%
+       mutate(age = as.factor(age#, levels = c("<5 years",                                                                        "5-9 years",
+                                 #             "10-14 years",
+                                  #            "15-19 years",
+                                   #           "20-24 years",
+                                    #          "25-29 years",
+                                     #         "30-34 years",
+                                      #        "35-39 years",
+                                       #       "40-44 years",
+                                        #      "45-49 years",
+                                         #     "50-54 years",
+                                          #    "55-59 years",
+                                           #   "60-64 years",
+                                            #  "65-69 years",
+                                             # "70-74 years",
+                                  #            "75-79 years",
+                                   #           "80-84 years",
+                                    #          "85-89 years",
+                                     #         "90-94 years",
+                                      #        "95+ years",
+                                       #       "All ages",
+                                        #      "Age-standardized")
+                                )) %>% 
+       mutate(measure = recode(measure,
+             "YLDs (Years Lived with Disability)" = "YLDs",
+             "YLLs (Years of Life Lost)" = "YLLs",
+             "DALYs (Disability-Adjusted Life Years)" = "DALYs"),
+              location = recode(location,
+             "Bolivia (Plurinational State of)" = "Bolivia",
+             "Venezuela (Bolivarian Republic of)" = "Venezuela"),
+             val_cat = cut(x = GBD$val,
+                           breaks = c(-Inf, 1, 10, 100, 500,
+                                             1000, 2500, 5000, Inf),
+                           labels = c("0 - 1",
+                                      "1 - 10",
+                                      "10 - 100",
+                                      "100 - 500",
+                                      "500 - 1000",
+                                      "1000 - 2500",
+                                      "2500 - 5000",
+                                      ">5000")))
+       
+
+GBD_POP <-  GBD_POP_1990 %>%
+            bind_rows(GBD_POP_2019) %>%
+            rename(location = location_name,
+                   sex = sex_name,
+                   age = age_group_name,
+                   year = year_id,
+                   pop = val) %>% 
+            select(location, sex, age, year, pop) %>%
+            mutate(location = recode(location,
+                   "Bolivia (Plurinational State of)" = "Bolivia",
+                   "Venezuela (Bolivarian Republic of)" = "Venezuela"),
+                   sex = recode(sex,
+                   "both" = "Both",
+                   "male" = "Male",
+                   "female" = "Female"),
+                   age = as.factor(age),
+                   year = as.factor(year))%>%
+            filter(location %in% c("Argentina",
+                                   "Bolivia",
+                                   "Brazil",
+                                   "Chile",
+                                   "Colombia",
+                                   "Ecuador",
+                                   "Guyana",
+                                   "Paraguay",
+                                   "Peru",
+                                   "Suriname",
+                                   "Uruguay",
+                                   "Venezuela")) %>% 
+            mutate(age = recode(age,  "Under 5"="<5 years",                                                              "5 to 9"="5-9 years",
+                                      "10 to 14"="10-14 years",
+                                      "15 to 19"="15-19 years",
+                                      "20 to 24"="20-24 years",
+                                      "25 to 29"="25-29 years",
+                                      "30 to 34"="30-34 years",
+                                      "35 to 39"="35-39 years",
+                                      "40 to 44"="40-44 years",
+                                      "45 to 49"="45-49 years",
+                                      "50 to 54"="50-54 years",
+                                      "55 to 59"="55-59 years",
+                                      "60 to 64"="60-64 years",
+                                      "65 to 69"="65-69 years",
+                                      "70 to 74"="70-74 years",
+                                      "75 to 79"="75-79 years",
+                                      "80 to 84"="80-84 years",
+                                      "85 to 89"="85-89 years",
+                                      "90 to 94"="90-94 years",
+                                      "95 plus"="95+ years",
+                                      "All Ages" = "All ages")) %>% 
+            filter(age %in% c("<5 years",                                                                        "5-9 years",
+                              "10-14 years",
+                              "15-19 years",
+                              "20-24 years",
+                              "25-29 years",
+                              "30-34 years",
+                              "35-39 years",
+                              "40-44 years",
+                              "45-49 years",
+                              "50-54 years",
+                              "55-59 years",
+                              "60-64 years",
+                              "65-69 years",
+                              "70-74 years",
+                              "75-79 years",
+                              "80-84 years",
+                              "85-89 years",
+                              "90-94 years",
+                              "95+ years",
+                              "All ages"))
+  
+rm(GBD_POP_1990,GBD_POP_2019) #Dont waste my precious RAM
 
 SDI <- SDI %>%
           filter(Location %in% c("Argentina",
@@ -130,66 +183,60 @@ SDI <- SDI %>%
                  "Peru",
                  "Suriname",
                  "Uruguay",
-                 "Venezuela")) %>% 
-          select("Location", "1990", "2019") %>% 
-          pivot_longer(cols = c("1990", "2019"), 
-                       names_to = "year", 
+                 "Venezuela")) %>%
+          select("Location", "1990", "2019") %>%
+          pivot_longer(cols = c("1990", "2019"),
+                       names_to = "year",
                        values_to = "SDI")
 
-GBDrates <- GBDrates %>% 
+GBDrates <- GBDrates %>%
             mutate(measure = recode(measure,
             "YLDs (Years Lived with Disability)" = "YLDs",
             "YLLs (Years of Life Lost)" = "YLLs",
-            "DALYs (Disability-Adjusted Life Years)" = "DALYs")) %>% 
+            "DALYs (Disability-Adjusted Life Years)" = "DALYs")) %>%
             mutate(location = recode(location,
            "Bolivia (Plurinational State of)" = "Bolivia",
-           "Venezuela (Bolivarian Republic of)" = "Venezuela")) %>% 
-            mutate(year_end = as.factor(year_end)) %>% 
-            select(-c("rei", "year_start")) %>% 
-            rename(ROC_val = val, ROC_upper = upper, ROC_lower = lower)
+           "Venezuela (Bolivarian Republic of)" = "Venezuela")) %>%
+            mutate(year_end = as.factor(year_end)) %>%
+            select(-c("rei", "year_start")) %>%
+            rename(ROC_val = val, 
+                   ROC_upper = upper, 
+                   ROC_lower = lower,
+                   year = year_end)
 
-GBD <- GBD %>% 
-          mutate(measure = recode(measure,
-            "YLDs (Years Lived with Disability)" = "YLDs",
-            "YLLs (Years of Life Lost)" = "YLLs",
-            "DALYs (Disability-Adjusted Life Years)" = "DALYs")) %>% 
-          mutate(location = recode(location,
-           "Bolivia (Plurinational State of)" = "Bolivia",
-           "Venezuela (Bolivarian Republic of)" = "Venezuela"))%>% 
-          mutate(val_cat = cut(x = GBD$val,
-                               breaks = c(-Inf, 1, 10, 100, 500, 
-                                                 1000, 2500, 5000, Inf),
-                               labels = c("0 - 1",
-                                          "1 - 10",
-                                          "10 - 100",
-                                          "100 - 500",
-                                          "500 - 1000",
-                                          "1000 - 2500",
-                                          "2500 - 5000",
-                                          ">5000"))) %>% 
-          mutate(year = as.factor(year)) %>% 
-          full_join(SDI, by = c("location" = "Location", "year" = "year")) %>% 
-          full_join(GBDrates, by = c("location" = "location",
-                                     "measure" = "measure",
-                                     "sex" = "sex",
-                                     "cause" = "cause",
-                                     "metric" = "metric",
-                                     "year" = "year_end",
-                                     "age" = "age")) %>% 
-          full_join(SA %>% select(c("admin", "sov_a3")),
-                    by = c("location" = "admin"))
 
-GBD_SA <- GBD %>%
-          filter(age == "All ages") %>% 
-          group_by(measure, cause, metric, year) %>% 
-          summarise(location = "South America",
-                    val = sum(val)) %>% 
-          filter(metric == "Number") %>% 
-          mutate(age = "All ages")%>% 
-          inner_join(GBD_POP_all %>% select(year, pop), by = "year") %>% 
-          mutate(val_rate = (val/pop)*100000)
+SA_map <- ne_countries(scale = "medium",
+                   type = "map_units",
+                   returnclass = "sf") %>%
+      filter(name %in% c("Argentina",
+                         "Bolivia",
+                         "Brazil",
+                         "Chile",
+                         "Colombia",
+                         "Ecuador",
+                         "Guyana",
+                         "Paraguay",
+                         "Peru",
+                         "Suriname",
+                         "Uruguay",
+                         "Venezuela"))
 
-rm("GBDrates", "SDI") #don't wanna waste my precious RAM...
+
+GBD <- GBD %>%
+        full_join(SDI, by = c("location" = "Location", "year" = "year")) %>%
+        full_join(GBD_POP, by=c("location"="location",
+                                "age"="age",
+                                "sex"="sex",
+                                "year"="year")) %>% 
+        full_join(GBDrates, by=c("location" = "location",
+                                 "measure" = "measure",
+                                 "sex" = "sex",
+                                 "cause" = "cause",
+                                 "metric" = "metric",
+                                 "year" = "year",
+                                 "age" = "age"))
+
+rm(GBD_POP, SDI, GBDrates) #Dont waste my precious RAM
 ```
 
 ### Making graphs:
@@ -198,7 +245,7 @@ rm("GBDrates", "SDI") #don't wanna waste my precious RAM...
 
 DALYs, YLDs, YLLs and deaths (number and rates) in SA in 2019 - ALL AGES, ALL CAUSES
 
-```{r echo=FALSE, fig.width=15}
+```{r eval=FALSE, fig.width=15, include=FALSE}
 GBD_SA %>%
  filter(cause %in% "All causes") %>%
  ggplot() +
@@ -216,7 +263,7 @@ GBD_SA %>%
 
 ```
 
-```{r echo=FALSE, fig.width=15}
+```{r eval=FALSE, fig.width=15, include=FALSE}
 GBD_SA %>%
  filter(cause %in% "All causes") %>%
  ggplot() +
@@ -232,8 +279,23 @@ GBD_SA %>%
  scales = "free_y")
 ```
 
-```{r}
+DALYs, YLDs, YLLs and deaths (number and rates) in SA in 1990 and 2019 - AGE GROUPS, ALL CAUSES
 
+```{r eval=FALSE, fig.width=15, include=FALSE}
+p1 <- dalys_all_causes_num %>%
+  group_by(measure, sex, age, year) %>% 
+  summarise(val = sum(val)) %>%
+  filter(sex == "Both", measure != "DALYs")
+
+ggplot(p1) +
+  aes(x = age, fill = measure, weight = val) +
+  geom_bar() +
+  scale_fill_hue(direction = 1) +
+  ggthemes::theme_base() +
+  theme(legend.position = "top") +
+  facet_wrap(vars(year))+
+  labs(y = "number", 
+       title = "DALYs(YLDs + YLLs) for all causes for HFPG in number in South America in 1990 and 2019", fill = " ")
 ```
 
 ```{r}
@@ -271,7 +333,7 @@ p1 <- GBD %>%
 
 #### YLDs and YLLs for males and females in 2019 - 2019 for HFPG each country
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 p2 <- GBD %>%
       filter (cause == "All causes", metric == "Rate",
               measure != "DALYs", measure != "Deaths",
@@ -335,7 +397,7 @@ ggplot(p2) +
       
 ```
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 
 
 p3 <- GBD %>%
@@ -391,7 +453,7 @@ ggplot()+
 
 #### Heatmaps...
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 p4 <- GBD %>% 
       filter (metric =="Rate", year == "2019", sex == "Both",
               measure == "DALYs", age == "Age-standardized")
@@ -421,7 +483,7 @@ p4 <- GBD %>%
   
 ```
 
-```{r, fig.height=20, fig.width=20}
+```{r eval=FALSE, fig.height=20, fig.width=20, include=FALSE}
 p5 <- GBD %>% 
       filter (metric =="Rate", sex == "Both", age == "Age-standardized")
     
@@ -452,7 +514,7 @@ theme(axis.text.x = element_text(hjust = 1,
 
 ```
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 p6 <- GBD %>%
  filter(measure == "DALYs") %>%
  filter(sex == "Both") %>%
@@ -478,7 +540,7 @@ ggplot(p6, aes(x = SDI, y = ROC_val)) +
 
 Let's start with a map of South America
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 p7 <- GBD %>% filter(measure == "DALYs", 
                metric == "Rate",
                year == "2019",

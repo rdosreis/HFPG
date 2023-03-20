@@ -1,0 +1,6 @@
+"0","GBD <- readr::read_csv(file = here::here(""GBD_vals.csv""))"
+"0","GBD_2 <- readr::read_csv(file= here::here(""GBD_2.csv""))"
+"0","GBDrates <- readr::read_csv(file = here::here(""GBD_ROC.csv""))"
+"0","SDI <- readr::read_csv(file = here::here(""GBD_SDI_1990_2019.csv""))"
+"0","GBD_POP_2019 <- read_csv(file = here::here(""GBD_POP_2019.CSV""))"
+"0","GBD_POP_1990 <- read_csv(file = here::here(""GBD_POP_1990.CSV""))"
