@@ -1,7 +1,0 @@
-"0",""
-"0","ggplot()+"
-"0","  geom_sf(data = q %>% filter(metric == ""Number"","
-"0","                              measure == ""Deaths""), aes(fill = val))+"
-"0","  coord_sf(xlim = c(-35,-85))+"
-"0","  theme_classic()+"
-"0","  labs(title = ""Deaths Number"")"

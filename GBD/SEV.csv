@@ -1,0 +1,361 @@
+measure,location,sex,age,rei,metric,year,val,upper,lower
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,1993,7.784156479781519,8.904229625248382,6.777079977138542
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,1991,6.65718408385239,7.55018778789147,5.86473135869818
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,1997,7.398659383516771,8.383680697408941,6.52640310392308
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,1991,3.415139694105062,4.10974601787509,2.8569822353773278
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,1993,7.29394350824162,8.3138113899328,6.416182946191561
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,1993,12.456889946863999,14.1426171817862,10.924319899350099
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,1991,7.583750248436591,8.68946336098055,6.5788649076012895
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,1995,7.00474349197659,7.8635081145841195,6.18378049884776
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,1993,6.81719308326513,7.693491999165181,6.01547112295947
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,1995,7.73104580893552,8.870747260100039,6.74651413521765
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,1995,12.826355194748501,14.7278377200104,11.1883387057173
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,1995,9.54290748739137,10.738366605316488,8.420976445755704
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,1995,14.5328981841235,16.4694094631637,12.6895875229735
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,1999,7.556751537332949,8.424130616809169,6.70984016414798
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2005,7.9488832462111,8.86071120335185,7.024244582471679
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2001,7.718711730350369,8.62404014907367,6.87638250414653
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,1997,7.26784070114537,8.14583786814173,6.4713187945831505
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,1993,9.635993317358905,10.788037042866144,8.514102163971222
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,1995,7.300086422307429,8.33735586001915,6.411801718978021
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2004,4.215865604999223,4.998200381013149,3.5312149135159587
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2003,7.825659872951599,8.76463757272785,6.95869943958176
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,1991,13.3881187496616,15.127003466343304,11.690105805395099
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2007,8.175903362977001,9.13612694894281,7.254403275179359
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,1991,15.7942140542838,17.8241600777117,13.905757463062898
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2006,11.714685852051522,13.09917596330687,10.32754812223374
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,1991,6.867743277266081,7.78262297661593,6.005021088368849
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2006,4.434807255723009,5.216774091528657,3.7180887586352434
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,1993,13.9947132967986,15.758442465543801,12.2993959123778
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,1993,16.6935940708553,18.435005897360103,14.866639116134401
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,1993,7.12159776487154,8.063701416955759,6.2802022611183395
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,1997,9.39773668675246,10.56066156449241,8.321830631141085
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2006,18.0590176947858,19.9351404929983,16.1110159264049
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2006,8.92446888979532,10.2088522604798,7.6565011828993805
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,1991,6.93038105461357,7.88693504016547,6.06320767331622
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,1995,17.495363382138198,19.4340448485512,15.622480487707403
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2004,10.6620351313669,11.9196725136112,9.460073120457011
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2002,4.002691529749778,4.756593969807533,3.3667294500080005
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,1997,18.3012321376294,20.1026844837895,16.4031291203214
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2006,11.021854982760601,12.307226822539299,9.800813933948529
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2006,13.484392243021501,15.016087272370598,12.104304197470698
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,1991,12.157228978428499,13.7728461081352,10.6526525361095
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2004,13.6147866118683,15.121038727328303,12.293000526288901
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,1999,19.1605661265931,21.1795786642322,17.1596927930526
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2006,10.611030258893098,11.882686144604447,9.296290766373456
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2005,21.003316120892702,23.060048641337698,18.955833170642798
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2002,9.98214343909118,11.1588351099026,8.890483360988611
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2007,21.216663803069398,23.133452804828,19.2879304404539
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2004,10.392595516932152,11.638206363779185,9.122617242264894
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2002,14.097998907692002,15.5948078278064,12.8050684121049
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2003,20.577432743390105,22.512752540399696,18.5930481370363
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,1996,3.591229588212694,4.286614308829808,3.0085701559069427
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,1993,4.82720843432258,5.46373753056375,4.20594799238242
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,1994,7.926441305325575,9.084470053562226,6.874997559581396
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,1991,9.819331742375738,10.987970986231515,8.679013803135058
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2001,19.8542821165686,21.8555446081967,17.868781268769897
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2004,11.351356521263673,12.757971620493674,9.983364520786807
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,1991,4.698311516064161,5.3355282470900995,4.09568682028721
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,1995,4.955129764999279,5.63681106886773,4.32567464870766
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,1999,5.24486796930611,5.90491245320872,4.6399884074753
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2000,3.8348531350192365,4.605181566503701,3.204101252119087
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2002,10.540762603116297,11.871347547763575,9.217478242851145
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2002,9.695675470380353,10.87424527152266,8.55340543481378
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,1998,3.7032850982894265,4.431125086237364,3.1051224120392282
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2005,5.552293418816729,6.21770273197367,4.95504826999275
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,1992,3.4429492979251326,4.142576510347771,2.883873620282776
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,1998,8.64364894601453,9.737537860237499,7.6051645807732
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,1998,13.9122769923314,15.586694310139002,12.476557335248598
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,1998,9.051462000231432,10.31847587986546,7.923072863702238
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,1994,14.2877826415518,16.085101743804202,12.525805438781202
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2006,8.04540568967914,8.980835797215772,7.129891018919309
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,1998,9.320581601383001,10.478472331536652,8.262018239230674
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2007,4.556613509108421,5.344271219149215,3.8567048472264402
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,1994,7.2235427354148705,8.16383395553744,6.3696466677551395
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2007,11.859303631648485,13.220221027084206,10.482434457685114
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2000,9.814059780988636,11.22155248939746,8.548937103530186
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,1990,15.365783615585299,17.5052890432863,13.455248351992399
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,1997,5.09926514956249,5.76673119888099,4.48295720843728
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,1991,10.9589167321438,12.376898080884699,9.5982290138806
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2007,5.69277928349551,6.35915585647658,5.07425281372396
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2000,9.33045518039522,10.545316617818,8.18976612536718
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2000,14.408133375128099,16.0311979973786,12.946201649382
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,1992,7.667384868828019,8.764565848957027,6.673393883069026
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,1999,11.699348345665301,13.143030391922803,10.442802951191197
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,1990,6.59150518442167,7.53822621164832,5.7835435351856
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,1990,4.63624874056396,5.28379193686735,4.03306149759225
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,1993,11.032721681435802,12.494906032135301,9.66835415339363
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,1996,7.979993593239939,9.14366332732663,6.998650584342241
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2004,17.2304784040831,19.03809715509,15.364008976859697
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2001,5.33535196942699,5.98660303300622,4.7259145315009
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,1990,3.3922803813829665,4.077038438900435,2.8351541220445293
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,1992,7.100816284758061,8.06625606741939,6.250070891679959
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,1992,12.292374587763799,13.903800981098001,10.772971346611099
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,1992,9.717635185337773,10.859758065050853,8.600118748576215
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2004,8.66441592170897,9.954789573851661,7.431455584972051
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2002,16.466108284195403,18.3148896657331,14.6133380168293
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2002,8.01177075913431,9.13343144491961,6.95666577880649
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,1996,17.8856501915189,19.793714198144897,16.008513731419
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2000,7.65445397370077,8.54967818357918,6.80024013779036
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2004,7.8821005196323,8.80715617522149,6.98232084607019
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,1992,6.732824935539799,7.61601583793055,5.92808096360187
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,1992,16.2372857472771,18.131592056643697,14.408872203194
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,1998,15.3214317910522,17.1379178829229,13.4629219678475
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,1995,8.084487178039709,9.281360651863329,6.994446429949007
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,1993,7.3571254410738955,8.303172325804272,6.427658018465952
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,1994,3.5103633683449686,4.20023313466475,2.9447462285392705
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,1994,6.9083193710911805,7.7748228699371795,6.095411919863599
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,1996,13.0856764713361,14.883018449786501,11.5665086736646
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,1998,7.444993188708331,8.45537459855507,6.5476633210797806
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,1995,11.1323434462511,12.8214770842165,9.59449675870032
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2002,7.77342286065712,8.69633774223154,6.9390913518088695
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2007,18.687919439976895,20.5091845199113,16.7917039394471
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2007,8.98710803044879,10.279763284191901,7.706771187095531
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,1996,7.1220957391686905,7.993516148748769,6.321228920417039
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2000,15.8300459727533,17.707044817950898,13.929345993017101
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2000,7.56941681278866,8.68671704226989,6.602045246328981
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,1990,10.9380301589238,12.4274636528222,9.51494373525505
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2005,12.494752941101,13.8634246761352,11.296694242830801
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2000,9.278665170863528,10.405139454373227,8.182188487907794
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2003,4.106404902134332,4.8713964077401615,3.4548287225760053
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,1996,9.4833874190031,10.663122972744388,8.389268341955344
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,1990,6.633975194517372,7.561669592254221,5.739759650999552
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2001,11.950840591593598,13.3022561335843,10.7302732717875
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,1996,8.307184596641964,9.502184388573127,7.230656061276261
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,1991,6.904910689807009,7.8225670241066965,6.015833977235612
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2007,12.924949610838302,14.4013198780163,11.7149568551448
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,1995,7.611539856623417,8.66525898626758,6.649265467451411
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2003,5.43727893870562,6.08711434600254,4.84028340492974
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2007,11.1518713798441,12.4100873577279,9.989140427798079
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2005,4.32499454784301,5.109617963166011,3.6168184869209385
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,1999,7.529745725096269,8.54577847007104,6.52994363123457
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,1998,7.41989507531747,8.29514675255907,6.60063856026649
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,1992,13.689162410890198,15.398730160302602,11.997468385913498
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,1992,7.00078600134207,7.94972351759387,6.13923771656381
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,1997,11.330184977169198,12.811960618054899,9.96458224979901
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2007,13.4981326905639,14.994597197401502,12.1051490137013
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,1997,8.645240517263279,9.845253146127016,7.5351094525873314
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,1992,4.76222754923429,5.39924357335698,4.15928230796611
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,1994,7.505106544149021,8.582479180409521,6.576322978844811
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,1990,7.534518446815749,8.681610875161057,6.483968128228347
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2007,9.549509608554404,10.917443862335384,8.275460863855894
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2000,19.479975119764603,21.5548318673783,17.4837019992763
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,1990,6.784639336455251,7.72744629678315,5.88999181067281
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,1994,12.639166623902199,14.413413501539099,11.0944305006682
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,1994,9.578624091144276,10.766424054028514,8.455242640410878
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2003,10.3414241289875,11.5840279424668,9.21610994586057
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2003,13.836217449108501,15.328020132599699,12.499553094203598
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2005,9.829244164416046,11.224953399911843,8.490623855126902
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2004,20.865751884691196,22.869209864102803,18.878481625201797
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2005,10.878018646830402,12.181063891315,9.62835433746614
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2005,13.5047699956657,15.0553386751969,12.1574380307173
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,1998,18.740398481577696,20.6267570754135,16.8616994327238
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2001,7.8462390302690626,8.88842090349291,6.796470886084515
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2003,10.059532487722745,11.282878383110647,8.833098852477008
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,1997,15.049957370037303,16.847088037187604,13.2216703347734
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2006,21.1421153830285,23.112123372495898,19.138688521826996
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2001,10.13847881422682,11.520215970344108,8.866254083165211
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2003,12.2070635973481,13.6374406144332,11.027500051757597
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2008,4.692257944837308,5.495383811821675,3.986985709441482
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2005,10.569149839856458,11.837711387073995,9.258334373534648
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,1990,13.0909861259007,14.886815897137899,11.379006691934098
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,1997,7.58766119897828,8.56216730995112,6.627105172132536
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,1996,5.022311776148411,5.69057236867693,4.39416406661641
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,1995,3.54820962639422,4.241936853019993,2.95875846103646
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2008,11.999658916746025,13.344003773156324,10.609221458567246
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,1996,14.793495005298901,16.6476387288857,12.978328959336801
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,1990,6.72609537966844,7.65806992481953,5.87166662010171
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,1994,17.12972551306,18.9405020828107,15.312838431394901
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2003,10.976403832080553,12.387623289185857,9.660781543686983
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,1999,3.7677921228308535,4.5287577234649525,3.1592353509379634
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2007,10.614802633796543,11.890047648256848,9.308107742064728
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2009,8.477492858288151,9.52913804384098,7.509009375210169
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,1998,5.17653223737189,5.8362173659411205,4.57490621675625
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,1990,12.050263809422699,13.6925524928057,10.5019257479777
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2000,5.29449366736591,5.95115892634788,4.67720936547462
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2008,11.2721945049722,12.572115534435301,10.128707725938
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,1996,7.35385486455695,8.36832840618457,6.46393747395229
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2003,9.028866622754677,10.262776758188796,7.839731640319291
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,1993,3.4749966729114594,4.16548983460647,2.9111442212919436
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2008,13.5452343885929,15.0902007576913,12.0906940467894
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2004,5.49477809025872,6.13242800352974,4.89976691974341
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2012,11.698916440293901,13.0362752776047,10.486187269107901
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2012,13.8241300069112,15.387697070797103,12.217177683187101
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2011,21.573359022288503,23.62874552465,19.4811801510981
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2002,20.2226656285358,22.156828190211105,18.277283770373902
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2001,3.910356973692482,4.675745318970448,3.26892539249284
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,1992,10.987487110096698,12.4024299040585,9.64968390511478
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2010,11.4873365618004,12.915247281042,10.2197107904841
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2012,21.170479019698103,23.006950824699,19.283593193354605
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2006,5.61495473867582,6.27871408729088,5.01496342979095
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2012,10.903956433449814,12.173990722879642,9.576779640291763
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2008,19.377164547366103,21.2149196743363,17.5000423066059
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,1999,9.467647356861464,10.797765850380177,8.289142373871607
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2011,8.74320300239623,9.86154753110933,7.72636071221575
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2012,9.58080637574167,10.8920622861746,8.269894913036829
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2008,10.611263859564646,11.935433555567347,9.302658417725043
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2009,21.330188901632802,23.372645126858497,19.2699431367529
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2008,9.04904432251748,10.3064033053556,7.790715610159971
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2001,16.131064639767903,17.9857113254347,14.2643862319859
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,1996,11.1968010025921,12.7277167023052,9.770969067052219
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,1990,9.923415194056275,11.129904107955207,8.73403325131296
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2010,13.6746222567275,15.390333576520298,12.0197517705718
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2001,7.7280843625283895,8.807235330590801,6.74563399474776
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2010,20.398472233130303,22.343974011947303,18.5577713419807
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2010,9.19209903056242,10.560245138461301,7.898582385972561
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,1999,9.00539614269835,10.1455609607345,7.946280036241419
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,1994,4.89202051401148,5.5529102482280495,4.26807281860103
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,1999,15.5945333397938,17.4413482335604,13.7061532234983
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,1999,7.500182008895161,8.55641812508137,6.56441853886523
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2010,10.645538203981788,11.948106947574654,9.320179452452368
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2003,16.841812549462,18.6591032003189,14.9989050830453
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2014,11.309262088424392,12.657847167966747,9.950436038701207
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,1998,11.5100870204127,12.9421379393061,10.188167914014
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2013,9.05834798939957,10.300668221574501,7.93295564393264
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,1999,14.269617289278699,15.9076274275077,12.8263787856914
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2013,22.103394274781195,24.0272370685483,20.041513172622896
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,1992,7.148386501088471,8.075255037269418,6.239703917006272
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2003,8.351504387569971,9.54060940052225,7.20659446808955
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,1997,3.643683393548563,4.3394346381726265,3.048467141082544
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2001,9.63512405649221,10.8382831567261,8.5334784050638
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2004,12.354946214060302,13.772707625471398,11.1614657234349
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2002,5.38340813660501,6.02433261944095,4.78373606170926
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2009,5.88314615787857,6.58990666941774,5.22125074533551
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2001,14.3229364885198,15.862216280394101,12.926151060958501
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,1999,9.275586839055808,10.42921364912098,8.214460993962291
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2017,22.539064739382898,24.776869896925298,20.4122970675435
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2015,9.45321533149771,10.8461423504357,8.2051566247738
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2005,11.56470968619661,13.002203607954922,10.08459822324275
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2017,10.2138583692285,11.6520962173151,8.89175537008868
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2001,9.405985125671693,10.555157464305474,8.302784530055966
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,1996,7.624956861638342,8.612450355225485,6.653068649111837
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2017,7.44286490970053,8.538499426731889,6.440943278527091
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2011,6.10889661697855,6.86955420823442,5.42168142615179
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2000,11.841016162560699,13.2607937330497,10.585208938733802
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2015,22.4346280577756,24.502517483744,20.297183297284302
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2004,9.588861365464679,10.960673263545853,8.30220463688195
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2019,11.0402475095116,12.6409507647543,9.50069007781684
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2011,12.27036956839712,13.609922905813848,10.84193360194684
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,1997,8.29145474375734,9.43532922409811,7.26583411150354
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,1997,13.4777245573752,15.2074630209043,12.0158556227824
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,1998,7.542737694951351,8.512484420342483,6.5699493995398885
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2019,23.152241716205303,25.213288593496696,21.1473176555981
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2006,12.6762711234083,14.0858045577485,11.4807582311063
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,1994,11.087017391536,12.577446924719402,9.66902475053705
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2000,7.583081225006934,8.65669412744426,6.529553124189998
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2013,5.752781836709437,6.6525652852122725,4.9075475394721035
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2017,15.470987305284304,17.222629017925,13.637525550879301
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2002,12.070822872055102,13.426867823356803,10.887278702950802
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2015,6.82403569458858,7.73695933479752,5.96471326273584
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2011,20.8179566959412,22.7711685327478,18.950011750093402
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2015,6.452227459192876,7.506535415923096,5.420721921352036
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2009,4.84376959175279,5.651447374075272,4.138182640556773
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2019,8.348363195001477,9.545448119812264,7.2178954077762505
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2010,8.61276678372718,9.74725425829563,7.5921135734916
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2006,9.745673058944442,11.186876076655256,8.44949265341394
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,1994,7.515263301022268,8.493919500023049,6.540360740080023
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2011,9.33745742822294,10.661381608554802,8.04069191928874
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2013,6.44505601486489,7.23925389504771,5.69284210302439
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2019,7.685464534193249,8.875834454447661,6.617786561641149
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2015,11.974896312906699,13.430867932350399,10.629491916158
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2015,14.129581032160901,15.824707164940502,12.420966648648198
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2005,17.558974196480598,19.4906052305359,15.5845428595809
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2005,8.849566539363481,10.203061574042199,7.53628078973466
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2009,13.5300574338521,15.0170535607204,12.180293158104401
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2015,12.463121162019734,13.740836447863552,11.165545938176498
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2013,11.813527647594901,13.166721598922598,10.572819876188602
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2010,21.366828906056,23.524315855171903,19.2818696279865
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2011,14.079720483324099,15.564495449728,12.6509473363518
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2017,10.628083022872756,12.236766644280788,9.173918350969016
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2009,9.162279872278292,10.538708474964482,7.8585907283457015
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2017,13.027975104226966,14.831751326234196,11.29421910857418
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2002,8.38273101259443,9.47478139008554,7.289731194147662
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2008,21.275525639310104,23.195744472833102,19.3257996910895
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2009,12.122952980804875,13.481252291659729,10.714160863169155
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2011,5.2146041392754405,6.03673252600986,4.468771597503875
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2015,11.43553686872032,12.787870812574207,10.090061465927311
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2009,11.387481475930999,12.712288799179,10.169284474687599
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2019,13.605243061785291,15.327902092002468,11.962384074480688
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2015,15.2639990281208,16.995294499262805,13.4585135724627
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2017,7.493976705261267,8.634172906093763,6.408517168046648
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2011,9.271417957306564,10.682395408409727,7.950649572521725
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2013,12.37311241898095,13.61750804417883,11.079277568957115
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2009,13.613854137929,15.235489385757198,12.037674270508099
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2019,21.9278901599617,23.8941809402764,19.929001208398102
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2019,10.668660166515801,12.2102839750123,9.18506839625827
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2012,21.8305992379353,23.817678042461605,19.824143827956604
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2009,10.619219166939125,11.914851768205326,9.302788157840416
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2013,13.932391228556302,15.472338233123597,12.316255170135602
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2015,21.8565917969339,23.7605991465541,19.966939186732603
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2008,5.7833798100047495,6.463649087071211,5.14672875383023
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2010,5.987475693061739,6.75753867190674,5.3080825255197
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2019,12.324181534689801,13.786901625459302,10.8861238803909
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2017,22.3014763995133,24.281111847623897,20.2559699780498
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2011,11.5885505125259,12.9957267412076,10.3499766645895
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2011,13.7361693455293,15.355303921931302,12.133128695333198
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2008,8.32511357132677,9.32938342337028,7.40068158385646
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2013,14.736314630383898,16.3150883296639,13.232359427117302
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2019,14.9809329146623,16.749710095799404,13.2920803915768
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2014,22.336719249261897,24.340969881714102,20.241307308256
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2011,10.737346015176627,12.019646729426983,9.420223345855543
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2013,21.478233986024602,23.311471826409498,19.613768765197502
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2015,10.1961693571579,11.6314503582334,8.75170342944367
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2009,19.998111723696997,21.876064049568804,18.0818245178134
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2017,11.930061944228902,13.421108283693597,10.5893463508555
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2013,11.111050771745258,12.43003591182799,9.772826547896788
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2018,10.6040284367369,12.035248541157301,9.26027894302058
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2016,22.5504723950311,24.551225358820897,20.480011987446105
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2019,16.0897439494038,17.893820168139303,14.3294111480351
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2019,11.419087019263573,12.785152236948042,10.108653875892132
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2017,14.299150834048302,16.0821298876305,12.671563137448802
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2017,10.068183649635303,11.565796914655099,8.51407533841434
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2015,11.066940946439974,12.738083453274626,9.47155576069299
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2010,13.808496693374101,15.304955084211901,12.370550824479901
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2013,9.85922429524824,11.2123797322392,8.521420528838421
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2013,10.286695944654591,11.726577555706525,8.854176227775854
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2012,6.26410969796848,7.017687297327389,5.54146836603895
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2009,9.11638519913794,10.440019318367803,7.835817699218279
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2008,13.2198126270726,14.6993217536769,11.951863934558
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2016,9.80159726418918,11.1374635335867,8.5912905423407
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2019,11.680231801800572,13.40353681466459,10.186942760622559
+Summary exposure value,Guyana,Both,Age-standardized,High fasting plasma glucose,Rate,2018,22.827887608784998,24.927721354842998,20.746135394959502
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2010,9.103070090146627,10.569940546784121,7.791558769839793
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2016,7.15012821214782,8.15774748576968,6.27473756307236
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2008,9.330808116559435,10.723501544089407,8.052081682608641
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2017,11.576058236079577,13.028233101231331,10.241414270492132
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2012,14.399719421096801,15.9109224451559,12.942521586242197
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2018,7.53919483165732,8.65933857772127,6.575296617401059
+Summary exposure value,Peru,Both,Age-standardized,High fasting plasma glucose,Rate,2014,6.638268389187769,7.47784005319439,5.83952152535184
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2012,9.7148059359448,11.075128067794923,8.379289872911704
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2012,8.889852768036539,10.05441160907,7.84961461362021
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2016,15.373496629354,17.033102481715503,13.7007193621307
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2016,10.819959624048165,12.337005173365705,9.396563674320456
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2018,15.695894243612901,17.346016795003695,13.978328837585899
+Summary exposure value,Venezuela (Bolivarian Republic of),Both,Age-standardized,High fasting plasma glucose,Rate,2014,15.049758258781601,16.6745796795537,13.409053615584302
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2018,10.930038454365404,12.385108444911937,9.648302868159329
+Summary exposure value,Paraguay,Both,Age-standardized,High fasting plasma glucose,Rate,2014,10.806691900436368,12.338013104812703,9.275683295720867
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2018,7.911295883889427,9.014416601795068,6.889190394369353
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2012,12.322265319200435,13.622027431400646,10.951221823403047
+Summary exposure value,Argentina,Both,Age-standardized,High fasting plasma glucose,Rate,2014,9.25048677599552,10.612562456800699,8.066900635199909
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2012,5.461474394853138,6.320251878555945,4.668109591691307
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2010,5.013474555412876,5.815002644291316,4.281781744367866
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2018,12.0636954082558,13.4677754651808,10.768400050794598
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2018,14.5366155227171,16.2176176848627,12.9546061400551
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2014,6.084090733164589,7.0360941559988355,5.1638364818282945
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2018,11.529703386010512,12.951678996257906,10.197360926777947
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2014,12.423407084655517,13.698893798683626,11.123538045065473
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2016,12.70393748971437,14.144008328286214,11.294713274071158
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2018,13.28509860943721,14.988913529857099,11.663585789141152
+Summary exposure value,Uruguay,Both,Age-standardized,High fasting plasma glucose,Rate,2016,6.939253169647783,7.972340513534036,5.9516421856998525
+Summary exposure value,Chile,Both,Age-standardized,High fasting plasma glucose,Rate,2010,12.202142099368528,13.647185073223959,10.710158257374218
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2016,11.9440286165393,13.283605939632,10.675292155717301
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2016,14.1940675055245,15.811542463754199,12.605604072671401
+Summary exposure value,Ecuador,Both,Age-standardized,High fasting plasma glucose,Rate,2014,11.913642917902099,13.2359874368423,10.6297092795569
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2014,21.7126950274646,23.640310331921302,19.8478456760932
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2016,22.2601750374488,24.1278531192076,20.3984343709212
+Summary exposure value,Suriname,Both,Age-standardized,High fasting plasma glucose,Rate,2018,22.3395426273899,24.255473339966198,20.3152423857708
+Summary exposure value,Colombia,Both,Age-standardized,High fasting plasma glucose,Rate,2014,14.043351980476801,15.657854570799401,12.373431337936598
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2018,10.2422468936835,11.6871255293821,8.77757595652133
+Summary exposure value,Brazil,Both,Age-standardized,High fasting plasma glucose,Rate,2016,11.519530950548521,12.911289723268455,10.188342636474127
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2016,10.1242305947136,11.5644152694277,8.657360922426879
+Summary exposure value,Bolivia (Plurinational State of),Both,Age-standardized,High fasting plasma glucose,Rate,2014,10.0949809646163,11.512958369192,8.70455307058382

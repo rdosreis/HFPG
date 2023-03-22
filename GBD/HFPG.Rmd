@@ -6,10 +6,6 @@ Let's start with some useful links:
 
 2.  [Age-sex splitting for FPG (IHME)](https://github.com/ihmeuw/ihme-modeling/blob/master/gbd_2019/risk_factors_code/metab_fpg/age_sex_split/age_sex_split.R)
 
-Some comments:
-
-1.  Risk factor exposure is available upon REQUEST, and we have not requested;
-
 ## Setting things:
 
 For our project, we will hugely rely on [Pintando e bordando no R](https://datathon-ufrgs.github.io/Pintando_e_Bordando_no_R/#1), by Rodrigo Citton P. dos Reis.
@@ -25,9 +21,6 @@ library(plotly)
 library(tidyverse)
 library(readr)
 library(here)
-# library(maps)
-# library(ggmap)
-# library(maptools)
 library(rnaturalearth)
 library(rnaturalearthdata)
 library(rnaturalearthhires)
@@ -38,19 +31,55 @@ library(shadowtext)
 ### Importing and organizing dataset:
 
 ```{r message=FALSE, warning=FALSE}
-GBD <- readr::read_csv(file = here::here("GBD_vals.csv"))
-GBD_2 <- readr::read_csv(file= here::here("GBD_2.csv"))
-GBDrates <- readr::read_csv(file = here::here("GBD_ROC.csv"))
-SDI <- readr::read_csv(file = here::here("GBD_SDI_1990_2019.csv"))
-GBD_POP_2019 <- read_csv(file = here::here("GBD_POP_2019.CSV"))
+#From GBD tools
+GBD_3 <- readr::read_csv(file = here::here("GBD_3.csv"))
+GBD_4 <- readr::read_csv(file = here::here("GBD_4.csv"))
+SEV <- readr::read_csv(file = here::here("SEV.csv"))
+#Rate of changes
+SEV_ROC <- readr::read_csv(file = here::here("SEV_ROC.csv"))
+GBD_ROC <- readr::read_csv(file = here::here("GBD_ROC.csv"))
+#From GHDx
+SDI <- readr::read_csv(file = here::here("GBD_SDI_1990_TO_2019.csv"))
+
 GBD_POP_1990 <- read_csv(file = here::here("GBD_POP_1990.CSV"))
+GBD_POP_1991 <- read_csv(file = here::here("GBD_POP_1991.CSV"))
+GBD_POP_1992 <- read_csv(file = here::here("GBD_POP_1992.CSV"))
+GBD_POP_1993 <- read_csv(file = here::here("GBD_POP_1993.CSV"))
+GBD_POP_1994 <- read_csv(file = here::here("GBD_POP_1994.CSV"))
+GBD_POP_1995 <- read_csv(file = here::here("GBD_POP_1995.CSV"))
+GBD_POP_1996 <- read_csv(file = here::here("GBD_POP_1996.CSV"))
+GBD_POP_1997 <- read_csv(file = here::here("GBD_POP_1997.CSV"))
+GBD_POP_1998 <- read_csv(file = here::here("GBD_POP_1998.CSV"))
+GBD_POP_1999 <- read_csv(file = here::here("GBD_POP_1999.CSV"))
+GBD_POP_2000 <- read_csv(file = here::here("GBD_POP_2000.CSV"))
+GBD_POP_2001 <- read_csv(file = here::here("GBD_POP_2001.CSV"))
+GBD_POP_2002 <- read_csv(file = here::here("GBD_POP_2002.CSV"))
+GBD_POP_2003 <- read_csv(file = here::here("GBD_POP_2003.CSV"))
+GBD_POP_2004 <- read_csv(file = here::here("GBD_POP_2004.CSV"))
+GBD_POP_2005 <- read_csv(file = here::here("GBD_POP_2005.CSV"))
+GBD_POP_2006 <- read_csv(file = here::here("GBD_POP_2006.CSV"))
+GBD_POP_2007 <- read_csv(file = here::here("GBD_POP_2007.CSV"))
+GBD_POP_2008 <- read_csv(file = here::here("GBD_POP_2008.CSV"))
+GBD_POP_2009 <- read_csv(file = here::here("GBD_POP_2009.CSV"))
+GBD_POP_2010 <- read_csv(file = here::here("GBD_POP_2010.CSV"))
+GBD_POP_2011 <- read_csv(file = here::here("GBD_POP_2011.CSV"))
+GBD_POP_2012 <- read_csv(file = here::here("GBD_POP_2012.CSV"))
+GBD_POP_2013 <- read_csv(file = here::here("GBD_POP_2013.CSV"))
+GBD_POP_2014 <- read_csv(file = here::here("GBD_POP_2014.CSV"))
+GBD_POP_2015 <- read_csv(file = here::here("GBD_POP_2015.CSV"))
+GBD_POP_2016 <- read_csv(file = here::here("GBD_POP_2016.CSV"))
+GBD_POP_2017 <- read_csv(file = here::here("GBD_POP_2017.CSV"))
+GBD_POP_2018 <- read_csv(file = here::here("GBD_POP_2018.CSV"))
+GBD_POP_2019 <- read_csv(file = here::here("GBD_POP_2019.CSV"))
+
 ```
 
 ```{r message=FALSE, warning=FALSE, results='hide'}
 
-GBD <- GBD %>% 
-       bind_rows(GBD_2)
-rm(GBD_2) #Dont waste my precious RAM
+GBD <- GBD_3 %>% 
+       bind_rows(GBD_4) %>% 
+       bind_rows(SEV)
+rm(GBD_3, GBD_4, SEV) #Dont waste my precious RAM
 
 GBD <- GBD %>% 
        mutate(age = recode(age, "80-84" = "80-84 years",
@@ -301,7 +330,6 @@ SA_SUM %>%
  facet_wrap(vars(measure), ncol = 4L)
 
 ```
-
 
 ```{r fig.width=15}
 SA_SUM %>%
@@ -598,7 +626,6 @@ ggplot()+
   labs(title = "Deaths rate")
 
 ```
-
 
 ```{r}
 
