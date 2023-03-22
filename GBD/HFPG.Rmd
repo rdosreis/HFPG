@@ -30,6 +30,14 @@ library(shadowtext)
 
 ### Importing and organizing dataset:
 
+#From GBD tools
+
+GBD_3 \<- readr::read_csv(file = here::here("GBD_3.csv"))
+
+GBD_4 \<- readr::read_csv(file = here::here("GBD_4.csv"))
+
+SEV \<- readr::read_csv(file = here::here("SEV.csv"))
+
 ```{r message=FALSE, warning=FALSE}
 #From GBD tools
 GBD_3 <- readr::read_csv(file = here::here("GBD_3.csv"))
@@ -75,12 +83,15 @@ GBD_POP_2019<-read_csv(file=here::here("IHME_GBD_2019_POP_2019_Y2020M10D15.CSV")
 
 ```{r message=FALSE, warning=FALSE, results='hide'}
 
-GBD <- GBD_3 %>% 
-       bind_rows(GBD_4) %>% 
-       bind_rows(SEV)
+GBD <- GBD_3 %>%
+       bind_rows(GBD_4) %>%
+       bind_rows(SEV) %>%
+       mutate_at(c('cause'), ~replace_na(.,"All causes"))
+
 rm(GBD_3, GBD_4, SEV) #Dont waste my precious RAM
 
-GBD <- GBD %>% 
+
+GBD <- GBD %>%
        mutate(age = recode(age, "80-84" = "80-84 years",
                                 "85-89" = "85-89 years",
                                 "90-94" = "90-94 years"),
@@ -106,11 +117,12 @@ GBD <- GBD %>%
                                       #        "95+ years",
                                        #       "All ages",
                                         #      "Age-standardized")
-                                )) %>% 
+                                )) %>%
        mutate(measure = recode(measure,
              "YLDs (Years Lived with Disability)" = "YLDs",
              "YLLs (Years of Life Lost)" = "YLLs",
-             "DALYs (Disability-Adjusted Life Years)" = "DALYs"),
+             "DALYs (Disability-Adjusted Life Years)" = "DALYs",
+             "Summary exposure value" = "SEV"),
               location = recode(location,
              "Bolivia (Plurinational State of)" = "Bolivia",
              "Venezuela (Bolivarian Republic of)" = "Venezuela"),
@@ -125,15 +137,43 @@ GBD <- GBD %>%
                                       "1000 - 2500",
                                       "2500 - 5000",
                                       ">5000")))
-       
 
-GBD_POP <-  GBD_POP_1990 %>%
-            bind_rows(GBD_POP_2019) %>%
+
+GBD_POP <- GBD_POP_1990 %>% 
+            bind_rows(GBD_POP_1991,
+                      GBD_POP_1992,
+                      GBD_POP_1993,
+                      GBD_POP_1994,
+                      GBD_POP_1995,
+                      GBD_POP_1996,
+                      GBD_POP_1997,
+                      GBD_POP_1998,
+                      GBD_POP_1999,
+                      GBD_POP_2000,
+                      GBD_POP_2001,
+                      GBD_POP_2002,
+                      GBD_POP_2003,
+                      GBD_POP_2004,
+                      GBD_POP_2005,
+                      GBD_POP_2006,
+                      GBD_POP_2007,
+                      GBD_POP_2008,
+                      GBD_POP_2009,
+                      GBD_POP_2010,
+                      GBD_POP_2011,
+                      GBD_POP_2012,
+                      GBD_POP_2013,
+                      GBD_POP_2014,
+                      GBD_POP_2015,
+                      GBD_POP_2016,
+                      GBD_POP_2017,
+                      GBD_POP_2018,
+                      GBD_POP_2019) %>% 
             rename(location = location_name,
                    sex = sex_name,
                    age = age_group_name,
                    year = year_id,
-                   pop = val) %>% 
+                   pop = val) %>%
             select(location, sex, age, year, pop) %>%
             mutate(location = recode(location,
                    "Bolivia (Plurinational State of)" = "Bolivia",
@@ -155,7 +195,7 @@ GBD_POP <-  GBD_POP_1990 %>%
                                    "Peru",
                                    "Suriname",
                                    "Uruguay",
-                                   "Venezuela")) %>% 
+                                   "Venezuela")) %>%
             mutate(age = recode(age,  "Under 5"="<5 years",
                                       "5 to 9"="5-9 years",
                                       "10 to 14"="10-14 years",
@@ -176,7 +216,7 @@ GBD_POP <-  GBD_POP_1990 %>%
                                       "85 to 89"="85-89 years",
                                       "90 to 94"="90-94 years",
                                       "95 plus"="95+ years",
-                                      "All Ages" = "All ages")) %>% 
+                                      "All Ages" = "All ages")) %>%
             filter(age %in% c("<5 years",                                                                        "5-9 years",
                               "10-14 years",
                               "15-19 years",
@@ -197,9 +237,38 @@ GBD_POP <-  GBD_POP_1990 %>%
                               "90-94 years",
                               "95+ years",
                               "All ages"))
-  
-rm(GBD_POP_1990,GBD_POP_2019) #Dont waste my precious RAM
 
+       rm(GBD_POP_1990,
+          GBD_POP_1991,
+          GBD_POP_1992,
+          GBD_POP_1993,
+          GBD_POP_1994,
+          GBD_POP_1995,
+          GBD_POP_1996,
+          GBD_POP_1997,
+          GBD_POP_1998,
+          GBD_POP_1999,
+          GBD_POP_2000,
+          GBD_POP_2001,
+          GBD_POP_2002,
+          GBD_POP_2003,
+          GBD_POP_2004,
+          GBD_POP_2005,
+          GBD_POP_2006,
+          GBD_POP_2007,
+          GBD_POP_2008,
+          GBD_POP_2009,
+          GBD_POP_2010,
+          GBD_POP_2011,
+          GBD_POP_2012,
+          GBD_POP_2013,
+          GBD_POP_2014,
+          GBD_POP_2015,
+          GBD_POP_2016,
+          GBD_POP_2017,
+          GBD_POP_2018,
+          GBD_POP_2019) #Dont waste my precious RAM
+ 
 SDI <- SDI %>%
           filter(Location %in% c("Argentina",
                  "Bolivia",
@@ -213,26 +282,61 @@ SDI <- SDI %>%
                  "Suriname",
                  "Uruguay",
                  "Venezuela")) %>%
-          select("Location", "1990", "2019") %>%
-          pivot_longer(cols = c("1990", "2019"),
+          pivot_longer(cols = c("1990",
+                                "1991",
+                                "1992",
+                                "1993",
+                                "1994",
+                                "1995",
+                                "1996",
+                                "1997",
+                                "1998",
+                                "1999",
+                                "2000",
+                                "2001",
+                                "2002",
+                                "2003",
+                                "2004",
+                                "2005",
+                                "2006",
+                                "2007",
+                                "2008",
+                                "2009",
+                                "2010",
+                                "2011",
+                                "2012",
+                                "2013",
+                                "2014",
+                                "2015",
+                                "2016",
+                                "2017",
+                                "2018",
+                                "2019"),
                        names_to = "year",
                        values_to = "SDI")
 
-GBDrates <- GBDrates %>%
+SEV_ROC<- SEV_ROC %>% 
+          mutate(cause = "All causes")
+
+GBD_ROC <- GBD_ROC %>%
+            rbind(SEV_ROC) %>% 
             mutate(measure = recode(measure,
             "YLDs (Years Lived with Disability)" = "YLDs",
             "YLLs (Years of Life Lost)" = "YLLs",
-            "DALYs (Disability-Adjusted Life Years)" = "DALYs")) %>%
+            "DALYs (Disability-Adjusted Life Years)" = "DALYs",
+            "Summary exposure value" = "SEV")) %>%
             mutate(location = recode(location,
            "Bolivia (Plurinational State of)" = "Bolivia",
            "Venezuela (Bolivarian Republic of)" = "Venezuela")) %>%
             mutate(year_end = as.factor(year_end)) %>%
             select(-c("rei", "year_start")) %>%
-            rename(ROC_val = val, 
-                   ROC_upper = upper, 
+            rename(ROC_val = val,
+                   ROC_upper = upper,
                    ROC_lower = lower,
                    year = year_end)
 
+
+rm(SEV_ROC)
 
 SA_map <- ne_countries(scale = "medium",
                    type = "map_units",
@@ -251,19 +355,13 @@ SA_map <- ne_countries(scale = "medium",
                          "Venezuela"))
 
 
+
 GBD <- GBD %>%
         full_join(SDI, by = c("location" = "Location", "year" = "year")) %>%
         full_join(GBD_POP, by=c("location"="location",
                                 "age"="age",
                                 "sex"="sex",
                                 "year"="year")) %>% 
-        full_join(GBDrates, by=c("location" = "location",
-                                 "measure" = "measure",
-                                 "sex" = "sex",
-                                 "cause" = "cause",
-                                 "metric" = "metric",
-                                 "year" = "year",
-                                 "age" = "age")) %>% 
         mutate(age = recode(age,  "<5 years"="<5",
                                   "5-9 years"="05-09",
                                   "10-14 years"="10-14",
@@ -286,11 +384,11 @@ GBD <- GBD %>%
                                   "95+ years"="95+"))
 
 rm(GBD_POP, SDI, GBDrates) #Dont waste my precious RAM
-
+ 
 SA_SUM <- GBD %>%
-          filter(metric == "Number",age != "Age-standardized") %>% 
-          group_by(measure,sex,age,cause,year) %>% 
-          summarise(number = sum(val), pop = sum(pop)) %>% 
+          filter(metric == "Number",age != "Age-standardized") %>%
+          group_by(measure,sex,age,cause,year) %>%
+          summarise(number = sum(val), pop = sum(pop)) %>%
           mutate(rate = (number/pop)*100000)
 ```
 

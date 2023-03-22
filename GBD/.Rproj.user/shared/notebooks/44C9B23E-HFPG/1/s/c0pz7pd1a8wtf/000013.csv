@@ -1,0 +1,13 @@
+"0","SEV_ROC<- SEV_ROC %>% 
+          mutate(cause == ""All causes"")
+"
+"1","[1m[33mError[39m in [38;5;255m[38;5;251m[48;5;235m`mutate()`[49m[38;5;255m[39m:[22m
+[38;5;255m[33m![38;5;255m Problem while computing `..1 = cause == ""All causes""`.[39m
+[1mCaused by error:[22m
+[33m![39m object 'cause' not found
+Backtrace:
+[90m 1. [39mSEV_ROC %>% mutate(cause == ""All causes"")
+[90m 3. [39m[1mdplyr[22m:::mutate.data.frame(., cause == ""All causes"")
+[90m 4. [39mdplyr:::mutate_cols(.data, dplyr_quosures(...), caller_env = caller_env())
+[90m 6. [39mmask$eval_all_mutate(quo)
+"
