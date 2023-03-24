@@ -507,5 +507,27 @@ ggsave(filename = "measures_rates_age_groups_years_sa.jpg",
        width = 10, height = 7, dpi = 300)
 
 
+# -----------------------------------------
+# Gráfico da América do Sul (Medidas em número)
+# -----------------------------------------
+
+df <- GBD_ROC %>% 
+  filter(age == "Age-standardized") %>% 
+  filter(cause == "All causes") %>% 
+  filter(metric == "Rate")
+
+p <- ggplot(data = df,
+            mapping = aes(x = location,
+                          y = ROC_val,
+                          fill = measure)) +
+  geom_bar(position = position_dodge(.9), stat = "identity") +
+  # geom_errorbar(ymin = "ROC_lower", ymax = "ROC_upper") +
+  scale_fill_brewer(palette = "Dark2") +
+  labs(x = "Country", y = "Annualized Rate of Change (%)",
+       fill = "Measure") +
+  theme_bw()
+  
+p
+
 
   
