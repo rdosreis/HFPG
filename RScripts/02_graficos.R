@@ -5,6 +5,7 @@
 df <- SA_SUM %>%
   filter(sex %in% "Both") %>%
   filter(age %in% "All ages") %>%
+  filter(cause == "All causes") %>% 
   mutate(number_millions = number/1000000)
 
 p <- ggplot(data = df,
@@ -51,6 +52,7 @@ ggsave(filename = "measures_rate_years_sa.jpg",
 df <- SA_SUM %>%
   filter(sex %in% "Both") %>%
   filter(age != "All ages") %>% 
+  filter(cause == "All causes") %>% 
   mutate(year = as.numeric(year)) #só assim fiz a escala ficar bonitinha
 
 p <- ggplot(data = df,
@@ -98,3 +100,4 @@ p <- ggplot(data = df,
         axis.text.x = element_text(angle = 45, hjust = 1))
 
 p
+
