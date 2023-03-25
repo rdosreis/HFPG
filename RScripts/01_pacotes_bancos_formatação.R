@@ -334,7 +334,8 @@ rm(GBD_POP_1990,
    GBD_POP_2018,
    GBD_POP_2019) #Dont waste my precious RAM
 
-SDI <- SDI %>%
+
+SDI <- SDI %>% 
   filter(Location %in% c("Argentina",
                          "Bolivia",
                          "Brazil",
@@ -346,7 +347,9 @@ SDI <- SDI %>%
                          "Peru",
                          "Suriname",
                          "Uruguay",
-                         "Venezuela")) %>%
+                         "Venezuela"))
+
+SDI_pivot <- SDI %>%
   pivot_longer(cols = c("1990",
                         "1991",
                         "1992",
@@ -426,13 +429,13 @@ SA_map <- ne_countries(scale = "medium",
 
 
 GBD <- GBD %>%
-  full_join(SDI, by = c("location" = "Location", "year" = "year")) %>%
+  full_join(SDI_pivot, by = c("location" = "Location", "year" = "year")) %>%
   full_join(GBD_POP, by=c("location"="location",
                           "age"="age",
                           "sex"="sex",
                           "year"="year")) 
 
-rm(GBD_POP, SDI) #Dont waste my precious RAM
+rm(SDI_pivot, GBD_POP)
 
 SA_SUM <- GBD %>%
   filter(metric == "Number",age != "Age-standardized") %>%
