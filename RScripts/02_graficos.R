@@ -15,17 +15,17 @@ p <- ggplot(data = df %>% filter(age != "All ages"),
   scale_color_viridis_b(direction = -1, n.breaks = 29)+
   labs(color = "Measure", y = "Population (in millions)", x = "Year") +
   theme_bw() +
+  coord_flip()+
   theme(legend.position = "right",
-        axis.text.x = element_text(angle = 45, hjust = 1),
         legend.key.height = unit(2, "cm"),
         legend.text = element_text(size = 6))
 
 p
 
-ggsave(filename = "pop_years_age_group_sa.jpg",
+ggsave(filename = "01_pop_years_age_group_sa.jpg",
        plot = p, path = here::here("Figures"),
-       width = 10, height = 7, dpi = 300)
-
+       width = 7, height = 10, dpi = 300)
+#----------------------------------------
 p <- ggplot(data = df %>% filter(age == "All ages"),
             mapping = aes(x = year, y = pop_mil,
                           fill = year)) +
@@ -36,9 +36,10 @@ p <- ggplot(data = df %>% filter(age == "All ages"),
       scale_fill_viridis_c(direction = -1)
   
 p
-ggsave(filename = "pop_years_all_ages_sa.jpg",
+ggsave(filename = "02_pop_years_all_ages_sa.jpg",
        plot = p, path = here::here("Figures"),
        width = 10, height = 7, dpi = 300)
+
 # -----------------------------------------
 # Gráfico da América do Sul (Medidas em número)
 # -----------------------------------------
@@ -61,7 +62,7 @@ p <- ggplot(data = df,
 
 p
 
-ggsave(filename = "measures_numbers_years_sa.jpg",
+ggsave(filename = "03_measures_numbers_years_sa.jpg",
        plot = p, path = here::here("Figures"),
        width = 10, height = 7, dpi = 300)
 
@@ -82,7 +83,7 @@ p <- ggplot(data = df,
 
 p
 
-ggsave(filename = "measures_rate_years_sa.jpg",
+ggsave(filename = "04_measures_rate_years_sa.jpg",
        plot = p, path = here::here("Figures"),
        width = 10, height = 7, dpi = 300)
 # -----------------------------------------
@@ -99,7 +100,7 @@ df <- SA_SUM %>%
 p <- ggplot(data = df,
             mapping = aes(x = age, y = number_mil,
                           color = year, group = year)) +
-  geom_line() + #geom_point() +
+  geom_line() + geom_point() +
   labs(color = "Year", y = "number(in millions)", x = "Age group") +
   theme_bw() +
   scale_color_viridis_b(direction = -1,
@@ -113,7 +114,7 @@ p
 
 #falta conseguir colocar os extremos (1990-2019), mas já ta legal
 
-ggsave(filename = "measures_number_age_groups_years_sa.jpg",
+ggsave(filename = "05_measures_number_age_groups_years_sa.jpg",
        plot = p, path = here::here("Figures"),
        width = 10, height = 7, dpi = 300)
 # -----------------------------------------
@@ -143,7 +144,7 @@ p
 
 #falta conseguir colocar os extremos (1990-2019), mas já ta legal
 
-ggsave(filename = "measures_rates_age_groups_years_sa.jpg",
+ggsave(filename = "06_measures_rates_age_groups_years_sa.jpg",
        plot = p, path = here::here("Figures"),
        width = 10, height = 7, dpi = 300)
 
@@ -171,3 +172,8 @@ p <- ggplot(data = df,
         axis.text.x = element_text(angle = 45, hjust = 1))
 
 p
+
+ggsave(filename = "07_ROC_by_countries_1990_2019.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 10, height = 7, dpi = 300)
+
