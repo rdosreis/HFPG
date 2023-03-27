@@ -163,9 +163,12 @@ p <- ggplot(data = df,
                           y = ROC_val,
                           fill = measure)) +
   geom_bar(position = position_dodge(.9), stat = "identity") +
+  geom_errorbar(aes(ymin = ROC_lower, ymax = ROC_upper),
+                size = 0.5,
+                width = 0.5,
+                position = position_dodge(.9)) +
   labs(x = "Country", y = "Annualized Rate of Change (%) from 1990 to 2019",
        fill = "Measure") +
-  ylim(c(-0.5, 1.5))+
   theme_bw() +
   scale_fill_viridis_d()+
   theme(legend.position = "top", 
@@ -184,12 +187,11 @@ df <- GBD %>%
          cause == "All causes",
          metric == "Rate")
 
-p <- ggplot(data = df,
-            mapping = aes(x = year, y = val,
-                          color = measure, group = measure)) +
-  geom_line() +
-  facet_wrap( ~ location,  scales = "free_y")+
-  theme_bw()
+p <- ggplot() +
+  geom_line(data = df, mapping = aes(x = year, y = val, color = measure, group = measure)) +
+  facet_wrap( ~ location,  scales = "free_y") +
+  theme_bw() +
+  theme(legend.position = "right", axis.text.x = element_text(angle = 45, hjust = 1))
 
 p
 
@@ -203,17 +205,17 @@ ggsave(filename = "08_countries_measures_year.jpg",
 
 df <- GBD %>% 
   filter (metric =="Rate", 
-          year == "2019",
           age == "Age-standardized",
-          measure != "SEV")
+          measure != "SEV",
+          year == "2019")
 
 
 
 p <- ggplot(df, mapping = aes(x = location, y = cause, fill = val_cat))+
   geom_tile(color = "white", lwd = 0)+
   
-  geom_shadowtext(aes(label = round(val, digits = 0)), color = "white",
-                  size = 2.3) +
+  geom_shadowtext(aes(label = round(val, digits = 1)), color = "white",
+                  size = 2) +
   scale_fill_viridis_d(direction = -1)+
  # ggthemes::theme_base() +
   theme_bw()+
@@ -226,6 +228,7 @@ p <- ggplot(df, mapping = aes(x = location, y = cause, fill = val_cat))+
                                angle = 45,
                                size = 8),
     plot.title = element_text(hjust = 0.5))
+
 
 p
 
