@@ -593,3 +593,19 @@ p <- ggplot(data = df,
 p
 
 ```
+```{r 08}
+
+df <- GBD %>%
+  filter(age == "Age-standardized",
+         cause == "All causes",
+         metric == "Rate")
+
+p <- ggplot(data = df,
+            mapping = aes(x = year, y = val,
+                          color = measure, group = measure)) +
+  geom_line() +
+  facet_wrap( ~ location,  scales = "free_y")+
+  theme_bw()
+
+p
+```

@@ -176,4 +176,103 @@ p
 ggsave(filename = "07_ROC_by_countries_1990_2019.jpg",
        plot = p, path = here::here("Figures"),
        width = 10, height = 7, dpi = 300)
+# -----------------------------------------
+# 
+# -----------------------------------------
+df <- GBD %>%
+  filter(age == "Age-standardized",
+         cause == "All causes",
+         metric == "Rate")
 
+p <- ggplot(data = df,
+            mapping = aes(x = year, y = val,
+                          color = measure, group = measure)) +
+  geom_line() +
+  facet_wrap( ~ location,  scales = "free_y")+
+  theme_bw()
+
+p
+
+ggsave(filename = "08_countries_measures_year.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 10, height = 7, dpi = 300)
+
+# -----------------------------------------
+# 
+# -----------------------------------------
+
+df <- GBD %>% 
+  filter (metric =="Rate", 
+          year == "2019",
+          age == "Age-standardized",
+          measure != "SEV")
+
+
+
+p <- ggplot(df, mapping = aes(x = location, y = cause, fill = val_cat))+
+  geom_tile(color = "white", lwd = 0)+
+  
+  geom_shadowtext(aes(label = round(val, digits = 0)), color = "white",
+                  size = 2.3) +
+  scale_fill_viridis_d(direction = -1)+
+ # ggthemes::theme_base() +
+  theme_bw()+
+  facet_grid(~measure)+
+  labs(title = "DALYs per 100.000 for each cause by country in 2019, both sexes", 
+       fill = "DALYs per 100.000",
+       x = "", y= "")+
+  theme(
+    axis.text.x = element_text(hjust = 1,
+                               angle = 45,
+                               size = 8),
+    plot.title = element_text(hjust = 0.5))
+
+p
+
+
+ggsave(filename = "09_heatmap_DALYS_countries_2019.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 18, height = 7, dpi = 300)
+
+
+
+
+
+# -----------------------------------------
+# 
+# -----------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# -----------------------------------------
+# 
+# -----------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+# -----------------------------------------
+# 
+# -----------------------------------------
