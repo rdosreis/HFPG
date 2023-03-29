@@ -446,7 +446,7 @@ SA_SUM <- GBD %>%
 
 SA_age_stand <- GBD %>% select(-c(pop)) %>% 
   filter(metric == "Rate",age == "Age-standardized", cause == "All causes") %>% 
-  full_join(GBD_POP %>% filter(age == "All ages") %>% 
+  right_join(GBD_POP %>% filter(age == "All ages") %>% 
                         select(-c(sex, age)), 
             by=c("location"="location",
                           "year"="year")) %>% 

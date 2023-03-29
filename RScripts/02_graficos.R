@@ -13,7 +13,8 @@ p <- ggplot(data = df %>% filter(age != "All ages"),
                           color = year, group = year)) +
   geom_line() + geom_point() +
   scale_color_viridis_b(direction = -1, n.breaks = 29)+
-  labs(color = "Measure", y = "Population (in millions)", x = "Year") +
+  labs(color = "Measure", y = "Population (in millions)", x = "Year",
+       title = "Age distribution between 1990-2019 in South America") +
   theme_bw() +
   coord_flip()+
   theme(legend.position = "right",
@@ -32,7 +33,8 @@ p <- ggplot(data = df %>% filter(age == "All ages"),
       geom_col()+
       theme_bw() +
       coord_cartesian(ylim = c(200,500), xlim = c(1990,2019))+
-      labs(color = "Year", y = "Population (in millions)", x = "Year") +
+      labs(color = "Year", y = "Population (in millions)", x = "Year",
+           title = "Population in South America between 1990-2019") +
       scale_fill_viridis_c(direction = -1)
   
 p
@@ -55,7 +57,8 @@ p <- ggplot(data = df,
                           color = measure, group = measure)) +
   geom_line() + geom_point() +
   scale_color_brewer(palette="Dark2") +
-  labs(color = "Measure", y = "Number (in millions)", x = "Year") +
+  labs(color = "Measure", y = "Number (in millions)", x = "Year",
+       title = "Raw number of DALYs, YLDs, YLLs and deaths in South America since 1990") +
   theme_bw() +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
@@ -76,7 +79,8 @@ p <- ggplot(data = df,
   geom_line() + geom_point() +
   scale_color_brewer(palette="Dark2") +
   labs(#caption = "Rate of DALYs, YLDs, YLLs in South America",
-    color = "Measure", y = "Rate (100,000)(All ages)", x = "Year") +
+    color = "Measure", y = "Rate (100,000)(All ages)", x = "Year",
+    title = "Rate of DALYs, YLDs, YLLs and Deaths in South America without age-standardizing") +
   theme_bw() +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
@@ -99,7 +103,8 @@ p <- ggplot(data = df,
   geom_line() + geom_point() +
   scale_color_brewer(palette="Dark2") +
   labs(#caption = "Rate of DALYs, YLDs, YLLs in South America",
-    color = "Measure", y = "Rate (100,000)(Age standardized)", x = "Year") +
+    color = "Measure", y = "Rate (100,000)(Age standardized)", x = "Year",
+    title = "Age-standardized rate of DALYs, YLDs, YLLs and Deaths in South America") +
   theme_bw() +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
@@ -124,7 +129,8 @@ p <- ggplot(data = df,
             mapping = aes(x = age, y = number_mil,
                           color = year, group = year)) +
   geom_line() + geom_point() +
-  labs(color = "Year", y = "number(in millions)", x = "Age group") +
+  labs(color = "Year", y = "number(in millions)", x = "Age group",
+       title = "Number of DALYs, YLDs, YLLs and Deaths in South America by age groups since 1990") +
   theme_bw() +
   scale_color_viridis_b(direction = -1,
                         n.breaks = 29)+
@@ -154,7 +160,8 @@ p <- ggplot(data = df,
             mapping = aes(x = age, y = rate,
                           color = year, group = year)) +
   geom_line() + geom_point() +
-  labs(color = "Year", y = "Rate (100,000)", x = "Age group") +
+  labs(color = "Year", y = "Rate (100,000)", x = "Age group",
+       title = "Rate of DALYs, YLDs, YLLs and Deaths in South America by age groups since 1990") +
   theme_bw() +
   scale_color_viridis_b(direction = -1,
                         n.breaks = 29)+
@@ -191,7 +198,8 @@ p <- ggplot(data = df,
                 width = 0.5,
                 position = position_dodge(.9)) +
   labs(x = "Country", y = "Annualized Rate of Change (%) from 1990 to 2019",
-       fill = "Measure") +
+       fill = "", caption = "Age-standardized",
+       title = "Annualized Rate of Change (%) of DALYs, YLDs, YLLs, Deaths and SEV from 1990 to 2019 in South America countries") +
   theme_bw() +
   scale_fill_viridis_d()+
   theme(legend.position = "top", 
@@ -201,9 +209,9 @@ p
 
 ggsave(filename = "07_ROC_by_countries_1990_2019.jpg",
        plot = p, path = here::here("Figures"),
-       width = 10, height = 7, dpi = 300)
+       width = 12, height = 7, dpi = 300)
 # -----------------------------------------
-# 
+# Rate of measures each country from 1990 to 2019
 # -----------------------------------------
 df <- GBD %>%
   filter(age == "Age-standardized",
@@ -213,6 +221,8 @@ df <- GBD %>%
 p <- ggplot() +
   geom_line(data = df, mapping = aes(x = year, y = val, color = measure, group = measure)) +
   facet_wrap( ~ location,  scales = "free_y") +
+  labs(title = "Rate of DALYs, YLDs, YLLs, Deaths and SEV since 1990 in South America countries",
+       x = "", y = "Rate(per 100.000", caption = "Age-standardized")+
   theme_bw() +
   theme(legend.position = "right", axis.text.x = element_text(angle = 45, hjust = 1))
 
@@ -223,7 +233,7 @@ ggsave(filename = "08_countries_measures_year.jpg",
        width = 10, height = 7, dpi = 300)
 
 # -----------------------------------------
-# 
+# heatmap countries and causes in 2019
 # -----------------------------------------
 
 df <- GBD %>% 
@@ -245,7 +255,7 @@ p <- ggplot(df, mapping = aes(x = location, y = cause, fill = val_cat))+
   facet_grid(~measure)+
   labs(title = "DALYs per 100.000 for each cause by country in 2019, both sexes", 
        fill = "DALYs per 100.000",
-       x = "", y= "")+
+       x = "", y= "", caption = "Age-standardized")+
   theme(
     axis.text.x = element_text(hjust = 1,
                                angle = 45,

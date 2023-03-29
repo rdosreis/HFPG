@@ -4,7 +4,11 @@ output: html_document
 date: "`r Sys.Date()`"
 ---
 
-```{r PACOTES, message=FALSE, warning=FALSE}
+```{r include=FALSE}
+# -----------------------------------------
+# Carrega pacotes
+# -----------------------------------------
+
 library(ggplot2)
 library(ggthemes)
 library(plotly)
@@ -16,9 +20,11 @@ library(rnaturalearthdata)
 library(rnaturalearthhires)
 library(hrbrthemes)
 library(shadowtext)
-```
 
-```{r ARQUIVOS, message=FALSE, warning=FALSE, include=FALSE}
+# -----------------------------------------
+# Carrega arquivos de dados
+# -----------------------------------------
+
 #From GBD tools
 GBD_3 <-
   readr::read_csv(file = here::here("GBD-dados", "GBD_3.csv"))
@@ -95,9 +101,11 @@ GBD_POP_2018 <-
   read_csv(file = here::here("GBD-dados", "IHME_GBD_2019_POP_2018_Y2020M10D15.CSV"))
 GBD_POP_2019 <-
   read_csv(file = here::here("GBD-dados", "IHME_GBD_2019_POP_2019_Y2020M10D15.CSV"))
-```
 
-```{r FORMATAÇÃO, message=FALSE, warning=FALSE, include=FALSE}
+# -----------------------------------------
+# Combina e formata objetos de dados
+# -----------------------------------------
+
 GBD <- GBD_3 %>%
   bind_rows(GBD_4) %>%
   bind_rows(SEV) %>%
@@ -434,7 +442,7 @@ GBD <- GBD %>%
                           "sex"="sex",
                           "year"="year")) 
 
-rm(SDI_pivot, GBD_POP)
+rm(SDI_pivot)
 
 SA_SUM <- GBD %>%
   filter(metric == "Number",age != "Age-standardized") %>%
@@ -442,9 +450,24 @@ SA_SUM <- GBD %>%
   summarise(number = sum(val), pop = sum(pop)) %>%
   mutate(rate = (number/pop)*100000)
 
+
+SA_age_stand <- GBD %>% select(-c(pop)) %>% 
+  filter(metric == "Rate",age == "Age-standardized", cause == "All causes") %>% 
+  right_join(GBD_POP %>% filter(age == "All ages") %>% 
+                        select(-c(sex, age)), 
+            by=c("location"="location",
+                          "year"="year")) %>% 
+  group_by(measure, year) %>% 
+  summarise(val = weighted.mean(val, pop))
+
+
 ```
 
-```{r 01}
+```{r fig.width=10}
+# -----------------------------------------
+# Gráfico da América do Sul (dados demograficos)
+# -----------------------------------------
+
 df <- SA_SUM %>% 
       filter(measure == "DALYs",
              cause == "All causes") %>% 
@@ -456,7 +479,8 @@ p <- ggplot(data = df %>% filter(age != "All ages"),
                           color = year, group = year)) +
   geom_line() + geom_point() +
   scale_color_viridis_b(direction = -1, n.breaks = 29)+
-  labs(color = "Measure", y = "Population (in millions)", x = "Year") +
+  labs(color = "Measure", y = "Population (in millions)", x = "Year",
+       title = "Age distribution between 1990-2019 in South America") +
   theme_bw() +
   coord_flip()+
   theme(legend.position = "right",
@@ -465,23 +489,23 @@ p <- ggplot(data = df %>% filter(age != "All ages"),
 
 p
 
-```
-
-```{r 02}
+#----------------------------------------
 p <- ggplot(data = df %>% filter(age == "All ages"),
             mapping = aes(x = year, y = pop_mil,
                           fill = year)) +
       geom_col()+
       theme_bw() +
       coord_cartesian(ylim = c(200,500), xlim = c(1990,2019))+
-      labs(color = "Year", y = "Population (in millions)", x = "Year") +
+      labs(color = "Year", y = "Population (in millions)", x = "Year",
+           title = "Population in South America between 1990-2019") +
       scale_fill_viridis_c(direction = -1)
   
 p
 
-```
+# -----------------------------------------
+# Gráfico da América do Sul (Medidas em número)
+# -----------------------------------------
 
-```{r 03}
 df <- SA_SUM %>%
   filter(sex %in% "Both") %>%
   filter(age %in% "All ages") %>%
@@ -493,32 +517,58 @@ p <- ggplot(data = df,
                           color = measure, group = measure)) +
   geom_line() + geom_point() +
   scale_color_brewer(palette="Dark2") +
-  labs(color = "Measure", y = "Number (in millions)", x = "Year") +
+  labs(color = "Measure", y = "Number (in millions)", x = "Year",
+       title = "Raw number of DALYs, YLDs, YLLs and deaths in South America since 1990") +
   theme_bw() +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
 
 p
 
-```
 
-```{r 04}
+# -----------------------------------------
+# Gráfico da América do Sul (Medidas em taxa)
+# -----------------------------------------
+
 p <- ggplot(data = df,
             mapping = aes(x = year, y = rate,
                           color = measure, group = measure)) +
   geom_line() + geom_point() +
   scale_color_brewer(palette="Dark2") +
   labs(#caption = "Rate of DALYs, YLDs, YLLs in South America",
-    color = "Measure", y = "Rate (100,000)", x = "Year") +
+    color = "Measure", y = "Rate (100,000)(All ages)", x = "Year",
+    title = "Rate of DALYs, YLDs, YLLs and Deaths in South America without age-standardizing") +
   theme_bw() +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
 
 p
 
-```
+# -----------------------------------------
+# Gráfico da América do Sul (Medidas em taxa)
+# AGE STANDARDIZED (Rate age-stand de cada pais com media ponderada pelas pop do ano)
+# -----------------------------------------
+df <- SA_age_stand
 
-```{r 05}
+
+p <- ggplot(data = df,
+            mapping = aes(x = year, y = val,
+                          color = measure, group = measure)) +
+  geom_line() + geom_point() +
+  scale_color_brewer(palette="Dark2") +
+  labs(#caption = "Rate of DALYs, YLDs, YLLs in South America",
+    color = "Measure", y = "Rate (100,000)(Age standardized)", x = "Year",
+    title = "Age-standardized rate of DALYs, YLDs, YLLs and Deaths in South America") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+p
+
+# -----------------------------------------
+# Gráfico da América do Sul por faixa etaria (Medidas em numeros)
+# -----------------------------------------
+
 df <- SA_SUM %>%
   filter(sex %in% "Both") %>%
   filter(age != "All ages") %>% 
@@ -530,7 +580,8 @@ p <- ggplot(data = df,
             mapping = aes(x = age, y = number_mil,
                           color = year, group = year)) +
   geom_line() + geom_point() +
-  labs(color = "Year", y = "number(in millions)", x = "Age group") +
+  labs(color = "Year", y = "number(in millions)", x = "Age group",
+       title = "Number of DALYs, YLDs, YLLs and Deaths in South America by age groups since 1990") +
   theme_bw() +
   scale_color_viridis_b(direction = -1,
                         n.breaks = 29)+
@@ -540,11 +591,12 @@ p <- ggplot(data = df,
         legend.text = element_text(size = 6)) +
   facet_wrap( ~ measure,  scales = "free_y")
 p
+
 #falta conseguir colocar os extremos (1990-2019), mas já ta legal
 
-```
-
-```{r 06}
+# -----------------------------------------
+# Gráfico da América do Sul por faixa etaria (Medidas em taxas)
+# -----------------------------------------
 
 df <- SA_SUM %>%
   filter(sex %in% "Both") %>%
@@ -556,7 +608,8 @@ p <- ggplot(data = df,
             mapping = aes(x = age, y = rate,
                           color = year, group = year)) +
   geom_line() + geom_point() +
-  labs(color = "Year", y = "Rate (100,000)", x = "Age group") +
+  labs(color = "Year", y = "Rate (100,000)", x = "Age group",
+       title = "Rate of DALYs, YLDs, YLLs and Deaths in South America by age groups since 1990") +
   theme_bw() +
   scale_color_viridis_b(direction = -1,
                         n.breaks = 29)+
@@ -569,9 +622,11 @@ p
 
 #falta conseguir colocar os extremos (1990-2019), mas já ta legal
 
-```
+# -----------------------------------------
+# Gráfico da América do Sul (rate of change)
+# -----------------------------------------
 
-```{r 07}
+
 df <- GBD_ROC_1990_to_2019 %>% 
   filter(age == "Age-standardized") %>% 
   filter(cause == "All causes") %>% 
@@ -582,9 +637,13 @@ p <- ggplot(data = df,
                           y = ROC_val,
                           fill = measure)) +
   geom_bar(position = position_dodge(.9), stat = "identity") +
+  geom_errorbar(aes(ymin = ROC_lower, ymax = ROC_upper),
+                size = 0.5,
+                width = 0.5,
+                position = position_dodge(.9)) +
   labs(x = "Country", y = "Annualized Rate of Change (%) from 1990 to 2019",
-       fill = "Measure") +
-  ylim(c(-0.5, 1.5))+
+       fill = "", caption = "Age-standardized",
+       title = "Annualized Rate of Change (%) of DALYs, YLDs, YLLs, Deaths and SEV from 1990 to 2019 in South America countries") +
   theme_bw() +
   scale_fill_viridis_d()+
   theme(legend.position = "top", 
@@ -592,20 +651,57 @@ p <- ggplot(data = df,
 
 p
 
-```
-```{r 08}
-
+# -----------------------------------------
+# Rate of measures each country from 1990 to 2019
+# -----------------------------------------
 df <- GBD %>%
   filter(age == "Age-standardized",
          cause == "All causes",
          metric == "Rate")
 
-p <- ggplot(data = df,
-            mapping = aes(x = year, y = val,
-                          color = measure, group = measure)) +
-  geom_line() +
-  facet_wrap( ~ location,  scales = "free_y")+
-  theme_bw()
+p <- ggplot() +
+  geom_line(data = df, mapping = aes(x = year, y = val, color = measure, group = measure)) +
+  facet_wrap( ~ location,  scales = "free_y") +
+  labs(title = "Rate of DALYs, YLDs, YLLs, Deaths and SEV since 1990 in South America countries",
+       x = "", y = "Rate(per 100.000", caption = "Age-standardized")+
+  theme_bw() +
+  theme(legend.position = "right", axis.text.x = element_text(angle = 45, hjust = 1))
 
 p
+
+
+# -----------------------------------------
+# heatmap countries and causes in 2019
+# -----------------------------------------
+
+df <- GBD %>% 
+  filter (metric =="Rate", 
+          age == "Age-standardized",
+          measure != "SEV",
+          year == "2019")
+
+
+
+p <- ggplot(df, mapping = aes(x = location, y = cause, fill = val_cat))+
+  geom_tile(color = "white", lwd = 0)+
+  
+  geom_shadowtext(aes(label = round(val, digits = 1)), color = "white",
+                  size = 2) +
+  scale_fill_viridis_d(direction = -1)+
+ # ggthemes::theme_base() +
+  theme_bw()+
+  facet_grid(~measure)+
+  labs(title = "DALYs per 100.000 for each cause by country in 2019, both sexes", 
+       fill = "DALYs per 100.000",
+       x = "", y= "", caption = "Age-standardized")+
+  theme(
+    axis.text.x = element_text(hjust = 1,
+                               angle = 45,
+                               size = 8),
+    plot.title = element_text(hjust = 0.5))
+
+
+p
+
+
 ```
