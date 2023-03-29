@@ -435,10 +435,21 @@ GBD <- GBD %>%
                           "sex"="sex",
                           "year"="year")) 
 
-rm(SDI_pivot, GBD_POP)
+rm(SDI_pivot)
 
 SA_SUM <- GBD %>%
   filter(metric == "Number",age != "Age-standardized") %>%
   group_by(measure,sex,age,cause,year) %>%
   summarise(number = sum(val), pop = sum(pop)) %>%
   mutate(rate = (number/pop)*100000)
+
+
+SA_age_stand <- GBD %>% select(-c(pop)) %>% 
+  filter(metric == "Rate",age == "Age-standardized", cause == "All causes") %>% 
+  full_join(GBD_POP %>% filter(age == "All ages") %>% 
+                        select(-c(sex, age)), 
+            by=c("location"="location",
+                          "year"="year")) %>% 
+  group_by(measure, year) %>% 
+  summarise(val = weighted.mean(val, pop))
+

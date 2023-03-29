@@ -76,7 +76,7 @@ p <- ggplot(data = df,
   geom_line() + geom_point() +
   scale_color_brewer(palette="Dark2") +
   labs(#caption = "Rate of DALYs, YLDs, YLLs in South America",
-    color = "Measure", y = "Rate (100,000)", x = "Year") +
+    color = "Measure", y = "Rate (100,000)(All ages)", x = "Year") +
   theme_bw() +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
@@ -84,6 +84,29 @@ p <- ggplot(data = df,
 p
 
 ggsave(filename = "04_measures_rate_years_sa.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 10, height = 7, dpi = 300)
+# -----------------------------------------
+# Gráfico da América do Sul (Medidas em taxa)
+# AGE STANDARDIZED (Rate age-stand de cada pais com media ponderada pelas pop do ano)
+# -----------------------------------------
+df <- SA_age_stand
+
+
+p <- ggplot(data = df,
+            mapping = aes(x = year, y = val,
+                          color = measure, group = measure)) +
+  geom_line() + geom_point() +
+  scale_color_brewer(palette="Dark2") +
+  labs(#caption = "Rate of DALYs, YLDs, YLLs in South America",
+    color = "Measure", y = "Rate (100,000)(Age standardized)", x = "Year") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+p
+
+ggsave(filename = "04.1_measures_rate_AGE_STANDARDIZED_years_sa.jpg",
        plot = p, path = here::here("Figures"),
        width = 10, height = 7, dpi = 300)
 # -----------------------------------------
