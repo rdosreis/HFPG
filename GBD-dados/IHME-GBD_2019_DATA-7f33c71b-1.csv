@@ -1,0 +1,10 @@
+measure,location,sex,age,cause,rei,metric,year,val,upper,lower
+DALYs (Disability-Adjusted Life Years),Brazil,Male,Age-standardized,All causes,High fasting plasma glucose,Rate,2019,2342.937736720373,2823.625053558383,1964.466438857716
+DALYs (Disability-Adjusted Life Years),Brazil,Female,Age-standardized,All causes,High fasting plasma glucose,Rate,2019,1758.9474481109191,2100.2626316972987,1459.2283592519761
+DALYs (Disability-Adjusted Life Years),Brazil,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2019,2023.6760159565822,2419.5753260266897,1700.1973918856731
+DALYs (Disability-Adjusted Life Years),Tropical Latin America,Male,Age-standardized,All causes,High fasting plasma glucose,Rate,2019,2358.681697213314,2832.560105045954,1980.278762229256
+DALYs (Disability-Adjusted Life Years),Tropical Latin America,Female,Age-standardized,All causes,High fasting plasma glucose,Rate,2019,1771.9544362675108,2115.449149296429,1477.612737842933
+DALYs (Disability-Adjusted Life Years),Tropical Latin America,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2019,2038.2991058307803,2430.8652304127586,1712.4818257138197
+DALYs (Disability-Adjusted Life Years),Paraguay,Male,Age-standardized,All causes,High fasting plasma glucose,Rate,2019,3005.9134736321666,3861.398550331669,2286.953413596904
+DALYs (Disability-Adjusted Life Years),Paraguay,Female,Age-standardized,All causes,High fasting plasma glucose,Rate,2019,2373.4384678085044,2974.2048780511423,1852.7194254060023
+DALYs (Disability-Adjusted Life Years),Paraguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2019,2678.6834137898613,3392.256250818385,2073.99631939011
