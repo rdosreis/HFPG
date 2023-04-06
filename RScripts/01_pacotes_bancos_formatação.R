@@ -405,7 +405,8 @@ GBD_ROC_1990_to_2019 <- GBD_ROC %>%
                                               "YLDs",
                                               "YLLs",
                                               "Deaths",
-                                              "SEV")))
+                                              "SEV"))) %>% 
+  full_join(SDI_pivot %>% filter(year == "2019"), by = c("location" = "Location"))
 
 
 rm(SEV_ROC, GBD_ROC)
@@ -435,7 +436,6 @@ GBD <- GBD %>%
                           "sex"="sex",
                           "year"="year")) 
 
-rm(SDI_pivot)
 
 SA_SUM <- GBD %>%
   filter(metric == "Number",age != "Age-standardized") %>%

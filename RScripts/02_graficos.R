@@ -2,6 +2,13 @@
 # Gráfico da América do Sul (dados demograficos)
 # -----------------------------------------
 
+
+
+# graficos populacionais
+# piramides SA e cada país AMBOS os SEXOS(piramide clássica)
+# tanto em pop total quanto em % da pop
+
+
 df <- SA_SUM %>% 
       filter(measure == "DALYs",
              cause == "All causes") %>% 
@@ -13,7 +20,7 @@ p <- ggplot(data = df %>% filter(age != "All ages"),
                           color = year, group = year)) +
   geom_line() + geom_point() +
   scale_color_viridis_b(direction = -1, n.breaks = 29)+
-  labs(color = "Measure", y = "Population (in millions)", x = "Year",
+  labs(color = "Measure", y = "Population (in millions)", x = "Age-range",
        title = "Age distribution between 1990-2019 in South America") +
   theme_bw() +
   coord_flip()+
@@ -41,6 +48,9 @@ p
 ggsave(filename = "02_pop_years_all_ages_sa.jpg",
        plot = p, path = here::here("Figures"),
        width = 10, height = 7, dpi = 300)
+
+#AJEITAR A ESCALA
+
 
 # -----------------------------------------
 # Gráfico da América do Sul (Medidas em número)
@@ -220,7 +230,7 @@ df <- GBD %>%
 
 p <- ggplot() +
   geom_line(data = df, mapping = aes(x = year, y = val, color = measure, group = measure)) +
-  facet_wrap( ~ location,  scales = "free_y") +
+  facet_wrap( ~ location) +
   labs(title = "Rate of DALYs, YLDs, YLLs, Deaths and SEV since 1990 in South America countries",
        x = "", y = "Rate(per 100.000", caption = "Age-standardized")+
   theme_bw() +
@@ -253,9 +263,9 @@ p <- ggplot(df, mapping = aes(x = location, y = cause, fill = val_cat))+
  # ggthemes::theme_base() +
   theme_bw()+
   facet_grid(~measure)+
-  labs(title = "DALYs per 100.000 for each cause by country in 2019, both sexes", 
-       fill = "DALYs per 100.000",
-       x = "", y= "", caption = "Age-standardized")+
+  labs(title = "Rate of DALYs, YLDs, YLLs, Deaths for each cause by country in 2019, both sexes, age-standardized", 
+       fill = "Measure per 100.000",
+       x = "", y= "", caption = "per 100.000")+
   theme(
     axis.text.x = element_text(hjust = 1,
                                angle = 45,
@@ -275,13 +285,70 @@ ggsave(filename = "09_heatmap_DALYS_countries_2019.jpg",
 
 
 # -----------------------------------------
-# 
+# heatmap countries and causes in 1990
 # -----------------------------------------
 
+df <- GBD %>% 
+  filter (metric =="Rate", 
+          age == "Age-standardized",
+          measure != "SEV",
+          year == "1990")
+
+
+
+p <- ggplot(df, mapping = aes(x = location, y = cause, fill = val_cat))+
+  geom_tile(color = "white", lwd = 0)+
+  
+  geom_shadowtext(aes(label = round(val, digits = 1)), color = "white",
+                  size = 2) +
+  scale_fill_viridis_d(direction = -1)+
+  # ggthemes::theme_base() +
+  theme_bw()+
+  facet_grid(~measure)+
+  labs(title = "Rate of DALYs, YLDs, YLLs, Deaths for each cause by country in 1990, both sexes, age-standardized", 
+       fill = "Measure per 100.000",
+       x = "", y= "", caption = "per 100.000")+
+  theme(
+    axis.text.x = element_text(hjust = 1,
+                               angle = 45,
+                               size = 8),
+    plot.title = element_text(hjust = 0.5))
+
+
+p
+
+
+ggsave(filename = "09.1_heatmap_DALYS_countries_1990.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 18, height = 7, dpi = 300)
 
 
 
 
+
+# -----------------------------------------
+# SDI by location and ROC
+# -----------------------------------------
+
+p <- GBD_ROC_1990_to_2019 %>%
+  filter(age %in% "Age-standardized") %>%
+  filter(cause %in% "All causes") %>%
+  filter(metric %in% "Rate") %>%
+  ggplot() +
+  aes(x = SDI, y = ROC_val, colour = location) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_viridis_d(option = "viridis", direction = 1) +
+  theme_bw()+
+  geom_abline()+
+  facet_wrap(vars(measure))+
+  labs(title = "Rate of change and SDI, both sexes, age-standardized", 
+       x = "SDI", y= "Rate of Change(%)")
+
+p
+
+ggsave(filename = "10_ROC_SDI_countries_1990_2019.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 18, height = 7, dpi = 300)
 
 
 
@@ -294,7 +361,7 @@ ggsave(filename = "09_heatmap_DALYS_countries_2019.jpg",
 
 
 # -----------------------------------------
-# 
+# GRAFICO DE RANKING o que mudou de ranking das causas pra cada país
 # -----------------------------------------
 
 
