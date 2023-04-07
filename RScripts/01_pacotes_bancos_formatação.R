@@ -237,8 +237,7 @@ GBD_POP <- GBD_POP_1990 %>%
                          "Peru",
                          "Suriname",
                          "Uruguay",
-                         "Venezuela"),
-         sex == "Both") %>%
+                         "Venezuela")) %>%
   mutate(age = recode(age,  "Under 5"="<5",
                             "5 to 9"="5-9",
                             "10 to 14"="10-14",
@@ -302,6 +301,21 @@ GBD_POP <- GBD_POP_1990 %>%
                                       "90-94",
                                       "95+",
                                       "All ages")))
+
+GBD_POP_total <- GBD_POP %>% filter(age == "All ages")
+
+GBD_POP <- GBD_POP %>% 
+  right_join(GBD_POP_total, 
+             by = c( "location"="location",
+                      "sex"="sex",
+                      "year"="year")) %>% 
+  rename(age = age.x,
+         pop = pop.x,
+         total_pop = pop.y) %>%
+  select(-c("age.y")) %>% 
+  mutate(pop_proportion = pop/total_pop)
+
+rm(GBD_POP_total)
 
 rm(GBD_POP_1990,
    GBD_POP_1991,
@@ -431,7 +445,8 @@ SA_map <- ne_countries(scale = "medium",
 
 GBD <- GBD %>%
   full_join(SDI_pivot, by = c("location" = "Location", "year" = "year")) %>%
-  full_join(GBD_POP, by=c("location"="location",
+  full_join(GBD_POP %>% filter(sex == "Both"), 
+            by=c("location"="location",
                           "age"="age",
                           "sex"="sex",
                           "year"="year")) 
@@ -444,9 +459,14 @@ SA_SUM <- GBD %>%
   mutate(rate = (number/pop)*100000)
 
 
+SA_POP_SUM <- GBD_POP %>%
+  group_by(sex,age,year) %>%
+  summarise(pop = sum(pop))
+
 SA_age_stand <- GBD %>% select(-c(pop)) %>% 
   filter(metric == "Rate",age == "Age-standardized", cause == "All causes") %>% 
-  right_join(GBD_POP %>% filter(age == "All ages") %>% 
+  right_join(GBD_POP %>% filter(age == "All ages",
+                                sex == "Both") %>% 
                         select(-c(sex, age)), 
             by=c("location"="location",
                           "year"="year")) %>% 
