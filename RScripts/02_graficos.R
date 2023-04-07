@@ -21,7 +21,7 @@ p <- ggplot(data = df %>% filter(age != "All ages"),
   geom_line() + geom_point() +
   scale_color_viridis_b(direction = -1, n.breaks = 29)+
   labs(color = "Measure", y = "Population (in millions)", x = "Age-range",
-       title = "Age distribution between 1990-2019 in South America TESTETTT") +
+       title = "Age distribution between 1990-2019 in South America") +
   theme_bw() +
   coord_flip()+
   theme(legend.position = "right",
