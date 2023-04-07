@@ -33,6 +33,36 @@ p
 ggsave(filename = "01_pop_years_age_group_sa.jpg",
        plot = p, path = here::here("Figures"),
        width = 7, height = 10, dpi = 300)
+
+#---------------------------------------------- (eu sei que era pra esperar o prof Rodrigo, mas não me aguentei)
+
+df <- SA_POP_SUM %>% 
+  filter(sex != "Both", age != "All ages") %>% 
+  mutate(pop_mil = pop/1000000,
+         year = as.numeric(as.character(year)))
+
+p <- ggplot(data = df,
+            mapping = aes(x = age, y = pop_mil,
+                          color = year, group = year)) +
+  geom_point(data=subset(df,sex=="Female"),aes(y=(pop_mil*-1))) +
+  geom_line(data=subset(df,sex=="Female"),aes(y=(pop_mil*-1))) +
+  geom_point(data=subset(df,sex=="Male")) +
+  geom_line(data=subset(df,sex=="Male")) +
+  scale_color_viridis_b(direction = -1, n.breaks = 29)+
+  labs(color = "Measure", y = "Population (in millions)", x = "Age-range",
+       title = "Age distribution between 1990-2019 in South America") +
+  theme_bw() +
+  scale_y_continuous(breaks=seq(-20,20,10),labels=abs(seq(-20,20,10))) + 
+  coord_flip()+
+  theme(legend.position = "right",
+        legend.key.height = unit(2, "cm"),
+        legend.text = element_text(size = 6))
+
+p
+
+ggsave(filename = "01.1_pop_years_age_group_sa_male_female.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 12, height = 10, dpi = 300)
 #----------------------------------------
 p <- ggplot(data = df %>% filter(age == "All ages"),
             mapping = aes(x = year, y = pop_mil,
