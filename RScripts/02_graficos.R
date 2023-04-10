@@ -63,6 +63,27 @@ p
 ggsave(filename = "01.1_pop_years_age_group_sa_male_female.jpg",
        plot = p, path = here::here("Figures"),
        width = 12, height = 10, dpi = 300)
+
+
+#----------------------------------------------ESSE AQUI
+
+df <- SA_POP_SUM %>%
+  filter(!(sex %in% "Both")) %>%
+  filter(!(age %in% "All ages")) %>%
+  filter(year %in% c("1990", 
+                     "2019"))
+
+p <- ggplot(df, mapping = aes(x = age, y = pop)) +
+  geom_col(data = df %>% filter(sex == "Female", year == "1990"), aes(y = pop*-1),
+           alpha = 0.8) +
+  geom_col(data = df %>% filter(sex == "Male", year == "1990"),
+           alpha = 0.8) +
+  geom_col(data = df %>% filter(sex == "Female", year == "2019"), aes(y = pop*-1)) +
+  geom_col(data = df %>% filter(sex == "Male", year == "2019")) +
+  scale_fill_hue(direction = 1) +
+  coord_flip() +
+  theme_minimal()
+p 
 #----------------------------------------
 p <- ggplot(data = df %>% filter(age == "All ages"),
             mapping = aes(x = year, y = pop_mil,
