@@ -381,16 +381,18 @@ ggsave(filename = "09.1_heatmap_DALYS_countries_1990.jpg",
 # SDI by location and ROC
 # -----------------------------------------
 
-p <- GBD_ROC_1990_to_2019 %>%
+df <- GBD_ROC_1990_to_2019 %>%
   filter(age %in% "Age-standardized") %>%
   filter(cause %in% "All causes") %>%
-  filter(metric %in% "Rate") %>%
-  ggplot() +
-  aes(x = SDI, y = ROC_val, colour = location) +
-  geom_point(shape = "circle", size = 1.5) +
+  filter(metric %in% "Rate")
+
+p <-ggplot(df) +
+  aes(x = SDI, y = ROC_val, colour = location, label = sov_a3) +
+  geom_point(shape = "circle", size = 2) +
+  geom_text_repel(size = 3) +
+  geom_hline(yintercept = 0)+
   scale_color_viridis_d(option = "viridis", direction = 1) +
   theme_bw()+
-  geom_abline()+
   facet_wrap(vars(measure))+
   labs(title = "Rate of change and SDI, both sexes, age-standardized", 
        x = "SDI", y= "Rate of Change(%)")
@@ -399,10 +401,36 @@ p
 
 ggsave(filename = "10_ROC_SDI_countries_1990_2019.jpg",
        plot = p, path = here::here("Figures"),
-       width = 18, height = 7, dpi = 300)
+       width = 10, height = 7, dpi = 300)
 
 
+# -----------------------------------------
+# SDI by location and Rate
+# -----------------------------------------
 
+df <- GBD %>%
+  filter(age %in% "Age-standardized") %>%
+  filter(cause %in% "All causes") %>%
+  filter(metric %in% "Rate") %>% 
+  filter(measure %in% c("DALYs", "YLDs", "YLLs"))
+
+p <-ggplot(df) +
+  aes(x = SDI, y = val, colour = location, label = sov_a3) +
+  geom_point(shape = "circle", size = 1) +
+  # geom_text_repel(data = df %>% filter(year == "1990"), label = year) +
+  # geom_text_repel(data = df %>% filter(year == "2000"), label = sov_a3) +
+  # geom_text_repel(data = df %>% filter(year == "2019"), label = year) +
+  scale_color_viridis_d(option = "viridis", direction = 1) +
+  theme_bw()+
+  facet_wrap(vars(measure), scales = "free_y")+
+  labs(title = "Rates of DALYs, YLDs and YLLs by SDI, countries between 1990-2019, both sexes, age-standardized", 
+       x = "SDI", y= "Rate per 100.000")
+
+p
+
+ggsave(filename = "10.1_Rate_SDI_countries_1990_2019.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 10, height = 7, dpi = 300)
 
 
 
