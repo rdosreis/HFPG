@@ -434,9 +434,6 @@ df <- GBD %>%
 p <-ggplot(df) +
   aes(x = SDI, y = val, colour = location, label = sov_a3) +
   geom_point(shape = "circle", size = 1) +
-  # geom_text_repel(data = df %>% filter(year == "1990"), label = year) +
-  # geom_text_repel(data = df %>% filter(year == "2000"), label = sov_a3) +
-  # geom_text_repel(data = df %>% filter(year == "2019"), label = year) +
   scale_color_viridis_d(option = "viridis", direction = 1) +
   theme_bw()+
   facet_wrap(vars(measure), scales = "free_y")+
