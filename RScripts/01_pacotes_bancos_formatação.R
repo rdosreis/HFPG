@@ -13,6 +13,7 @@ library(rnaturalearthdata)
 library(rnaturalearthhires)
 library(hrbrthemes)
 library(shadowtext)
+library(ggrepel)
 
 # -----------------------------------------
 # Carrega arquivos de dados
@@ -473,3 +474,10 @@ SA_age_stand <- GBD %>% select(-c(pop)) %>%
   group_by(measure, year) %>% 
   summarise(val = weighted.mean(val, pop))
 
+GBD <- GBD %>%
+      inner_join(SA_map %>% select(name, sov_a3),
+                 by = c("location" = "name"))
+
+GBD_ROC_1990_to_2019 <- GBD_ROC_1990_to_2019 %>% 
+                  inner_join(SA_map %>% select(name, sov_a3),
+                             by = c("location" = "name"))
