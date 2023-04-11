@@ -94,6 +94,46 @@ ggsave(filename = "01.2_pop_years_age_group_sa_male_female.jpg",
        plot = p, path = here::here("Figures"),
        width = 12, height = 10, dpi = 300)
 
+#----------------------------------------------pra cada país
+
+df <- GBD_POP %>%
+  filter(!(sex %in% "Both")) %>%
+  filter(!(age %in% "All ages")) %>%
+  filter(year %in% c("1990", 
+                     "2019"))
+
+df1 <- GBD_POP %>% 
+      filter(sex == "Both", age == "All ages",
+             year %in% c("1990", 
+                         "2019"))
+df <- df %>% 
+  inner_join(df1,
+             by = c("year" = "year", "location" = "location")) %>% 
+  mutate(pop_percent = (pop.x/pop.y)*100)
+
+p <- ggplot(df, mapping = aes(x = age.x, y = pop_percent)) +
+  geom_col(data = df %>% filter(sex.x == "Female", year == "1990"), aes(y = pop_percent*-1),
+           alpha = 0.5, fill = "red", width = 0.5) +
+  geom_col(data = df %>% filter(sex.x == "Female", year == "2019"), aes(y = pop_percent*-1),
+           alpha = 0.5, fill = "red") +
+  geom_col(data = df %>% filter(sex.x == "Male", year == "1990"),
+           alpha = 0.5, fill = "blue", width = 0.5) +  
+  geom_col(data = df %>% filter(sex.x == "Male", year == "2019"),
+           alpha = 0.5, fill = "blue") +
+  scale_y_continuous(breaks=seq(-10,10,5),labels=abs(seq(-10,10,5))) + 
+  scale_fill_hue(direction = 1) +
+  coord_flip() +
+  facet_wrap(vars(location))+
+  labs(y = "Population(%)", x = "Age group")+
+  theme_bw()
+p 
+
+ggsave(filename = "01.3_pop_years_age_group_male_female_by_countries.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 12, height = 10, dpi = 300)
+rm(df1)
+
+
 #----------------------------------------
 df <- SA_SUM %>% 
   filter(measure == "DALYs",
