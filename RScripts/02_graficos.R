@@ -143,13 +143,16 @@ df <- SA_SUM %>%
 
 p <- ggplot(data = df %>% filter(age == "All ages"),
             mapping = aes(x = year, y = pop_mil,
-                          fill = year)) +
+                          fill = year, label = round(pop_mil, digits = 2))) +
       geom_col()+
       theme_bw() +
+      geom_text(aes(y = pop_mil + 15), angle = 90)+
       coord_cartesian(ylim = c(200,500), xlim = c(1990,2019))+
       labs(color = "Year", y = "Population (in millions)", x = "Year",
            title = "Population in South America between 1990-2019") +
       scale_fill_viridis_c(direction = -1)
+
+  
   
 p
 
@@ -172,12 +175,17 @@ df <- SA_SUM %>%
 
 p <- ggplot(data = df,
             mapping = aes(x = year, y = number_millions,
-                          color = measure, group = measure)) +
+                          color = measure, group = measure,
+                          label = round(number_millions, digits = 2))) +
   geom_line() + geom_point() +
   scale_color_brewer(palette="Dark2") +
   labs(color = "Measure", y = "Number (in millions)", x = "Year",
        title = "Raw number of DALYs, YLDs, YLLs and deaths in South America since 1990") +
   theme_bw() +
+  geom_text_repel(data = df %>% filter(year=="1990"),
+                  aes(y = number_millions + 0.4)) +
+  geom_text_repel(data = df %>% filter(year=="2019"),
+                  aes(y = number_millions + 0.4)) +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
 
@@ -193,13 +201,18 @@ ggsave(filename = "03_measures_numbers_years_sa.jpg",
 
 p <- ggplot(data = df,
             mapping = aes(x = year, y = rate,
-                          color = measure, group = measure)) +
+                          color = measure, group = measure,
+                          label = round(rate, digits = 2))) +
   geom_line() + geom_point() +
   scale_color_brewer(palette="Dark2") +
   labs(#caption = "Rate of DALYs, YLDs, YLLs in South America",
     color = "Measure", y = "Rate (100,000)(All ages)", x = "Year",
     title = "Rate of DALYs, YLDs, YLLs and Deaths in South America without age-standardizing") +
   theme_bw() +
+  geom_text_repel(data = df %>% filter(year=="1990"),
+                  aes(y = rate + 100)) +
+  geom_text_repel(data = df %>% filter(year=="2019"),
+                  aes(y = rate + 100)) +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
 
@@ -217,13 +230,18 @@ df <- SA_age_stand
 
 p <- ggplot(data = df,
             mapping = aes(x = year, y = val,
-                          color = measure, group = measure)) +
+                          color = measure, group = measure,
+                          label = round(val, digits = 2))) +
   geom_line() + geom_point() +
   scale_color_brewer(palette="Dark2") +
   labs(#caption = "Rate of DALYs, YLDs, YLLs in South America",
     color = "Measure", y = "Rate (100,000)(Age standardized)", x = "Year",
     title = "Age-standardized rate of DALYs, YLDs, YLLs and Deaths in South America") +
   theme_bw() +
+  geom_text_repel(data = df %>% filter(year=="1990"),
+                  aes(y = val + 100), size = 3) +
+  geom_text_repel(data = df %>% filter(year=="2019"),
+                  aes(y = val + 100), size = 3) +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
 
@@ -334,15 +352,18 @@ ggsave(filename = "07_ROC_by_countries_1990_2019.jpg",
 df <- GBD %>%
   filter(age == "Age-standardized",
          cause == "All causes",
-         metric == "Rate")
+         metric == "Rate") %>% 
+  mutate(year = as.numeric(year))
 
 p <- ggplot() +
   geom_line(data = df, mapping = aes(x = year, y = val, color = measure, group = measure)) +
-  facet_wrap( ~ location) +
+  facet_wrap( ~ location, scales = "free_y") +
   labs(title = "Rate of DALYs, YLDs, YLLs, Deaths and SEV since 1990 in South America countries",
        x = "", y = "Rate(per 100.000", caption = "Age-standardized")+
   theme_bw() +
-  theme(legend.position = "right", axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(legend.position = "right", axis.text.x = element_text(angle = 45, 
+                                                              hjust = 1, 
+                                                              size = 8))
 
 p
 
