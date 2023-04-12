@@ -352,18 +352,33 @@ ggsave(filename = "07_ROC_by_countries_1990_2019.jpg",
 df <- GBD %>%
   filter(age == "Age-standardized",
          cause == "All causes",
-         metric == "Rate") %>% 
+         metric == "Rate") %>%
+#  filter(location %in% c("Guyana", "Suriname"))
   mutate(year = as.numeric(year))
 
-p <- ggplot() +
-  geom_line(data = df, mapping = aes(x = year, y = val, color = measure, group = measure)) +
-  facet_wrap( ~ location, scales = "free_y") +
-  labs(title = "Rate of DALYs, YLDs, YLLs, Deaths and SEV since 1990 in South America countries",
-       x = "", y = "Rate(per 100.000", caption = "Age-standardized")+
+p1 <- ggplot() +
+  geom_line(data = df %>% filter(!(location %in% c("Suriname", "Guyana"))), 
+            mapping = aes(x = year, y = val, color = measure, group = measure)) +
+  facet_wrap( ~ location, scales = "fixed", ncol = 2) +
+  labs(x = "", y = "Rate(per 100.000)")+
+  theme_bw() +
+  theme(legend.position = "none", axis.text.x = element_text(angle = 45, 
+                                                              hjust = 1, 
+                                                              size = 8))
+
+p2 <- ggplot() +
+  geom_line(data = df %>% filter(location %in% c("Suriname", "Guyana")), 
+            mapping = aes(x = year, y = val, color = measure, group = measure)) +
+  facet_wrap( ~ location, scales = "fixed", ncol = 2) +
+  labs(title = "",
+       x = "", y = "", caption = "Age-standardized")+
   theme_bw() +
   theme(legend.position = "right", axis.text.x = element_text(angle = 45, 
                                                               hjust = 1, 
                                                               size = 8))
+
+
+p <- plot_grid(p1, p2)
 
 p
 
@@ -371,6 +386,7 @@ ggsave(filename = "08_countries_measures_year.jpg",
        plot = p, path = here::here("Figures"),
        width = 10, height = 7, dpi = 300)
 
+rm(p1, p2)
 # -----------------------------------------
 # heatmap countries and causes in 2019
 # -----------------------------------------
@@ -489,8 +505,7 @@ ggsave(filename = "10_ROC_SDI_countries_1990_2019.jpg",
 df <- GBD %>%
   filter(age %in% "Age-standardized") %>%
   filter(cause %in% "All causes") %>%
-  filter(metric %in% "Rate") %>% 
-  filter(measure %in% c("DALYs", "YLDs", "YLLs"))
+  filter(metric %in% "Rate") 
 
 p <-ggplot(df) +
   aes(x = SDI, y = val, colour = location, label = sov_a3) +
