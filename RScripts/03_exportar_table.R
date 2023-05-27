@@ -8,6 +8,12 @@ results <- GBD %>%
 library("xlsx")
 write.xlsx(results, file="resultsGBD.xlsx")
 
+resultsROC <- GBD_ROC_1990_to_2019 %>% 
+  select(measure, location, sex, age, cause, metric, year, ROC_val, ROC_upper, ROC_lower) %>% 
+  filter(sex == "Both",
+         age == "Age-standardized",
+         cause == "All causes",
+         metric == "Rate")
 
 SA <- SA_age_stand %>% 
   filter(year %in% c(1990,2019))
