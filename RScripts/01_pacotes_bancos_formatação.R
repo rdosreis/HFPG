@@ -14,7 +14,7 @@ library(rnaturalearthhires)
 library(hrbrthemes)
 library(shadowtext)
 library(ggrepel)
-
+library(cowplot)
 # -----------------------------------------
 # Carrega arquivos de dados
 # -----------------------------------------

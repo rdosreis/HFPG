@@ -198,6 +198,11 @@ ggsave(filename = "03_measures_numbers_years_sa.jpg",
 # -----------------------------------------
 # Gráfico da América do Sul (Medidas em taxa)
 # -----------------------------------------
+df <- SA_SUM %>%
+  filter(sex %in% "Both") %>%
+  filter(age %in% "All ages") %>%
+  filter(cause == "All causes") %>% 
+  mutate(number_millions = number/1000000)
 
 p <- ggplot(data = df,
             mapping = aes(x = year, y = rate,
@@ -250,6 +255,87 @@ p
 ggsave(filename = "04.1_measures_rate_AGE_STANDARDIZED_years_sa.jpg",
        plot = p, path = here::here("Figures"),
        width = 10, height = 7, dpi = 300)
+
+
+# -----------------------------------------
+# Junção do 4 e 4.1 conforme orientação do prof Bruce
+# -----------------------------------------
+df <- SA_SUM %>%
+  filter(sex %in% "Both") %>%
+  filter(age %in% "All ages") %>%
+  filter(cause == "All causes") %>% 
+  mutate(number_millions = number/1000000)
+
+p1 <- ggplot(data = df,
+            mapping = aes(x = year, y = rate,
+                          color = measure, group = measure,
+                          label = round(rate, digits = 2))) +
+  geom_line() + geom_point() +
+  scale_color_brewer(palette="Dark2") +
+  labs(#caption = "Rate of DALYs, YLDs, YLLs in South America",
+    color = "Measure", y = "", x = "Year",
+    title = "") +
+  theme_bw() +
+  coord_cartesian(ylim = c(0,2500))+
+  geom_text_repel(data = df %>% filter(year=="1990"),
+                  aes(y = rate + 100)) +
+  geom_text_repel(data = df %>% filter(year=="2019"),
+                  aes(y = rate + 100)) +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+p1
+
+df <- SA_age_stand
+
+
+p2 <- ggplot(data = df,
+            mapping = aes(x = year, y = val,
+                          color = measure, group = measure,
+                          label = round(val, digits = 2))) +
+  geom_line() + geom_point() +
+  scale_color_brewer(palette="Dark2") +
+  labs(#caption = "Rate of DALYs, YLDs, YLLs in South America",
+    color = "Measure", y = "Rate per 100.000 population", x = "Year",
+    title = "") +
+  theme_bw() +
+  coord_cartesian(ylim = c(0,2500))+
+  geom_text_repel(data = df %>% filter(year=="1990"),
+                  aes(y = val + 100)) +
+  geom_text_repel(data = df %>% filter(year=="2019"),
+                  aes(y = val + 100)) +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+p2
+
+plot_row <- plot_grid(p2, p1, labels = c('Age-standardized', 'All ages'),
+          label_size = 12,
+          align = "h")
+
+title <- ggdraw() + 
+  draw_label("Rate of DALYs, YLDs, YLLs, Deaths and SEV in South America from 1990 to 2019",
+    fontface = 'bold',
+    x = 0,
+    hjust = 0) +
+  theme(
+    # add margin on the left of the drawing canvas,
+    # so title is aligned with left edge of first plot
+    plot.margin = margin(0, 0, 0, 10))
+
+f <-plot_grid(
+  title, plot_row,
+  ncol = 1,
+  # rel_heights values control vertical title margins
+  rel_heights = c(0.1, 1))
+
+ggsave(filename = "04.2_AS_AA_1990_2019.jpg",
+       plot = f, path = here::here("Figures"),
+       width = 15, height = 7, dpi = 300)
+
+ggsave(filename = "04.2_AS_AA_1990_2019.svg",
+       plot = f, path = here::here("Figures"),
+       width = 15, height = 7, dpi = 300)
 # -----------------------------------------
 # Gráfico da América do Sul por faixa etaria (Medidas em numeros)
 # -----------------------------------------
@@ -346,6 +432,41 @@ p
 ggsave(filename = "07_ROC_by_countries_1990_2019.jpg",
        plot = p, path = here::here("Figures"),
        width = 12, height = 7, dpi = 300)
+
+# -----------------------------------------
+# Gráfico da América do Sul (rate of change) AFTER BRUCE
+# -----------------------------------------
+
+
+df <- GBD_ROC_1990_to_2019 %>% 
+  filter(age == "Age-standardized") %>% 
+  filter(cause == "All causes") %>% 
+  filter(metric == "Rate")
+
+p <- ggplot(data = df,
+            mapping = aes(x = location,
+                          y = ROC_val,
+                          fill = location)) +
+  geom_bar(position = position_dodge(.9), stat = "identity") +
+  geom_errorbar(aes(ymin = ROC_lower, ymax = ROC_upper),
+                size = 0.5,
+                width = 0.5,
+                position = position_dodge(.9)) +
+  labs(x = "Country", y = "Annualized Rate of Change (%) from 1990 to 2019",
+       fill = "", caption = "Age-standardized",
+       title = "Annualized Rate of Change (%) of DALYs, YLDs, YLLs, Deaths and SEV from 1990 to 2019 in South America countries") +
+  theme_bw() +
+  facet_grid(~ measure)+
+  scale_fill_viridis_d()+
+  theme(legend.position = "bottom", 
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 7))
+
+p
+
+ggsave(filename = "07.1_ROC_by_countries_1990_2019_afterBRUCE.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 12, height = 7, dpi = 300)
+
 # -----------------------------------------
 # Rate of measures each country from 1990 to 2019
 # -----------------------------------------
