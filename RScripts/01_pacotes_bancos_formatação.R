@@ -476,8 +476,12 @@ SA_age_stand <- GBD %>% select(-c(pop)) %>%
 
 GBD <- GBD %>%
       inner_join(SA_map %>% select(name, sov_a3),
-                 by = c("location" = "name"))
+                 by = c("location" = "name")) %>% 
+  mutate(measure=fct_relevel(measure,c("SEV","YLDs","YLLs","DALYs","Deaths"))) %>%
+  arrange(measure)
 
 GBD_ROC_1990_to_2019 <- GBD_ROC_1990_to_2019 %>% 
                   inner_join(SA_map %>% select(name, sov_a3),
-                             by = c("location" = "name"))
+                             by = c("location" = "name")) %>%
+  mutate(measure=fct_relevel(measure,c("SEV","YLDs","YLLs","DALYs","Deaths"))) %>%
+  arrange(measure)

@@ -441,7 +441,9 @@ ggsave(filename = "07_ROC_by_countries_1990_2019.jpg",
 df <- GBD_ROC_1990_to_2019 %>% 
   filter(age == "Age-standardized") %>% 
   filter(cause == "All causes") %>% 
-  filter(metric == "Rate")
+  filter(metric == "Rate") %>%
+  mutate(measure=fct_relevel(measure,c("SEV","YLDs","YLLs","DALYs","Deaths"))) %>%
+  arrange(measure)
 
 p <- ggplot(data = df,
             mapping = aes(x = location,
