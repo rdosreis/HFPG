@@ -730,16 +730,20 @@ ggsave(filename = "10.1_Rate_SDI_countries_1990_2019.jpg",
 
 df <- SEV_perch %>% 
   filter(rf %in% c(
-                  "Low physical activity",
-                  "High systolic blood pressure",
-                  "Alcohol use",
-                  "Diet high in sodium",
-                  "High fasting plasma glucose",
-                  "High body-mass index",
-                  "Smoking",
-                  "High LDL cholesterol")) %>% 
+    "Diet high in sugar-sweetened beverages",
+    "Diet high in red meat",
+    "Diet low in whole grains",
+    "Diet low in fruits",
+    "High fasting plasma glucose",
+    "High body-mass index",
+    "High systolic blood pressure",
+    "Diet high in processed meat",
+    "Smoking",
+    "Low physical activity"
+    )) %>% 
   filter(age == "Age-standardized")
 
+# sugar swleetened bev, red Meat, whole grains, processed meat, low Fruit,high BP,low PA, high BMI, smoking
 
 p <-ggplot(df) +
   aes(x = year.x, y = PERCH, colour = rf) +
@@ -748,7 +752,7 @@ p <-ggplot(df) +
   facet_wrap(vars(location))+
   labs(title = "Percent change of SEV for important risk factors", 
        x = "", y= "Percent change of SEV", color = "Risk Factors")+
-  scale_color_brewer(palette="Dark2") +
+  scale_color_brewer(palette="Paired") +
   theme(
          axis.text.x = element_text(hjust = 1,
                                     angle = 45,
@@ -762,7 +766,44 @@ ggsave(filename = "11_PERCH_1990_2019.jpg",
        plot = p, path = here::here("Figures"),
        width = 10, height = 7, dpi = 300)
 
+#sem smoking
 
+df <- SEV_perch %>% 
+  filter(rf %in% c(
+    "Diet high in sugar-sweetened beverages",
+    "Diet high in red meat",
+    "Diet low in whole grains",
+    "Diet low in fruits",
+    "High fasting plasma glucose",
+    "High body-mass index",
+    "High systolic blood pressure",
+    "Diet high in processed meat",
+    "Low physical activity"
+  )) %>% 
+  filter(age == "Age-standardized")
+
+# sugar swleetened bev, red Meat, whole grains, processed meat, low Fruit,high BP,low PA, high BMI, smoking
+
+p <-ggplot(df) +
+  aes(x = year.x, y = PERCH, colour = rf) +
+  geom_line() +
+  theme_bw()+
+  facet_wrap(vars(location))+
+  labs(title = "Percent change of SEV for important risk factors", 
+       x = "", y= "Percent change of SEV", color = "Risk Factors")+
+  scale_color_brewer(palette="Paired") +
+  theme(
+    axis.text.x = element_text(hjust = 1,
+                               angle = 45,
+                               size = 8),
+    plot.title = element_text(hjust = 0.5))
+
+p
+
+
+ggsave(filename = "11.1_PERCH_1990_2019.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 10, height = 7, dpi = 300)
 
 
 # -----------------------------------------
