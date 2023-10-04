@@ -468,6 +468,77 @@ p
 ggsave(filename = "07.1_ROC_by_countries_1990_2019_afterBRUCE.jpg",
        plot = p, path = here::here("Figures"),
        width = 12, height = 7, dpi = 300)
+# -----------------------------------------
+# Gráfico da América do Sul (rate of change) AFTER BRUCE
+# -----------------------------------------
+
+
+df <- GBD_ROC_1990_to_2019 %>% 
+  filter(age == "Age-standardized") %>% 
+  filter(cause == "All causes") %>% 
+  filter(metric == "Rate") %>%
+  mutate(measure=fct_relevel(measure,c("Deaths","YLLs","YLDs","DALYs","SEV"))) %>%
+  arrange(measure)
+
+p <- ggplot(data = df,
+            mapping = aes(x = location,
+                          y = ROC_val,
+                          fill = location)) +
+  geom_bar(position = position_dodge(.9), stat = "identity") +
+  geom_errorbar(aes(ymin = ROC_lower, ymax = ROC_upper),
+                size = 0.5,
+                width = 0.5,
+                position = position_dodge(.9)) +
+  labs(x = "Country", y = "Annualized Rate of Change (%) from 1990 to 2019",
+       fill = "", caption = "Age-standardized",
+       title = "Annualized Rate of Change (%) of DALYs, YLDs, YLLs, Deaths and SEV from 1990 to 2019 in South America countries") +
+  theme_bw() +
+  facet_grid(~ measure)+
+  scale_fill_viridis_d()+
+  theme(legend.position = "bottom", 
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 7))
+
+p
+
+ggsave(filename = "07.3_ROC_by_countries_1990_2019_afterBARBARA.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 12, height = 7, dpi = 300)
+
+# -----------------------------------------
+# Gráfico da América do Sul (rate of change) ALL AGES
+# -----------------------------------------
+
+
+df <- GBD_ROC_1990_to_2019 %>% 
+  filter(age == "All ages") %>% 
+  filter(cause == "All causes") %>% 
+  filter(metric == "Rate") %>%
+  mutate(measure=fct_relevel(measure,c("SEV","YLDs","YLLs","DALYs","Deaths"))) %>%
+  arrange(measure)
+
+p <- ggplot(data = df,
+            mapping = aes(x = location,
+                          y = ROC_val,
+                          fill = location)) +
+  geom_bar(position = position_dodge(.9), stat = "identity") +
+  geom_errorbar(aes(ymin = ROC_lower, ymax = ROC_upper),
+                size = 0.5,
+                width = 0.5,
+                position = position_dodge(.9)) +
+  labs(x = "Country", y = "Annualized Rate of Change (%) from 1990 to 2019",
+       fill = "", caption = "All ages",
+       title = "Annualized Rate of Change (%) of DALYs, YLDs, YLLs, Deaths and SEV from 1990 to 2019 in South America countries") +
+  theme_bw() +
+  facet_grid(~ measure)+
+  scale_fill_viridis_d()+
+  theme(legend.position = "bottom", 
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 7))
+
+p
+
+ggsave(filename = "07.2_ROC_by_countries_1990_2019_CRUDE.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 12, height = 7, dpi = 300)
 
 # -----------------------------------------
 # Rate of measures each country from 1990 to 2019
@@ -653,17 +724,43 @@ ggsave(filename = "10.1_Rate_SDI_countries_1990_2019.jpg",
 
 
 # -----------------------------------------
-# GRAFICO DE RANKING o que mudou de ranking das causas pra cada país
+# Gráficos PERCENT CHANGE
 # -----------------------------------------
 
 
+df <- SEV_perch %>% 
+  filter(rf %in% c(
+                  "Low physical activity",
+                  "High systolic blood pressure",
+                  "Alcohol use",
+                  "Diet high in sodium",
+                  "High fasting plasma glucose",
+                  "High body-mass index",
+                  "Smoking",
+                  "High LDL cholesterol")) %>% 
+  filter(age == "Age-standardized")
 
 
+p <-ggplot(df) +
+  aes(x = year.x, y = PERCH, colour = rf) +
+  geom_line() +
+  theme_bw()+
+  facet_wrap(vars(location))+
+  labs(title = "Percent change of SEV for important risk factors", 
+       x = "", y= "Percent change of SEV", color = "Risk Factors")+
+  scale_color_brewer(palette="Dark2") +
+  theme(
+         axis.text.x = element_text(hjust = 1,
+                                    angle = 45,
+                                    size = 8),
+         plot.title = element_text(hjust = 0.5))
+
+p
 
 
-
-
-
+ggsave(filename = "11_PERCH_1990_2019.jpg",
+       plot = p, path = here::here("Figures"),
+       width = 10, height = 7, dpi = 300)
 
 
 

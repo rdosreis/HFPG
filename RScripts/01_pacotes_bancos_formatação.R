@@ -26,6 +26,10 @@ GBD_4 <-
   readr::read_csv(file = here::here("GBD-dados", "GBD_4.csv"))
 SEV <- readr::read_csv(file = here::here("GBD-dados", "SEV.csv"))
 
+SEV_perch <- readr::read_csv(file = here::here("GBD-dados", "SEV_perch.csv"))
+
+
+
 #Rate of changes
 SEV_ROC <-
   readr::read_csv(file = here::here("GBD-dados", "SEV_ROC.csv"))
@@ -485,3 +489,23 @@ GBD_ROC_1990_to_2019 <- GBD_ROC_1990_to_2019 %>%
                              by = c("location" = "name")) %>%
   mutate(measure=fct_relevel(measure,c("SEV","YLDs","YLLs","DALYs","Deaths"))) %>%
   arrange(measure)
+
+SEV_perch <- SEV_perch %>% 
+            mutate(measure = recode(measure,
+                                   "YLDs (Years Lived with Disability)" = "YLDs",
+                                   "YLLs (Years of Life Lost)" = "YLLs",
+                                   "DALYs (Disability-Adjusted Life Years)" = "DALYs",
+                                   "Summary exposure value" = "SEV"),
+                  location = recode(location,
+                                    "Bolivia (Plurinational State of)" = "Bolivia",
+                                    "Venezuela (Bolivarian Republic of)" = "Venezuela")) %>% 
+            rename(rf = rei)
+            
+  SEV_perch <- SEV_perch %>% 
+  right_join(SEV_perch %>% filter(year == 1990), 
+                       by = c( "location"="location",
+                               "age"="age",
+                               "rf"="rf"))
+  SEV_perch <- SEV_perch %>% 
+  mutate(PERCH = (((val.x/val.y)-1)*100))
+  
