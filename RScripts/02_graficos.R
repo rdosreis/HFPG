@@ -752,7 +752,16 @@ p <-ggplot(df) +
   facet_wrap(vars(location))+
   labs(title = "Percent change of SEV for important risk factors", 
        x = "", y= "Percent change of SEV", color = "Risk Factors")+
-  scale_color_brewer(palette="Paired") +
+  scale_color_manual(values=c("#ff7f00",
+                              "#e31a1c",
+                              "#0744ab",
+                              "#2eff2e",
+                              "#fdbf6f",
+                              "#6a3d9a",
+                              "#ff1694",
+                              "#006400",
+                              "#696969",
+                              "#2ab3f3"))+
   theme(
          axis.text.x = element_text(hjust = 1,
                                     angle = 45,
@@ -791,7 +800,16 @@ p <-ggplot(df) +
   facet_wrap(vars(location))+
   labs(title = "Percent change of SEV for important risk factors", 
        x = "", y= "Percent change of SEV", color = "Risk Factors")+
-  scale_color_brewer(palette="Paired") +
+  scale_color_manual(values=c("#ff7f00",
+                                       "#e31a1c",
+                                       "#0744ab",
+                                       "#2eff2e",
+                                       "#fdbf6f",
+                                       "#6a3d9a",
+                                       "#ff1694",
+                                       "#006400",
+                                       "#696969",
+                                       "#2ab3f3"))+
   theme(
     axis.text.x = element_text(hjust = 1,
                                angle = 45,
