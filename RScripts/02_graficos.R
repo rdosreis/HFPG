@@ -271,16 +271,16 @@ p1 <- ggplot(data = df,
                           color = measure, group = measure,
                           label = round(rate, digits = 2))) +
   geom_line() + geom_point() +
-  scale_color_brewer(palette="Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   labs(#caption = "Rate of DALYs, YLDs, YLLs in South America",
     color = "Measure", y = "", x = "Year",
     title = "") +
   theme_bw() +
-  coord_cartesian(ylim = c(0,2500))+
-  geom_text_repel(data = df %>% filter(year=="1990"),
-                  aes(y = rate + 100)) +
-  geom_text_repel(data = df %>% filter(year=="2019"),
-                  aes(y = rate + 100)) +
+  coord_cartesian(ylim = c(0,2500)) +
+  geom_text_repel(data = df %>% filter(year == "1990"),
+                  aes(y = rate + 100), show.legend = FALSE) +
+  geom_text_repel(data = df %>% filter(year == "2019"),
+                  aes(y = rate + 100), show.legend = FALSE) +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
 
@@ -300,18 +300,34 @@ p2 <- ggplot(data = df,
     title = "") +
   theme_bw() +
   coord_cartesian(ylim = c(0,2500))+
-  geom_text_repel(data = df %>% filter(year=="1990"),
-                  aes(y = val + 100)) +
-  geom_text_repel(data = df %>% filter(year=="2019"),
-                  aes(y = val + 100)) +
+  geom_text_repel(data = df %>% filter(year == "1990"),
+                  aes(y = val + 100), show.legend = FALSE) +
+  geom_text_repel(data = df %>% filter(year == "2019"),
+                  aes(y = val + 100), show.legend = FALSE) +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
 
 p2
 
-plot_row <- plot_grid(p2, p1, labels = c('Age-standardized', 'All ages'),
-          label_size = 12,
-          align = "h")
+plot_row <- plot_grid(p2, p1,
+                      labels = c('A', 'B')#,
+          # label_size = 12,
+          # align = "h")
+)
+
+p <- list(p1, p2)
+
+p_nl <- lapply(p, function(x) x + theme(legend.position = "none"))
+legend <- cowplot::get_legend(p[[2]] + theme(legend.position = "bottom"))
+
+grid01 <- plot_grid(p_nl[[2]], p_nl[[1]],
+                    labels = c('A', 'B'))
+grid02 <- plot_grid(grid01, legend, ncol = 1, 
+                    rel_heights = c(0.9, .1))
+
+ggsave(filename = "Fig1.svg",
+       plot = grid02, path = here::here("Figures"),
+       width = 15, height = 7, dpi = 300)
 
 title <- ggdraw() + 
   draw_label("Rate of DALYs, YLDs, YLLs, Deaths and SEV in South America from 1990 to 2019",
@@ -323,7 +339,7 @@ title <- ggdraw() +
     # so title is aligned with left edge of first plot
     plot.margin = margin(0, 0, 0, 10))
 
-f <-plot_grid(
+f <- plot_grid(
   title, plot_row,
   ncol = 1,
   # rel_heights values control vertical title margins
