@@ -1,0 +1,49 @@
+measure,location,sex,age,cause,rei,metric,year_start,year_end,val,upper,lower
+Deaths,Plurinational State of Bolivia,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.17201975802041927,0.4590346419306636,-0.08432012086493587
+Deaths,Eastern Republic of Uruguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.18906479107972,0.3700303118579414,0.025317046751264293
+Deaths,Federative Republic of Brazil,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.34036373557028626,-0.2812804555217161,-0.400809676190045
+Deaths,Republic of Guyana,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.11342458060411992,0.14129035110860116,-0.30874056769813496
+Deaths,Argentine Republic,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.059593181227190185,0.07437899188252058,-0.17706861819483344
+Deaths,Republic of Colombia,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.4208255908410899,-0.26426550581745845,-0.5441764371274591
+Deaths,Republic of Suriname,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.04091557063836804,0.28339240220849327,-0.14479046180075036
+Deaths,Bolivarian Republic of Venezuela,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.04862014502076039,0.3523325746589693,-0.18695165859669613
+Deaths,Republic of Ecuador,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.4633366286031374,0.8617426951624553,0.1686881052590139
+Deaths,Republic of Paraguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.6448635288191569,1.1661778756286498,0.23069583181888492
+Deaths,Republic of Chile,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.07371729495356771,0.10010648956062192,-0.2198003047701846
+Deaths,Republic of Peru,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.09262198701128443,0.22221348547265415,-0.34329781211353855
+DALYs (Disability-Adjusted Life Years),Bolivarian Republic of Venezuela,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.1503039290369364,0.4331313206458177,-0.07053331667596678
+DALYs (Disability-Adjusted Life Years),Republic of Colombia,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.28217646420353454,-0.14273519481329894,-0.4065411571775367
+DALYs (Disability-Adjusted Life Years),Argentine Republic,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.02261161096941694,0.13587288290346117,-0.08480107223342662
+DALYs (Disability-Adjusted Life Years),Federative Republic of Brazil,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.26084043972749354,-0.20899590392061482,-0.3170603299929675
+DALYs (Disability-Adjusted Life Years),Republic of Ecuador,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.45871272145539416,0.7719457756397122,0.2210595507325363
+DALYs (Disability-Adjusted Life Years),Eastern Republic of Uruguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.31408235425381414,0.486703885129753,0.15749502819012348
+DALYs (Disability-Adjusted Life Years),Republic of Paraguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.6848414226106689,1.1079287664120743,0.33992187431127197
+DALYs (Disability-Adjusted Life Years),Plurinational State of Bolivia,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.11322210614355917,0.36243511428542985,-0.10418278176382147
+DALYs (Disability-Adjusted Life Years),Republic of Chile,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.03833237046671957,0.1781856905007311,-0.09060924216666878
+DALYs (Disability-Adjusted Life Years),Republic of Guyana,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.02715007228092839,0.24278555169246815,-0.2358173563373528
+DALYs (Disability-Adjusted Life Years),Republic of Suriname,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.22870647792756715,0.4550082597083969,0.05452486364414127
+DALYs (Disability-Adjusted Life Years),Republic of Peru,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.013587746468780712,0.2735076074982314,-0.1881943012658183
+YLDs (Years Lived with Disability),Republic of Guyana,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.4969503946714809,0.6018117928166262,0.40141832703328945
+YLDs (Years Lived with Disability),Republic of Ecuador,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.7427186021420291,0.8843663184246834,0.6160775919593101
+YLDs (Years Lived with Disability),Republic of Colombia,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.18102814148075344,0.27853874423750463,0.08196637064606387
+YLDs (Years Lived with Disability),Federative Republic of Brazil,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.11164655825277763,0.1471376516062804,0.074741294959344
+YLDs (Years Lived with Disability),Bolivarian Republic of Venezuela,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.38629329100798965,0.493089018424759,0.29574773577712815
+YLDs (Years Lived with Disability),Republic of Suriname,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.6698407755545037,0.7665003977552506,0.5823671306597779
+YLDs (Years Lived with Disability),Republic of Paraguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.6198203196415559,0.7407318743087249,0.5126593250286254
+YLDs (Years Lived with Disability),Republic of Chile,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.6250536351336322,0.7704023205548908,0.49030067935173655
+YLDs (Years Lived with Disability),Plurinational State of Bolivia,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.47290393939123315,0.5584983799959816,0.3943928526017629
+YLDs (Years Lived with Disability),Republic of Peru,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.5855728705227448,0.6932416250196715,0.4842236368481277
+YLDs (Years Lived with Disability),Eastern Republic of Uruguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,1.344788758869541,1.5508278486194584,1.156641559356052
+YLDs (Years Lived with Disability),Argentine Republic,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.5692851931174471,0.6934031393902075,0.4517948155286549
+YLLs (Years of Life Lost),Plurinational State of Bolivia,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.05163484108255812,0.34359869120015674,-0.1921363207531399
+YLLs (Years of Life Lost),Federative Republic of Brazil,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.3516394462536209,-0.30206790011977924,-0.4015192616787121
+YLLs (Years of Life Lost),Argentine Republic,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.09517667932499448,0.018123874901086606,-0.20197254473565573
+YLLs (Years of Life Lost),Eastern Republic of Uruguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.12877614659718742,0.31147260978662344,-0.02467067857400439
+YLLs (Years of Life Lost),Republic of Colombia,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.4341092733668741,-0.25888601628115837,-0.5659600442442817
+YLLs (Years of Life Lost),Bolivarian Republic of Venezuela,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.0890193924042937,0.43623304382815414,-0.17031199476271558
+YLLs (Years of Life Lost),Republic of Guyana,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.0978155223522361,0.20038107232678218,-0.31452730803528284
+YLLs (Years of Life Lost),Republic of Ecuador,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.37810450206861207,0.771832741211572,0.07772544900315143
+YLLs (Years of Life Lost),Republic of Suriname,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.1160464696467523,0.38682436605095993,-0.08454500053709031
+YLLs (Years of Life Lost),Republic of Paraguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,0.7048581027576768,1.2692773632666647,0.27237124549481295
+YLLs (Years of Life Lost),Republic of Chile,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.13584266756734456,0.004418567698744413,-0.2600060390994772
+YLLs (Years of Life Lost),Republic of Peru,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,1990,2019,-0.1494356736096373,0.16962156947966522,-0.3869895040140053

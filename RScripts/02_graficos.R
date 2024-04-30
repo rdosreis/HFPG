@@ -744,13 +744,13 @@ ggsave(filename = "10.1_Rate_SDI_countries_1990_2019.jpg",
 # -----------------------------------------
 
 
-df <- SEV_perch %>% 
+df1 <- SEV_perch %>% 
   filter(rf %in% c(
     "Diet high in sugar-sweetened beverages",
     "Diet high in red meat",
     "Diet low in whole grains",
     "Diet low in fruits",
-    "High fasting plasma glucose",
+    # "High fasting plasma glucose",
     "High body-mass index",
     "High systolic blood pressure",
     "Diet high in processed meat",
@@ -759,15 +759,20 @@ df <- SEV_perch %>%
     )) %>% 
   filter(age == "Age-standardized")
 
+df2 <- SEV_perch %>% 
+  filter(rf %in% c(
+    "High fasting plasma glucose"
+  )) %>% 
+  filter(age == "Age-standardized")
+
 # sugar swleetened bev, red Meat, whole grains, processed meat, low Fruit,high BP,low PA, high BMI, smoking
 
-p <-ggplot(df) +
-  aes(x = year.x, y = PERCH, colour = rf) +
-  geom_line() +
-  theme_bw()+
-  facet_wrap(vars(location))+
-  labs(title = "Percent change of SEV for important risk factors", 
-       x = "", y= "Percent change of SEV", color = "Risk Factors")+
+p <- ggplot(data = df1,
+           mapping = aes(x = year.x, y = PERCH, colour = rf)) +
+  geom_line(alpha = 0.4) +
+  geom_line(data = df2,
+            mapping =  aes(x = year.x, y = PERCH, colour = rf), size = 1) +
+  scale_x_continuous(breaks = c(seq(from = 1990, to = 2019, by = 5), 2019)) +
   scale_color_manual(values=c("#ff7f00",
                               "#e31a1c",
                               "#0744ab",
@@ -778,18 +783,22 @@ p <-ggplot(df) +
                               "#006400",
                               "#696969",
                               "#2ab3f3"))+
-  theme(
-         axis.text.x = element_text(hjust = 1,
+  facet_wrap(vars(location)) +
+  labs(#title = "Percent change of SEV for important risk factors", 
+       x = "Year", y= "Percent change of SEV", color = "Risk Factors")+
+  theme_bw() +
+  theme(axis.text.x = element_text(hjust = 1,
                                     angle = 45,
                                     size = 8),
-         plot.title = element_text(hjust = 0.5))
+         plot.title = element_text(hjust = 0.5),
+        legend.position = "bottom")
 
 p
 
 
-ggsave(filename = "11_PERCH_1990_2019.jpg",
+ggsave(filename = "Percent_Change_SEV_1990_2019.jpg",
        plot = p, path = here::here("Figures"),
-       width = 10, height = 7, dpi = 300)
+       width = 11, height = 7, dpi = 300)
 
 #sem smoking
 

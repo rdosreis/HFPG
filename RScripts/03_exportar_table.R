@@ -5,6 +5,15 @@ results <- GBD %>%
                  cause == "All causes",
                  year %in% c(1990, 2019))
 
+results_19 <- results %>% 
+  filter(year == 2019)
+
+results_19 <- results_19 %>% 
+  select(-sex, -age, -cause, -year, -metric)
+
+results_19 %>% 
+  pivot_wider(names_from = measure, values_from = c(val, lower, upper))
+
 library("xlsx")
 write.xlsx(results, file="resultsGBD.xlsx")
 
