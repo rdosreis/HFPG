@@ -286,24 +286,34 @@ p1 <- ggplot(data = df,
 
 p1
 
+#Editado em 19/09/24 para deixa o SEV do lado direito...
+
 df <- SA_age_stand
 
-
+secax <- 150
 p2 <- ggplot(data = df,
             mapping = aes(x = year, y = val,
                           color = measure, group = measure,
                           label = round(val, digits = 2))) +
-  geom_line() + geom_point() +
+  geom_line(data = df %>% filter(measure != "SEV")) +
+  geom_point(data = df %>% filter(measure != "SEV")) +
+  geom_line(aes (y = val*secax), data = df %>% filter(measure == "SEV")) +
+  geom_point(aes (y = val*secax), data = df %>% filter(measure == "SEV")) +
+  scale_y_continuous(sec.axis = sec_axis(~./secax, name="SEV"))+
   scale_color_brewer(palette="Dark2") +
   labs(#caption = "Rate of DALYs, YLDs, YLLs in South America",
-    color = "Measure", y = "Rate per 100.000 population", x = "Year",
-    title = "") +
+    color = "Measure", y = "DALYs YLDs and YLLs", x = "Year",
+    title = "Rates per 100.000") +
   theme_bw() +
-  coord_cartesian(ylim = c(0,2500))+
-  geom_text_repel(data = df %>% filter(year == "1990"),
+  # coord_cartesian(ylim = c(0,2500))+
+  geom_text_repel(data = df %>% filter(year == "1990", measure != "SEV"),
                   aes(y = val + 100), show.legend = FALSE) +
-  geom_text_repel(data = df %>% filter(year == "2019"),
+  geom_text_repel(data = df %>% filter(year == "2019", measure != "SEV"),
                   aes(y = val + 100), show.legend = FALSE) +
+  geom_text_repel(data = df %>% filter(year == "1990", measure == "SEV"),
+                  aes(y = val*secax + 100), show.legend = FALSE) +
+  geom_text_repel(data = df %>% filter(year == "2019", measure == "SEV"),
+                  aes(y = val*secax + 100), show.legend = FALSE) +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
 
