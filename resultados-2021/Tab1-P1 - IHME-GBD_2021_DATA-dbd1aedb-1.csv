@@ -1,0 +1,49 @@
+measure,location,sex,age,cause,rei,metric,year,val,upper,lower
+Deaths,Suriname,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,107.64064920474,134.38649887224,83.42345264029
+Deaths,Argentina,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,52.399433296009995,63.060030896069996,42.59138857877
+Deaths,Uruguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,48.102633219400005,59.65296491182,37.45293462457
+Deaths,Guyana,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,193.54951042697002,241.28988664720998,152.58366142533
+Deaths,Chile,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,40.03096671248,48.95119135533,31.795296970890004
+Deaths,Bolivia (Plurinational State of),Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,105.37152820451999,137.41610321841,83.23326574279
+Deaths,Venezuela (Bolivarian Republic of),Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,95.83972926959,121.87684631892999,74.20332758025
+Deaths,Peru,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,46.57811135854,60.36321427621999,35.30141126617
+Deaths,Colombia,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,40.662517895760004,49.88590582603,32.01347978475
+Deaths,Ecuador,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,78.73799092689,98.89236106765001,62.12056649381
+Deaths,Brazil,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,62.33429864983,71.31832283534,54.17306587076
+Deaths,Paraguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,102.50604678806,126.99667391708,80.53845335748001
+DALYs (Disability-Adjusted Life Years),Uruguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,1369.30387875267,1650.75147901556,1112.22437458022
+DALYs (Disability-Adjusted Life Years),Argentina,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,1483.18069251605,1745.31181545323,1232.44528527021
+DALYs (Disability-Adjusted Life Years),Chile,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,1289.06194756529,1556.60334179773,1044.20270435623
+DALYs (Disability-Adjusted Life Years),Guyana,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,5871.67550109792,7213.81631140986,4773.1512022386405
+DALYs (Disability-Adjusted Life Years),Colombia,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,1407.89274194824,1707.95541722178,1140.13677679762
+DALYs (Disability-Adjusted Life Years),Bolivia (Plurinational State of),Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,2709.46786634755,3426.7709615596305,2164.92600926232
+DALYs (Disability-Adjusted Life Years),Ecuador,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,2244.10195515978,2738.75560575011,1767.6184038814401
+DALYs (Disability-Adjusted Life Years),Suriname,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,3641.87618865695,4415.87386487833,2943.69326197214
+DALYs (Disability-Adjusted Life Years),Peru,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,1294.44477751851,1617.32912768118,1021.9822823540101
+DALYs (Disability-Adjusted Life Years),Paraguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,2785.23357379948,3400.67766479177,2259.7608482902
+DALYs (Disability-Adjusted Life Years),Venezuela (Bolivarian Republic of),Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,2675.158399067,3349.6939743014,2158.79954236756
+DALYs (Disability-Adjusted Life Years),Brazil,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,1864.05652703492,2151.80289785474,1591.72012401347
+YLDs (Years Lived with Disability),Bolivia (Plurinational State of),Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,634.89196668927,876.5784133228101,432.54678248958
+YLDs (Years Lived with Disability),Guyana,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,1598.6923188101298,2202.1564933082,1087.18245645198
+YLDs (Years Lived with Disability),Suriname,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,1248.31573396165,1713.0912961445501,851.68993440597
+YLDs (Years Lived with Disability),Uruguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,490.38806594536,679.1395623227,341.72171943028
+YLDs (Years Lived with Disability),Argentina,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,502.46967314354,698.74069880325,346.87847520703997
+YLDs (Years Lived with Disability),Chile,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,601.5759580514999,825.14135862964,410.80128533153
+YLDs (Years Lived with Disability),Ecuador,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,746.09603140895,1024.14372144022,516.25378037703
+YLDs (Years Lived with Disability),Colombia,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,650.40402213143,888.37003273402,444.25951950637
+YLDs (Years Lived with Disability),Peru,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,388.98692341936,527.9972166657,266.26676993916
+YLDs (Years Lived with Disability),Venezuela (Bolivarian Republic of),Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,723.80615368633,988.86457794294,498.56872370604
+YLDs (Years Lived with Disability),Brazil,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,616.14042063948,812.00509452065,430.00566963898996
+YLDs (Years Lived with Disability),Paraguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,725.41106137684,997.52016227895,491.66843115052
+YLLs (Years of Life Lost),Suriname,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,2393.56045469529,2972.73149473291,1863.4989173419801
+YLLs (Years of Life Lost),Argentina,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,980.7110193725,1163.91713152297,803.8989473263799
+YLLs (Years of Life Lost),Uruguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,878.9158128073101,1081.53829139913,688.573397068
+YLLs (Years of Life Lost),Chile,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,687.4859895137901,827.9992200751001,552.8563128409801
+YLLs (Years of Life Lost),Guyana,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,4272.98318228779,5462.59639801217,3327.18575284994
+YLLs (Years of Life Lost),Colombia,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,757.48871981682,930.66738740823,599.91689168748
+YLLs (Years of Life Lost),Venezuela (Bolivarian Republic of),Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,1951.3522453806597,2537.22848280216,1475.39444581115
+YLLs (Years of Life Lost),Peru,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,905.45785409914,1184.15581285276,682.4704258214999
+YLLs (Years of Life Lost),Bolivia (Plurinational State of),Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,2074.57589965828,2754.5300010373303,1594.43611333885
+YLLs (Years of Life Lost),Ecuador,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,1498.0059237508199,1924.58607469797,1151.60151625118
+YLLs (Years of Life Lost),Brazil,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,1247.91610639543,1403.0200889662,1101.45964668022
+YLLs (Years of Life Lost),Paraguay,Both,Age-standardized,All causes,High fasting plasma glucose,Rate,2021,2059.82251242263,2592.04615342958,1598.39220005355
